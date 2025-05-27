@@ -1,0 +1,76 @@
+/* Extra Large Devices, Wide Screens */
+@media only screen and (max-width : 1600px) {
+	.banner-area .banner-img {
+		left: 20px;
+		top: 50px;
+	}
+}
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	.sm-t-center{text-align: center !important;}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.xs-t-center{text-align: center !important;}
+	.load-btn{margin-top: 50px !important;}
+}
+@media only screen and (max-width : 767px) {
+	.subscribe_2{
+		float:left;
+		width:100%;
+	}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 390px) {
+.login_wrapper{
+	padding:20px;
+}
+.register_wrapper_box{
+	padding:20px;
+}
+.login_message p{
+	font-size:14px !important;
+}
+.login_remember_box .control, .login_remember_box .forget_password{
+	font-size:12px;
+}
+.event-details .descriptions .eventleft li{
+	margin: 5px 0px;
+	height: 70px;
+    width: 70px;
+	font-size: 14px;
+}
+.event-details .descriptions .eventleft li span {
+    font-size: 16px;
+}
+.events-area .panel-group .panel .panel-heading a h3{
+	font-size: 20px;
+}
+.events-area .panel-group .panel .panel-heading a.btncnc .arrows {
+    font-size: 36px;
+}
+.events-area .panel-group .panel .panel-heading a.btncnc .arrows:after{
+	bottom: -15px;
+    width: 40px;
+}
+.events-area .panel-group .panel .panel-heading a.collapsed .arrows{
+	font-size: 36px;
+}
+.events-area .panel-group .panel .panel-heading a.collapsed .arrows:after{
+	bottom: -15px;
+    width: 40px;
+}
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+	.load-btn{margin-top: 30px !important;}
+
+}

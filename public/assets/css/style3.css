@@ -1,0 +1,3838 @@
+/*-------------------------------------
+    Template Name: Weapon Store - Gun Shop HTML Template
+    Description: This is html5 template
+    Author: Webstrot
+---------------------------------------
+    
+    CSS INDEX
+    ===================
+
+    1.  Theme Default CSS (body, link color, section etc)
+    2.  Header area start here
+    3.  index top secction css start
+    4.  gun-selling-wrapper start
+    5.  gunselling_comp_wrapper start
+    6.  new_carbine_wrapper start
+    7.  gun_product_wrapper star
+    8.  gun_upcoming_wrapper start
+    9.  gun_devil_wrapper start
+    10. gun-twitter-posts start
+    11. gun_gallery-wrapper start
+    12. weapon_training_wrapper start
+    13. gun_pricing_table start
+    14. gun_threat_wrapper start
+    15. gun_news_wrapper start
+    16. partner-main-wrap start
+    17. gun_footer_wrapper start
+    18. responsive css start
+
+    ---------------------------------------*/
+/*....................................
+1.Theme default CSS
+....................................*/
+
+@import url("https://fonts.googleapis.com/css?family=Audiowide|Poppins:300,400,400i,500,700,800,900");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap');
+
+:root {
+    --bg-main-color: #878244;
+    --bg-search: #87824445;
+    --bg-box: #87824445;
+    --bg-white: #ffffff;
+    --bg-black: #000000;
+    --bg-star: #eca100;
+    --bg-highlight: #e50000;
+    --bg-black3: #333333;
+    --main-color: #878244;
+    --opcity-gren-color: #878244de;
+    --black: #232323;
+    --black3: #333333;
+    --white: #ffffff;
+    --text-color1: #ffb897;
+    --border-box: #d9c19f;
+    --border-white: #ffffff;
+    --border-black: #000000;
+    --white2: #F1F1F1;
+    --gray-color: #BBB9B9;
+}
+
+/*-------- common css of page  --------*/
+html,
+body {
+    font-size: 16px;
+    color: #232323;
+    font-family: "Poppins", sans-serif;
+    vertical-align: baseline;
+    line-height: 26px;
+    font-weight: 500;
+    position: relative;
+
+}
+
+/* ....................................
+  1.1 Reset CSS 
+  .......................................*/
+a {
+    transition: all 0.3s;
+    text-decoration: none;
+    color: #232323;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    outline: 0 none;
+    text-decoration: none;
+}
+
+a:focus {
+    outline: 0px solid;
+    text-decoration: none;
+}
+
+p {
+    margin: 0 0;
+    color: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    box-shadow: none;
+    border-radius: 0;
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input:active {
+    outline: none;
+    box-shadow: none;
+}
+
+textarea {
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+textarea:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+textarea:active {
+    outline: none;
+    box-shadow: none;
+}
+
+button {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+button:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+/***Typography***/
+h1 {
+    font-size: 75px;
+}
+
+h2 {
+    font-size: 60px;
+}
+
+h3 {
+    font-size: 40px;
+}
+
+h4 {
+    font-size: 32px;
+}
+
+h5 {
+    font-size: 28px;
+}
+
+h6 {
+    font-size: 24px;
+}
+
+/* preloder css start */
+
+#preloader {
+    background-color: #ffffff;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2147483647;
+    width: 100%;
+    height: 100%;
+}
+
+#status {
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #254a93;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+/* custom container css */
+.custom-container {
+    max-width: 1750px;
+}
+
+/*  padding common class */
+.padding100 {
+    padding: 100px 0px;
+}
+
+/* main css start */
+/* common btn css start */
+
+.ind3_green_btn {
+    max-width: 100%;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 33px;
+    background-color: var(--bg-main-color);
+    color: var(--bg-white);
+    font-size: 16px;
+    border-radius: 20px 0px 20px 0px;
+    border: 2px solid transparent;
+    transition: all 0.5s;
+}
+
+.ind3_green_btn:hover {
+    border-color: var(--bg-white);
+    color: var(--bg-white);
+    background-color: transparent;
+}
+
+.ind3_white_btn {
+    max-width: 100%;
+    transition: all 0.5s;
+}
+
+.ind3_white_btn:hover {
+    border-color: var(--bg-white) !important;
+    color: var(--bg-white) !important;
+    background-color: transparent;
+}
+
+.ind3_black_btn {
+    max-width: 100%;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 33px;
+    background-color: transparent;
+    color: var(--bg-white);
+    font-size: 16px;
+    border-radius: 20px 0px 20px 0px;
+    border: 2px solid var(--bg-white);
+    transition: all 0.5s;
+}
+
+.ind3_black_btn:hover {
+    border-color: var(--bg-main-color);
+    color: var(--white);
+    background-color: var(--bg-main-color);
+}
+
+
+/* common btn css end */
+
+
+/* title box css start */
+.title_box {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-main-color);
+    color: var(--bg-white);
+    font-size: 24px;
+    padding: 15px 30px;
+    border-radius: 20px 0px 20px 0px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.title-heading {
+    display: flex;
+    text-transform: capitalize;
+    font-family: 'Audiowide', cursive;
+    color: var(--bg-white);
+}
+
+.title-heading a {
+    color: var(--bg-white);
+}
+
+/* gun title box css start */
+
+.gun_title_box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.gun_title_box p {
+    max-width: 700px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+/* gun title box css end */
+/* cart css start */
+
+
+.js-menu__context {
+    background: rgba(0, 0, 0, 0.5);
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 40000;
+}
+
+.js-menu {
+    color: #000;
+    position: absolute;
+    height: 100%;
+    width: 560px;
+    max-width: 85vw;
+    padding: 40px;
+    margin: 0;
+    background: #000;
+    z-index: 99;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    transition: background 0.5s, transform 0.5s;
+}
+
+.js-menu--left {
+    transform: translateX(-100%);
+}
+
+.js-menu--right {
+    transform: translateX(100%);
+    position: absolute;
+    right: 0;
+}
+
+.js-menu__open {
+    cursor: pointer;
+}
+
+.js-menu__close {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.js-menu__close h4 {
+    font-weight: 700;
+    color: #fff;
+}
+
+.js-menu__expanded {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+}
+
+.js-menu__context .shopping_cart_innerbody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 30px;
+    margin-top: 50px;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .cart_section1 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    -moz-column-gap: 15px;
+    column-gap: 15px;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .cart_section1 span img {
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .cart_section1 .detailbox h6 a {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: var(--bg-white);
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .cart_section1 .detailbox p {
+    margin-top: 7px;
+    color: var(--bg-main-color);
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .cart_section1 .detailbox p span {
+    color: #505050;
+    font-size: 14px;
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .total_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .total_box p {
+    color: #242328;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_box .total_box span {
+    color: var(--bg-main-color);
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_btn_box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    width: 100%;
+}
+
+.js-menu__context .shopping_cart_innerbody .shopping_btn_box span {
+    display: inline-block;
+    width: 160px;
+}
+
+
+/** ===================== fadeInLeft ======================= **/
+
+@-webkit-keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: translatex(-10px);
+        -moz-transform: translatex(-10px);
+        -o-transform: translatex(-10px);
+        transform: translatex(-10px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translatex(0);
+        -moz-transform: translatex(0);
+        -o-transform: translatex(0);
+        transform: translatex(0);
+    }
+}
+
+@-moz-keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: translatex(-10px);
+        -moz-transform: translatex(-10px);
+        -o-transform: translatex(-10px);
+        transform: translatex(-10px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translatex(0);
+        -moz-transform: translatex(0);
+        -o-transform: translatex(0);
+        transform: translatex(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: translatex(-100px);
+        -moz-transform: translatex(-100px);
+        -o-transform: translatex(-100px);
+        transform: translatex(-100px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translatex(0);
+        -moz-transform: translatex(0);
+        -o-transform: translatex(0);
+        transform: translatex(0);
+    }
+}
+
+.in-left {
+    -webkit-animation-name: fadeInLeft;
+    -moz-animation-name: fadeInLeft;
+    -o-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-duration: 1s;
+    animation-delay: 1s;
+}
+
+
+/* ================= fade in right animation =================== */
+.fadeInRight {
+    animation: fadeInRight 1s ease-in-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(300px);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===================  Header area start here ================== */
+
+.main-header-3 .menu-items-wrapper {
+    background-color: #111111;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+    height: 145px;
+}
+
+.main-header-3 .menu-fixed {
+    background-color: #111 !important;
+}
+
+.main-header-3 .menu-items-wrapper .navbar {
+    padding: 20px 40px;
+}
+
+.main-header ul li .submenu {
+    position: absolute;
+    background-color: #000000;
+    width: 130px;
+    box-shadow: 0px 0px 12px #00000029;
+    padding: 7px 0;
+    right: 0;
+    top: 100%;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 9;
+    transform-origin: top center;
+    transform: scaleY(0) translateZ(100px);
+    pointer-events: none;
+    transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease;
+}
+
+.main-header ul li:hover .submenu {
+    transform: scaleY(1) translateZ(0px);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: visible;
+}
+
+.main-header ul li .submenu li {
+    padding: 0;
+    border: 0;
+}
+
+.main-header ul li .submenu a {
+    color: var(--white);
+    font-size: 16px;
+    text-transform: capitalize;
+    display: inline-block;
+    padding: 7px 20px;
+    width: 100%;
+    font-weight: 500;
+    position: relative;
+    z-index: 11;
+}
+
+.main-header ul li .submenu li:hover a {
+    background-color: var(--main-color);
+    color: var(--white);
+}
+
+.main-header p {
+    color: var(--white);
+    letter-spacing: 2px;
+}
+
+.main-header p a {
+    color: var(--white);
+}
+
+header .logo-menu-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 100%;
+}
+
+header .logo-menu-wrap ul {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    column-gap: 40px;
+}
+
+header .logo-menu-wrap ul li a {
+    font-size: 20px;
+    color: var(--bg-white);
+}
+
+.main-header header .logo-menu-wrap ul li .submenu {
+    width: 200px;
+}
+
+.search-wrap {
+    width: 50px;
+    height: auto;
+    position: relative;
+}
+
+.search-wrap #search-button {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white2);
+}
+
+.search-wrap #search-button span svg path {
+    fill: var(--bg-main-color);
+}
+
+.search-wrap .search_box {
+    width: 670px;
+    height: auto;
+    background-color: #ffffff;
+    position: absolute;
+    right: 0;
+    top: 65px;
+    display: none;
+    z-index: 4;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1490196078);
+    transition: all 0.5s;
+}
+
+.search-wrap .search_box form {
+    display: inline-flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 45px;
+    position: relative;
+    width: 100%;
+}
+
+.search-wrap .search_box form label {
+    color: #242328;
+    font-size: 16px;
+    font-family: "Lato";
+}
+
+.search-wrap .search_box form input {
+    height: 50px;
+    width: 100%;
+    padding-left: 30px;
+    border: 1px solid #505050;
+}
+
+.search-wrap .search_box form input::-moz-placeholder {
+    font-size: 16px;
+    font-family: "Montserrat";
+    color: #505050;
+}
+
+.search-wrap .search_box form input::placeholder {
+    font-size: 16px;
+    font-family: "Montserrat";
+    color: #505050;
+}
+
+.search-wrap .search_box form input:focus {
+    outline: none;
+}
+
+.search-wrap .search_box form input[type=search]::-webkit-search-cancel-button {
+    display: none;
+}
+
+.search-wrap .search_box form span {
+    position: absolute;
+    right: 11%;
+    bottom: 30%;
+}
+
+.search-wrap .search_box form span i {
+    color: #525FE1;
+    font-size: 20px;
+}
+
+.search-wrap .search_box::after {
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    width: 30px;
+    height: 20px;
+    -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: -19px;
+    right: 10px;
+}
+
+.icons {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.icons ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: var(--main-color);
+}
+
+.icons .contact_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+}
+
+.icons .contact_box .contact2 p a {
+    font-size: 16px;
+    color: var(--bg-white);
+    text-transform: capitalize;
+}
+
+.icons .contact_box .contact2 h6 a {
+    color: var(--bg-white);
+    text-transform: capitalize;
+}
+
+.icons .icons-wrap {
+    height: 50px;
+    width: 50px;
+    border-radius: 0px;
+    background-color: var(--white2);
+    border: 1px solid var(--white2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons .icons-wrap svg {
+    fill: var(--bg-main-color);
+    height: 20px;
+    width: 20px;
+}
+
+.icons .icons-wrap:hover {
+    background-color: transparent;
+}
+
+.icons .icons-wrap:hover svg {
+    fill: var(--main-color);
+}
+
+/* responsive css of header start */
+/* mobile_menu_main */
+
+.mobile_menu_main {
+    float: left;
+    width: 100%;
+    background: transparent;
+}
+
+.mobile_logo {
+    float: left;
+    padding: 0px 0px;
+    width: 98px;
+}
+
+#sidebar {
+    position: fixed;
+    display: block;
+    height: 100vh;
+    top: 0px;
+    left: -500px;
+    background-color: #222;
+    box-shadow: 0px 0px 10px 0px rgba(77, 77, 77, 0.5);
+    overflow: scroll;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    line-height: 1;
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#cssmenu ul li {
+    border-bottom: 1px solid #ffffff38;
+    width: 100%;
+    float: left;
+}
+
+#cssmenu ul li.has-sub ul li {
+    padding: 14px 24px;
+    border-bottom: 0;
+}
+
+#cssmenu ul li.has-sub ul li a {
+    color: #b7b7b7;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+#cssmenu {
+    width: 286px;
+    color: #ffffff;
+}
+
+#cssmenu ul ul {
+    display: none;
+}
+
+#cssmenu>ul>li.active>ul {
+    display: block;
+}
+
+.align-right {
+    float: right;
+}
+
+#cssmenu>ul>li>a {
+    font-size: 21px;
+    color: #fff;
+    text-align: left;
+    padding: 14px 34px;
+    font-weight: 200;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#cssmenu>ul>li>a span {
+    width: 110px;
+    height: auto;
+    line-height: 20px;
+    padding: 10px;
+    left: 58%;
+    margin-left: -64px;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 4px solid #4d3abe;
+    background: #4d3abe;
+    text-indent: 0px;
+    border-radius: 5px;
+    position: absolute;
+    pointer-events: none;
+    bottom: 100px;
+    opacity: 0;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+#cssmenu>ul>li>a span:before,
+#cssmenu>ul>li>a span:after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    margin-left: -9px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(0, 0, 0, 0.1);
+}
+
+#cssmenu>ul>li>a span:after {
+    bottom: -14px;
+    margin-left: -10px;
+    border-top: 10px solid #4d3abe;
+}
+
+#cssmenu>ul>li>a:hover span {
+    opacity: 1;
+    bottom: 70px;
+}
+
+#cssmenu>ul>li>a:after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+
+    bottom: 0;
+}
+
+#cssmenu>ul>li:last-child a:after {
+    display: none;
+}
+
+#cssmenu>ul>li>a:hover,
+#cssmenu>ul>li.active>a {
+    color: #4d3abe;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#sidebar .sidebar_logo {
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.navbar-toggler {
+    position: absolute;
+    top: 8px;
+    right: 0px;
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2rem;
+    border: none;
+}
+
+.navbar-toggler span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 70%;
+    background: #fff;
+    border-radius: 3px;
+    opacity: 1;
+    left: 25%;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.navbar-toggler:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler span:nth-child(1) {
+    top: 34.5%;
+}
+
+.navbar-toggler span:nth-child(2),
+.navbar-toggler span:nth-child(3) {
+    top: 60%;
+}
+
+.navbar-toggler span:nth-child(4) {
+    top: 85.5%;
+}
+
+.navbar-toggler.open span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+.navbar-toggler.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.navbar-toggler.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.navbar-toggler.open span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+.slider_right {
+    float: left !important;
+}
+
+
+#cssmenu ul ul li a:hover {
+    color: #fff;
+}
+
+#cssmenu ul ul ul li a {
+    padding-left: 32px;
+}
+
+#cssmenu ul ul>li.has-sub>a:after {
+    top: 16px;
+    right: 26px;
+    background: #fff;
+}
+
+#cssmenu ul ul>li.has-sub>a:before {
+    top: 20px;
+    background: #fff;
+}
+
+#cssmenu ul>li.has-sub>a:after {
+    position: absolute;
+    right: 30px;
+    top: 19px;
+    z-index: 5;
+    display: block;
+    height: 10px;
+    width: 2px;
+    background: #fff;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+#cssmenu ul>li.has-sub>a:before {
+    position: absolute;
+    right: 26px;
+    top: 23px;
+    display: block;
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+#cssmenu ul>li.has-sub>a:hover:after {
+    background: #fff;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#cssmenu ul>li.has-sub>a:hover:before {
+    background: #fff;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#cssmenu ul>li.has-sub.open>a:after {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#cssmenu ul>li.has-sub.open>a:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#cssmenu>ul>li>input {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+#cssmenu>ul>li>input::placeholder {
+    color: #fff;
+    font-weight: 400;
+}
+
+#cssmenu>ul>li>a {
+    padding: 16px 22px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 14px;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #fff;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#cssmenu>ul>li>a svg {
+    width: 20px;
+    height: 20px;
+}
+
+#cssmenu>ul>li>a svg path {
+    fill: #fff;
+}
+
+#cssmenu>ul>li>a i {
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+#cssmenu>ul>li>a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+#cssmenu>ul>li.active>ul {
+    display: block;
+}
+
+#cssmenu>ul>.open>a {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+/* responsive css of header end*/
+
+/* menu fixed css */
+.menu-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    z-index: 10000;
+    -o-box-shadow: 0px 0px 25px -10px;
+    -ms-box-shadow: 0px 0px 25px -10px;
+    -moz-box-shadow: 0px 0px 25px -10px;
+    -webkit-box-shadow: 0px 0px 25px -10px;
+    box-shadow: 0px 0px 15px -15px;
+    transition: all 0.5s;
+}
+
+/* menu fixed css end */
+
+/* ========================  index top secction css start ========================== */
+
+
+/* =======  gun-selling-wrapper start ====== */
+.gun-selling-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: rgb(255, 255, 255);
+    background: #000000;
+    padding-top: 200px;
+    padding-bottom: 60px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box {
+    width: 100%;
+    position: relative;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-prev {
+    position: absolute;
+    left: 0%;
+    width: 2%;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-prev span {
+    background-image: none;
+    width: 40px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px solid var(--bg-main-color);
+    transition: all 0.5s;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-prev span svg path {
+    stroke: var(--bg-white);
+    transition: all 0.5s;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-prev span:hover {
+    background-color: var(--bg-white);
+    border-color: var(--bg-black);
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-prev span:hover svg path {
+    stroke: var(--bg-main-color);
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-next {
+    position: absolute;
+    right: 0%;
+    width: 2%;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-next span {
+    background-image: none;
+    width: 40px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--bg-main-color);
+    transition: all 0.5s;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-next span svg path {
+    stroke: var(--bg-white);
+    transition: all 0.5s;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-next span:hover {
+    background-color: var(--bg-white);
+    border-color: var(--bg-black);
+
+}
+
+.gun-selling-wrapper .gun-slider-first-box .carousel-control-next span:hover svg path {
+    stroke: var(--bg-main-color);
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box {
+    width: 100%;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .carousel-item {
+    width: 100%;
+    padding: 0px 60px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 h1 {
+    font-family: 'Audiowide', cursive;
+    color: var(--bg-white);
+    margin-bottom: 30px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 h1 span {
+    display: inline-flex;
+    background-color: var(--bg-main-color);
+    color: var(--bg-white);
+    justify-content: center;
+    align-items: center;
+    padding: 3px 20px;
+    border-radius: 20px 0px 20px 0px;
+    margin-top: 10px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: 40px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul li .gun_client_box {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: 0px;
+    position: relative;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul li .gun_client_box ul {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    position: relative;
+    column-gap: 0px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul li .gun_client_box ul li:nth-child(2) {
+    position: relative;
+    z-index: 11;
+    left: -6px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul li .gun_client_box ul li:nth-child(3) {
+    position: relative;
+    z-index: 11;
+    left: -13px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul li .gun_client_box p {
+    font-size: 20px;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_carbine_wrapper {
+    width: 100%;
+    margin-top: 70px;
+    position: relative;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_carbine_wrapper .carbine_box {
+    width: 100%;
+    position: relative;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_carbine_wrapper .carbine_box .carbine_imd_box {
+    width: 100%;
+    position: relative;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_carbine_wrapper .carbine_box .carbine_imd_box img {
+    width: 100%;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_carbine_wrapper .carbine_box .carbine_content_box {
+    width: 100%;
+    position: absolute;
+    height: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 15px 0px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--opcity-gren-color);
+    z-index: 11;
+    transition: all 0.3s;
+    opacity: 0;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_carbine_wrapper .carbine_box:hover .carbine_content_box {
+    bottom: 0;
+    opacity: 1;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_carbine_wrapper .carbine_box .carbine_content_box p a {
+    font-size: 20px;
+    color: var(--bg-white);
+    font-family: 'Audiowide', cursive;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-2 {
+    width: 100%;
+    position: relative;
+}
+
+.gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-2 .gun_slider_shape {
+    display: inline-block;
+    max-width: 200px;
+    position: absolute;
+    top: 0;
+    left: 8%;
+}
+
+/* =======  gun-selling-wrapper end ====== */
+
+
+/* =======  gunselling_comp_wrapper start ====== */
+
+.gunselling_comp_wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+}
+
+.gunselling_comp_wrapper .selling_box1 {
+    width: 100%;
+    position: relative;
+    padding: 0px 100px;
+}
+
+.gunselling_comp_wrapper .selling_box1 .selling-img_box {
+    width: 100%;
+    position: relative;
+}
+
+.gunselling_comp_wrapper .selling_box1 .selling-img_box img {
+    width: 100%;
+    position: relative;
+}
+
+.gunselling_comp_wrapper .selling_box1 .shape-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gunselling_comp_wrapper .selling_box1 .shape-box span {
+    color: var(--bg-white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 12px;
+    position: absolute;
+    top: 45px;
+    left: 22px;
+}
+
+.gunselling_comp_wrapper .selling_box1 .shape-box .text-box {
+    position: absolute;
+    position: absolute;
+    top: 26px;
+    left: 32px;
+}
+
+.gunselling_comp_wrapper .selling_box1 .shape-box svg path {
+    color: var(--bg-white);
+}
+
+.position-1 {
+    position: absolute !important;
+    bottom: 40%;
+    right: 8%;
+}
+
+.position-2 {
+    position: absolute !important;
+    bottom: 10%;
+    right: 10%;
+}
+
+.position-3 {
+    position: absolute !important;
+    bottom: -14%;
+    right: 23%;
+    transform: rotateZ(50deg);
+}
+
+.gunselling_comp_wrapper .selling_box2 {
+    width: 100%;
+}
+
+.gunselling_comp_wrapper .selling_box2 .title-heading {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.gunselling_comp_wrapper .selling_box2 .selling_ul_box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 60px;
+    margin-top: 35px;
+}
+
+.gunselling_comp_wrapper .selling_box2 .selling_ul_box ul {
+    display: flex;
+    align-items: start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 25px;
+}
+
+.gunselling_comp_wrapper .selling_box2 .selling_ul_box ul li a {
+    font-weight: 600;
+    color: var(--white);
+    transition: all 0.5s;
+}
+
+.gunselling_comp_wrapper .selling_box2 .selling_ul_box ul li a:hover {
+    color: var(--bg-main-color);
+}
+
+.gunselling_comp_wrapper .selling_box2 .selling_ul_box ul li a span {
+    margin-right: 6px;
+}
+
+.gunselling_comp_wrapper .selling_box2 .selling_btn_box {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: 40px;
+}
+
+/* =======  gunselling_comp_wrapper end ====== */
+
+/* =======  new_carbine_wrapper start ====== */
+
+.new_carbine_wrapper {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/home3/gun-mc-bg-img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.new_carbine_wrapper::after {
+    content: '';
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    background-color: #000000d1;
+    width: 100%;
+    height: 100%;
+}
+
+.new_carbine_wrapper .new_carbine_box1 {
+    width: 100%;
+    position: relative;
+    z-index: 11;
+}
+
+.new_carbine_wrapper .new_carbine_box2 {
+    width: 100%;
+    position: relative;
+    z-index: 11;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.new_carbine_wrapper .new_carbine_box2 .title-heading {
+    color: var(--bg-white);
+}
+
+.new_carbine_wrapper .new_carbine_box2 .price_box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 40px;
+    color: var(--bg-main-color);
+    margin: 30px 0px;
+    font-weight: 400;
+}
+
+.new_carbine_wrapper .new_carbine_box2 .price_box span {
+    color: #BBB9B9;
+    text-decoration: line-through;
+}
+
+
+/* =======  new_carbine_wrapper end ====== */
+
+/* ======= gun_product_wrapper start ======= */
+
+.gun_product_wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+    position: relative;
+}
+
+.gun_product_wrapper .product_inner_box {
+    width: 100%;
+    padding: 0px 100px;
+    margin-top: 40px;
+}
+
+.gun_product_wrapper .product_inner_box .nav-tabs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+}
+
+.gun_product_wrapper .product_inner_box .nav-tabs .ind3_black_btn {
+    width: 325px;
+    height: 80px;
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .nav-tabs .active {
+    background-color: var(--bg-main-color);
+    color: var(--bg-white);
+    border-color: var(--bg-white);
+}
+
+.gun_product_wrapper .product_inner_box .tab-content {
+    width: 100%;
+}
+
+.gun_product_wrapper .product_inner_box .tab-content .tab-pane {
+    width: 100%;
+    padding-top: 50px;
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 {
+    width: 100%;
+    position: relative;
+}
+
+.gun_product_wrapper .product_inner_box .products {
+    width: 100%;
+    height: 100%;
+    max-width: 495px;
+    border: 1px solid var(--gray-color);
+    padding: 40px 0px;
+    border-radius: 20px 0px 20px 0px;
+
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box {
+    width: 100%;
+    border-bottom: 1px solid var(--gray-color);
+    padding-bottom: 10px;
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0px 20px;
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box ul li .color_box {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    column-gap: 8px;
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box ul li .off-box {
+    display: inline-flex;
+    padding: 8px 10px;
+    background-color: var(--bg-main-color);
+    color: var(--bg-white);
+    font-family: 'Audiowide', cursive;
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box ul li .color_box span {
+    width: 20px;
+    height: 20px;
+    display: inline-block
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box ul li .color_box .color1 {
+    background-color: #AFA58E;
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box ul li .color_box .color2 {
+    background-color: #404244;
+}
+
+.gun_product_wrapper .product_inner_box .products .img-box ul li .color_box .color3 {
+    background-color: #2E2D2D;
+}
+
+.gun_product_wrapper .product_inner_box .products .pro-name-box {
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    font-family: 'Audiowide', cursive;
+    border-bottom: 1px solid var(--gray-color);
+    flex-wrap: wrap;
+    row-gap: 10px;
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .products .pro-name-box .greentitle-heading {
+    color: var(--bg-main-color);
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .products .pro-name-box p {
+    color: var(--gray-color);
+    text-decoration: line-through;
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .products .pro-name-box h6 a {
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .products .pro-name-box h6 a:hover {
+    color: var(--bg-main-color);
+}
+
+.gun_product_wrapper .product_inner_box .products .pro_btn_box {
+    padding: 30px 30px 0px 30px;
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .products .pro_btn_box .ind3_black_btn {
+    width: 180px;
+    height: 50px;
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls {
+    margin-top: 0px;
+    width: 100%;
+    bottom: 50%;
+    position: absolute;
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-prev {
+    position: absolute;
+    left: -6%;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--bg-main-color);
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-prev i {
+    font-size: 18px;
+    color: var(--bg-white);
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-prev:hover {
+    background-color: var(--bg-main-color);
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-prev:hover i {
+    color: var(--bg-white);
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-next {
+    position: absolute;
+    right: -5%;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--bg-main-color);
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-next i {
+    font-size: 18px;
+    color: var(--bg-white);
+    transition: all 0.5s;
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-next:hover {
+    background-color: var(--bg-main-color);
+}
+
+.gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-next:hover i {
+    color: var(--bg-white);
+}
+
+/* ======= gun_product_wrapper end ======= */
+
+/* ======= gun_upcoming_wrapper start ======= */
+
+.gun_upcoming_wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+}
+
+.gun_upcoming_wrapper .gun_title_box {
+    margin-bottom: 60px;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    border: 1px solid #D9D9D9;
+    border-radius: 30px 0px 30px 0px;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_imgbox {
+    width: 100%;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_imgbox2 {
+    width: 80%;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_imgbox img {
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox {
+    width: 100%;
+    padding: 0px 30px;
+    padding-bottom: 30px;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .title-heading {
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox p a {
+    color: var(--bg-main-color);
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .event_detail_box ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 15px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    transition: all 0.5s;
+}
+
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .event_detail_box ul li a i {
+    margin-right: 2px;
+    font-size: 14px;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .event_detail_box ul li a {
+    font-size: 14px;
+    transition: all 0.5s;
+    color: #fff;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .event_detail_box ul li a i {
+    margin-left: 5px;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .event_detail_box ul li a i {
+    margin-left: 5px;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .upcoming_btn_box {
+    margin-top: 30px;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox:hover .event_detail_box ul li a {
+    color: var(--bg-main-color);
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox:hover .title-heading {
+    color: var(--bg-main-color);
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box2 .upcoming_box {
+    flex-direction: row;
+    column-gap: 20px;
+    transition: all 0.5s;
+}
+
+.gun_upcoming_wrapper .gun_upcoming_inner_box2 .upcoming_box .upcoming_textbox {
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px 20px;
+}
+
+/* ======= gun_upcoming_wrapper end ======= */
+
+/* ======= gun_devil_wrapper start ======= */
+
+.gun_devil_wrapper {
+    width: 100%;
+    height: 700px;
+    background-image: url('../images/home3/gun-devil-bg-img.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.gun_devil_wrapper .video-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 11;
+    row-gap: 20px;
+}
+
+.gun_devil_wrapper .video-wrap .title-heading {
+    color: var(--bg-white);
+}
+
+/* ======= gun_devil_wrapper end ======= */
+
+/* ======= gun-twitter-posts start ======= */
+
+.gun-twitter-posts {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/home3/twitter-slider-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.gun-twitter-posts .twitter_mark_shape {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    top: 0px;
+    z-index: 11;
+}
+
+.gun-twitter-posts .twitter_mark_shape svg path {
+    fill: var(--bg-main-color);
+}
+
+.gun-twitter-posts .twitt-sliders {
+    position: relative;
+    z-index: 11;
+}
+
+.gun-twitter-posts .twitt-sliders .owl-buttons {
+    position: absolute;
+    right: -10%;
+    top: 15px;
+}
+
+.gun-twitter-posts .twitt-sliders .owl-buttons .owl-prev {
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+    background-color: transparent;
+    border: 1px solid var(--bg-white);
+    opacity: 1;
+}
+
+.gun-twitter-posts .twitt-sliders .owl-buttons .owl-prev:hover {
+    background-color: var(--bg-main-color);
+    border-color: transparent;
+}
+
+.gun-twitter-posts .twitt-sliders .owl-buttons .owl-prev i {
+    font-size: 20px;
+    color: var(--bg-white);
+}
+
+.gun-twitter-posts .twitt-sliders .owl-buttons .owl-next {
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+    background-color: transparent;
+    border: 1px solid var(--bg-white);
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.gun-twitter-posts .twitt-sliders .owl-buttons .owl-next:hover {
+    background-color: var(--bg-main-color);
+    border-color: transparent;
+}
+
+.gun-twitter-posts .twitt-sliders .owl-buttons .owl-next i {
+    font-size: 20px;
+    color: var(--bg-white);
+}
+
+.gun-twitter-posts .twitt-sliders .contents p {
+    color: var(--bg-white);
+}
+
+.gun-twitter-posts .twitt-sliders .contents span {
+    color: var(--bg-white);
+}
+
+.gun-twitter-posts .twitt-sliders .contents span a {
+    color: var(--bg-main-color);
+}
+
+/* ======= gun-twitter-posts end ======= */
+
+/* ========  gun_gallery-wrapper start ========*/
+.gun_gallery-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+}
+
+.gun_gallery-wrapper .gun_title_box {
+    margin-bottom: 35px;
+}
+
+.gun_gallery-wrapper .gallery_box {
+    width: 100%;
+}
+
+.gun_gallery-wrapper .gallery_box {
+    width: 100%;
+}
+
+.gun_gallery-wrapper .gallery_box .gallery_inner_box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    transition: all 0.1s ease-in;
+}
+
+.gun_gallery-wrapper .gallery_box .gimg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all 0.1s ease-in;
+}
+
+.gun_gallery-wrapper .gallery_box .gimg figure {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    transition: all 0.1s ease-in;
+}
+
+.gun_gallery-wrapper .gallery_box .gimg figure a {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    transition: all 0.1s ease-in;
+}
+
+.gun_gallery-wrapper .gallery_box .gimg figure a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 0px 20px 0px;
+    transition: all 0.1s ease-in;
+}
+
+.gun_gallery-wrapper .gallery_box .gimg figure .con-pop {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    z-index: 11;
+    background-color: var(--opcity-gren-color);
+    border-radius: 20px 0px 20px 0px;
+    opacity: 0;
+    transition: all 0.1s ease-in;
+
+}
+
+.gun_gallery-wrapper .gallery_box .gimg figure .con-pop {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    z-index: 11;
+    background-color: var(--opcity-gren-color);
+    border-radius: 20px 0px 20px 0px;
+    opacity: 0;
+    transition: all 0.1s ease-in;
+
+}
+
+.gun_gallery-wrapper .gallery_box .gimg figure:hover .con-pop {
+    opacity: 1;
+}
+
+.gun_gallery-wrapper .gallery_box .gallery_inner_box .gallery_box2 {
+    width: 100%;
+    display: flex;
+    column-gap: 20px;
+}
+
+/* ========  gun_gallery-wrapper end ========*/
+
+/* ======== weapon_training_wrapper start  ========*/
+
+.weapon_training_wrapper {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/home3/gun_training_bg_img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.weapon_training_wrapper::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000d1;
+}
+
+.weapon_training_wrapper .weapon_imgbox {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+}
+
+.weapon_training_wrapper .weapon_formbox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+    background-color: var(--bg-main-color);
+    padding: 0px 65px;
+    margin-top: 100px;
+    z-index: 11;
+}
+
+.weapon_training_wrapper .weapon_formbox .gun_title_box .title_box {
+    background-color: var(--bg-white);
+    color: var(--bg-black);
+    padding: 22px 55px;
+}
+
+.weapon_training_wrapper .weapon_formbox .gun_title_box p {
+    color: var(--bg-white);
+    max-width: 530px;
+    margin-top: 10px;
+}
+
+.weapon_training_wrapper .weapon_formbox form {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.weapon_training_wrapper .weapon_formbox form .row {
+    row-gap: 20px;
+}
+
+.weapon_training_wrapper .weapon_formbox form .input_box {
+    width: 100%;
+}
+
+.weapon_training_wrapper .weapon_formbox form .input_box input {
+    width: 100%;
+    background-color: var(--bg-black);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px 0px 10px 0px;
+    outline: none;
+    color: var(--bg-white);
+}
+
+.weapon_training_wrapper .weapon_formbox form .input_box input::placeholder {
+    color: var(--bg-white);
+}
+
+.weapon_training_wrapper .weapon_formbox form .input_box select {
+    width: 100%;
+    background-color: var(--bg-black);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px 0px 10px 0px;
+    outline: none;
+    appearance: none;
+    background-image: url(../images/home3/select_box_arrow-img.png);
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 18px;
+    color: var(--bg-white);
+}
+
+.weapon_training_wrapper .weapon_formbox form .input_box textarea {
+    width: 100%;
+    height: 165px;
+    border-radius: 10px 0px 10px 0px;
+    background-color: var(--bg-black);
+    color: var(--bg-white);
+    padding: 20px 20px;
+}
+
+.weapon_training_wrapper .weapon_formbox form .input_box textarea::placeholder {
+    color: var(--gray-color);
+}
+
+.weapon_training_wrapper .weapon_formbox form .formbtn_box {
+    margin-top: 40px;
+}
+
+.weapon_training_wrapper .weapon_formbox form .formbtn_box .formbtn {
+    width: 180px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-black);
+    color: var(--bg-white);
+    border: 1px solid transparent;
+    border-radius: 20px 0px 20px 0px;
+    transition: all 0.5s;
+}
+
+.weapon_training_wrapper .weapon_formbox form .formbtn_box .formbtn:hover {
+    background-color: transparent;
+    color: var(--bg-white);
+    border-color: var(--bg-white);
+}
+
+
+/* ======== weapon_training_wrapper end  ========*/
+
+/* ======== gun_pricing_table start  ========*/
+
+.gun_pricing_table {
+    width: 100%;
+    position: relative;
+    background-color: #222;
+}
+
+.gun_pricing_table .pricing_table_wrap {
+    width: 100%;
+    margin-top: 60px;
+}
+
+.gun_pricing_table .pricing_table_wrap .row {
+    display: flex;
+    align-items: end;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box {
+    width: 100%;
+    padding: 40px 0px 0px 0px;
+    border: 1px solid var(--gray-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_box {
+    width: 100%;
+    background-color: var(--bg-main-color);
+    padding: 40px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    position: relative;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_box::after {
+    content: '';
+    top: -1px;
+    display: block;
+    position: absolute;
+    clip-path: polygon(0 1%, 50% 57%, 100% 0);
+    background-color: var(--bg-white);
+    width: 25px;
+    height: 25px;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_box h3 {
+    color: var(--bg-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_box h3 span {
+    display: flex;
+    font-size: 20px;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box {
+    width: 100%;
+    padding: 60px;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 30px;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box ul li a {
+    font-size: 20px;
+    text-transform: uppercase;
+    transition: all 0.5s;
+    color: var(--bg-white);
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box ul li a:hover {
+    color: var(--bg-main-color);
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box ul li a span {
+    margin-right: 20px;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box .price_btn_box {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    column-gap: 30px;
+    transition: all 0.5s;
+}
+
+.gun_pricing_table .pricing_table_wrap .pricing_box:hover .price_box {
+    background-color: var(--bg-black);
+}
+
+/* ======== gun_pricing_table end  ========*/
+
+/* ======== gun_threat_wrapper start ======== */
+
+.gun_threat_wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 140px 0px;
+    background-image: url('../images/home3/threat_bg_img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.gun_threat_wrapper::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000d1;
+}
+
+.gun_threat_wrapper .expert_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    position: relative;
+    z-index: 21;
+    color: var(--bg-white)
+}
+
+.gun_threat_wrapper .expert_wrap h6 {
+    color: var(--bg-white);
+}
+
+.gun_threat_wrapper .expert_wrap p {
+    color: var(--bg-white);
+    max-width: 700px;
+    text-align: center;
+}
+
+/* ======== gun_threat_wrapper end ======== */
+
+/* ======== gun_news_wrapper start ======== */
+
+.gun_news_wrapper {
+    width: 100%;
+    position: relative;
+    background-color: #111;
+}
+
+.gun_news_wrapper .latest_slider_box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: flex-start;
+    column-gap: 35px;
+    padding: 0px 100px;
+    position: relative;
+}
+
+.gun_news_wrapper .gun_title_box {
+    margin-bottom: 60px;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 {
+    width: 70%;
+    position: relative;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .img_box {
+    width: 100%;
+    position: relative;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .img_box img {
+    width: 100%;
+    position: relative;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box {
+    position: absolute;
+    z-index: 11;
+    bottom: 15%;
+    padding-left: 40px;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .date_box {
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .title-heading {
+    margin: 20px 0px;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .title-heading a {
+    color: var(--bg-white);
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .date_box a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 15px;
+    color: var(--bg-white);
+    transition: all 0.5s;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .date_box a:hover {
+    color: var(--bg-main-color);
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .date_box a span {
+    width: 30px;
+    height: 30px;
+    background-color: var(--bg-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .date_box a span i {
+    color: var(--bg-black);
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_letter_box {
+    width: 96%;
+    position: absolute;
+    z-index: 11;
+    top: 5%;
+    padding-left: 40px;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_letter_box ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box1 .blog_letter_box ul li a {
+    color: var(--bg-white);
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 {
+    width: 30%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 {
+    width: 100%;
+    border: 1px solid var(--bg-main-color);
+    padding: 30px 35px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    transition: all 0.5s;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .title-heading {
+    transition: all 0.5s;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .title_link {
+    width: 100%;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .title_link a {
+    color: var(--bg-main-color);
+    font-size: 20px;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .detail-btn-box {
+    width: 100%;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .date_box a {
+    transition: all 0.5s;
+    color: var(--bg-white);
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .date_box a:hover {
+    color: var(--bg-main-color);
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .detail-btn-box a {
+    color: var(--bg-main-color);
+    transition: all 0.5s;
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .detail-btn-box a i {
+    margin-left: 10px;
+    color: var(--bg-white)
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 .detail-btn-box a:hover {
+    text-decoration: underline;
+    color: var(--bg-white);
+}
+
+.gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1:hover .title-heading {
+    color: var(--bg-main-color);
+}
+
+.gun_news_wrapper .latest_new_btn_box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* ======== gun_new_wrapper end ======== */
+
+/* ======== partner-main-wrap start ======== */
+.partner-main-wrap {
+    width: 100%;
+    padding: 0px 0px 40px 0px;
+    background-color: #111;
+}
+
+.partner-main-wrap .partner-slider {
+    width: 100%;
+}
+
+/* ======== partner-main-wrap end ======== */
+/* ======== gun_footer_wrapper start ======== */
+footer .gun_footer_wrapper {
+    width: 100%;
+    height: 100%;
+    padding-top: 60px;
+    background-color: var(--bg-black);
+}
+
+footer .footer_heading {
+    color: var(--bg-main-color);
+    font-size: 20px;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+}
+
+footer .gun_footer_wrapper .footer_top_box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+footer .gun_footer_wrapper .footer_top_box .top_logo_box {
+    width: 20%
+}
+
+footer .gun_footer_wrapper .footer_top_box .newsletter_box {
+    width: 80%;
+    background-color: var(--bg-main-color);
+    border-radius: 10px 0px 10px 0px;
+    display: flex;
+    align-items: center;
+    padding: 45px;
+}
+
+footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box1 {
+    width: 30%;
+}
+
+footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box1 h4 {
+    color: var(--bg-white);
+    margin-bottom: 15px;
+}
+
+footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box1 p {
+    color: var(--bg-white);
+}
+
+footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box2 {
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box2 input {
+    width: 100%;
+    border: none;
+    border-radius: 10px 0px 0px 0px;
+    color: var(--gray-color);
+    padding: 15px 30px;
+    background-color: var(--bg-white);
+    position: relative;
+}
+
+footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box2 button {
+    background-color: #000E15;
+    color: var(--bg-white);
+    padding: 15px 40px;
+}
+
+footer .gun_footer_wrapper .footer_middle_box {
+    width: 100%;
+    border-top: 1px solid #ffffff69;
+    border-bottom: 1px solid #ffffff69;
+    padding: 55px 0px;
+    margin: 50px 0px;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .contact_box {
+    width: 100%
+}
+
+footer .gun_footer_wrapper .footer_middle_box .contact_box ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 100%
+}
+
+footer .gun_footer_wrapper .footer_middle_box .contact_box ul li a {
+    display: flex;
+    align-items: flex-start;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .contact_box ul li span {
+    margin-right: 30px;
+    display: flex;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .contact_box ul li a {
+    color: var(--bg-white);
+    transition: all 0.5s;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .contact_box ul li a:hover {
+    color: var(--bg-main-color);
+}
+
+footer .gun_footer_wrapper .footer_middle_box .info_box {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .info_box .infor_wrap ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 100%
+}
+
+footer .gun_footer_wrapper .footer_middle_box .info_box .infor_wrap ul li a {
+    display: flex;
+    align-items: flex-start;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .info_box .infor_wrap ul li span {
+    margin-right: 10px;
+    display: flex;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .info_box .infor_wrap ul li a {
+    color: var(--bg-white);
+    transition: all 0.5s;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .info_box .infor_wrap ul li a:hover {
+    color: var(--bg-main-color);
+}
+
+footer .gun_footer_wrapper .footer_middle_box .gallery_box ul {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%
+}
+
+footer .gun_footer_wrapper .footer_middle_box .gallery_box ul li a {
+    width: 100%;
+    position: relative;
+    display: block;
+    transition: all 0.5s ease-in-out;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .gallery_box ul li a:hover .overlay-effect {
+    opacity: 1;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .gallery_box ul li a .overlay-effect {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    background-color: var(--opcity-gren-color);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .gallery_box ul li a .overlay-effect svg {
+    width: 20px;
+    height: 20px;
+}
+
+footer .gun_footer_wrapper .footer_middle_box .gallery_box ul li a .overlay-effect svg path {
+    fill: var(--bg-white);
+}
+
+footer .gun_footer_wrapper .footer_bottom_box {
+    width: 100%;
+    padding: 0px 0px 30px 0px;
+}
+
+footer .gun_footer_wrapper .footer_bottom_box p {
+    width: 100%;
+    text-align: center;
+    color: var(--bg-white);
+}
+
+footer .gun_footer_wrapper .footer_bottom_box p a {
+    color: var(--bg-main-color);
+    transition: all 0.5s;
+}
+
+footer .gun_footer_wrapper .footer_bottom_box p a:hover {
+    color: var(--bg-white);
+}
+
+footer .gun_footer_wrapper .footer_bottom_box p span {
+    color: var(--bg-main-color);
+}
+
+/* ======== gun_footer_wrapper end ======== */
+/*  =============== responsive css start ==================  */
+@media (max-width:1699px) {
+    .gun_product_wrapper .product_inner_box .products {
+        max-width: 440px;
+    }
+
+    .main-header-3 .menu-items-wrapper .navbar {
+        padding: 20px 20px;
+    }
+
+    header .logo-menu-wrap ul {
+        column-gap: 30px;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box2 .upcoming_box .upcoming_textbox {
+        padding: 30px 15px;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .event_detail_box ul {
+        column-gap: 10px;
+        row-gap: 8px;
+    }
+
+    .gun-twitter-container {
+        padding: 0px 20px 0px 100px;
+    }
+
+}
+
+@media (max-width:1599px) {
+    .gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 {
+        padding: 25px 25px;
+        row-gap: 14px;
+    }
+
+    h1 {
+        font-size: 65px;
+    }
+
+    .gun_product_wrapper .product_inner_box .nav-tabs .ind3_black_btn {
+        width: 275px;
+        height: 80px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products {
+        max-width: 410px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products .pro-name-box {
+        padding: 20px 20px;
+        column-gap: 15px;
+    }
+
+    header .logo-menu-wrap ul li a {
+        font-size: 18px;
+    }
+
+    .ind3_green_btn {
+        height: 45px;
+        padding: 0px 20px;
+        font-size: 14px;
+    }
+
+    .ind3_black_btn {
+        height: 45px;
+        padding: 0px 20px;
+        font-size: 14px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products .pro_btn_box {
+        padding: 30px 30px 0px 20px;
+    }
+
+    .gunselling_comp_wrapper .selling_box1 {
+        padding: 0px 50px;
+    }
+    
+    .position-1 {
+        bottom: 40%;
+        right: 3%;
+    }
+
+    .position-2 {
+        bottom: 10%;
+        right: 5%;
+    }
+
+    .position-3 {
+        bottom: -14%;
+        right: 19%;
+    }
+}
+
+@media(max-width:1499px) {
+
+    .gun_product_wrapper .product_inner_box .products .pro-name-box h6 {
+        font-size: 21px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products {
+        max-width: 380px;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box2 .upcoming_box .upcoming_textbox {
+        padding: 25px 10px;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box2 .upcoming_box h6 {
+        font-size: 21px;
+    }
+
+    .gun-twitter-container {
+        padding: 0px 20px 0px 150px;
+    }
+
+    .gun-twitter-posts .twitt-sliders .owl-buttons {
+        right: -7%;
+        top: 100px;
+    }
+
+    header .logo-menu-wrap ul {
+        column-gap: 25px;
+    }
+
+    h1 {
+        font-size: 55px;
+    }
+
+    h3 {
+        font-size: 35px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box1 {
+        width: 38%;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox .event_detail_box ul {
+        column-gap: 8px;
+        row-gap: 3px;
+    }
+}
+
+@media (max-width:1399px) {
+    header .logo-menu-wrap ul li a {
+        font-size: 16px;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box2 .news_detail_box1 {
+        padding: 25px 20px;
+        row-gap: 10px;
+    }
+
+    h4 {
+        font-size: 28px;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box {
+        padding-left: 25px;
+    }
+
+    .gun_news_wrapper .latest_slider_box {
+        column-gap: 25px;
+        padding: 0px 30px;
+    }
+
+    .gun_product_wrapper .product_inner_box .nav-tabs .ind3_black_btn {
+        width: 240px;
+        height: 80px;
+    }
+
+    .gun_product_wrapper .product_inner_box {
+        padding: 0px 70px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products .pro-name-box {
+        padding: 15px 15px;
+        column-gap: 10px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products .pro_btn_box {
+        padding: 20px 30px 0px 15px;
+    }
+
+    .pro-sliders2 {
+        display: flex;
+        column-gap: 10px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box {
+        padding: 40px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul {
+        column-gap: 20px;
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }
+
+    .icons {
+        column-gap: 12px;
+    }
+
+    .main-header p {
+        letter-spacing: 1px;
+    }
+
+    .icons .contact_box .contact2 p a {
+        font-size: 15px;
+    }
+
+    .gunselling_comp_wrapper .selling_box1 {
+        padding: 0px 35px;
+    }
+
+    .position-1 {
+        bottom: 33%;
+        right: 4%;
+    }
+
+    .position-2 {
+        bottom: -1%;
+        right: 6%;
+    }
+
+    .position-3 {
+        bottom: -23%;
+        right: 23%;
+        transform: rotateZ(60deg);
+    }
+}
+
+@media (max-width:1299px) {
+    .gun_product_wrapper .product_inner_box .products {
+        max-width: 350px;
+    }
+
+    .weapon_training_wrapper .weapon_formbox form .formbtn_box {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 45px;
+    }
+
+    header .logo-menu-wrap ul {
+        column-gap: 20px;
+    }
+
+    .position-2 {
+        bottom: -4%;
+        right: 6%;
+    }
+
+    .position-3 {
+        bottom: -28%;
+        right: 26%;
+        transform: rotateZ(65deg);
+    }
+
+    header .logo-menu-wrap ul li a {
+        font-size: 14px;
+    }
+
+    .search-wrap #search-button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .icons .icons-wrap {
+        height: 45px;
+        width: 45px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products .pro-name-box h6 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width:1199px) {
+    .main-header-3 .menu-items-wrapper .navbar {
+        padding: 20px 10px;
+    }
+
+    .icons .contact_box .contact2 p a {
+        font-size: 13px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products {
+        max-width: 90%;
+    }
+
+    .gun_upcoming_wrapper .row {
+        row-gap: 30px;
+    }
+
+    .gunselling_comp_wrapper .row {
+        row-gap: 60px;
+    }
+
+    .gunselling_comp_wrapper .selling_box1 .selling-img_box img {
+        max-width: 70%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .position-1 {
+        bottom: 36%;
+        right: 14%;
+    }
+
+    .position-2 {
+        bottom: 10%;
+        right: 15%;
+    }
+
+    .position-3 {
+        bottom: -8%;
+        right: 25%;
+        transform: rotateZ(50deg);
+    }
+
+    .weapon_training_wrapper .weapon_formbox form .formbtn_box {
+        margin-bottom: 30px;
+    }
+
+    .weapon_training_wrapper .weapon_formbox {
+        padding: 0px 40px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box {
+        padding: 40px 30px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box ul li a span {
+        margin-right: 8px;
+    }
+
+    .main-header p {
+        letter-spacing: 0px;
+    }
+
+    .icons .contact_box .contact2 h6 {
+        font-size: 18px;
+    }
+
+    .icons {
+        column-gap: 10px;
+    }
+
+    header .logo-menu-wrap ul {
+        column-gap: 15px;
+    }
+
+    .gun_product_wrapper .product_inner_box .nav-tabs {
+        column-gap: 30px;
+        row-gap: 20px;
+        justify-content: center;
+    }
+
+    .weapon_training_wrapper .weapon_imgbox {
+        height: 100%;
+        align-items: end;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-prev {
+        width: 3%;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-next {
+        width: 3%;
+    }
+
+    .search-wrap .search_box {
+        width: 600px;
+    }
+
+    .gunselling_comp_wrapper .selling_box1 {
+        padding: 0px 0px;
+    }
+}
+
+@media (max-width:1099px) {
+    .gun-twitter-container {
+        padding: 0px 20px 0px 185px;
+    }
+
+    .gun_news_wrapper .latest_slider_box {
+        flex-wrap: wrap;
+        row-gap: 25px;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box2 {
+        width: 100%;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box1 {
+        width: 100%;
+    }
+
+    header .logo-menu-wrap ul {
+        column-gap: 12px;
+    }
+
+    .icons .contact_box .contact2 h6 {
+        font-size: 16px;
+    }
+
+    .icons .contact_box .contact2 p a {
+        font-size: 12px;
+    }
+
+    .icons {
+        column-gap: 6px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-2 .gun_slider_shape svg {
+        width: 150px;
+        height: 150px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box {
+        flex-wrap: wrap;
+        row-gap: 30px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box {
+        width: 100%;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .top_logo_box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .position-1 {
+        bottom: 40%;
+    }
+
+    .position-2 {
+        bottom: 12%;
+    }
+}
+
+@media (max-width:991px) {
+    .main-header-3 .menu-items-wrapper .navbar {
+        padding: 20px 15px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .carousel-item .row {
+        row-gap: 30px;
+    }
+
+    .gun-selling-wrapper {
+        padding-top: 150px;
+    }
+
+    .position-1 {
+        display: none !important;
+    }
+
+    .position-2 {
+        display: none !important;
+    }
+
+    .position-3 {
+        display: none !important;
+    }
+
+    .new_carbine_wrapper .row {
+        row-gap: 30px;
+    }
+
+    .new_carbine_wrapper .new_carbine_box1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .new_carbine_wrapper .new_carbine_box2 {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls {
+        position: relative;
+        margin-top: 30px;
+    }
+
+    .gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-prev {
+        position: relative;
+        left: 0;
+    }
+
+    .gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons .owl-next {
+        position: relative;
+        right: 0;
+    }
+
+    .gun_product_wrapper .product_inner_box .pro-sliders2 .owl-controls .owl-buttons {
+        justify-content: center;
+    }
+
+    .gun-twitter-posts .twitt-sliders .owl-buttons {
+        right: 0;
+        position: relative;
+        top: 30px;
+    }
+
+    .gun-twitter-posts .twitter_mark_shape {
+        width: 170px;
+    }
+
+    .gun-twitter-container {
+        padding: 0px 20px 0px 70px;
+    }
+
+    .gun_gallery-wrapper .gallery_box .row {
+        row-gap: 30px;
+    }
+
+    .weapon_training_wrapper .weapon_formbox {
+        height: auto;
+    }
+
+    .weapon_training_wrapper .row {
+        row-gap: 30px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .row {
+        row-gap: 30px;
+    }
+
+    footer .gun_footer_wrapper .footer_middle_box .row {
+        row-gap: 30px;
+    }
+
+    .navbar-toggler {
+        top: 18px;
+    }
+
+    .main-header-3 .menu-items-wrapper {
+        height: 110px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products {
+        max-width: 100%;
+    }
+
+    .gunselling_comp_wrapper .selling_box1 .selling-img_box img {
+        max-width: 85%;
+    }
+}
+
+@media(max-width:899px) {
+    .gun-twitter-posts .twitter_mark_shape {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    .gun-twitter-container {
+        padding: 0px 10px 0px 10px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box {
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 30px;
+        row-gap: 30px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box1 {
+        width: 100%;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box .price_btn_box {
+        justify-content: center;
+    }
+
+}
+
+@media (max-width:767px) {
+    h4 {
+        font-size: 26px;
+    }
+
+    .gun_product_wrapper .product_inner_box .nav-tabs .ind3_black_btn {
+        width: 190px;
+        height: 60px;
+    }
+
+
+    .padding100 {
+        padding: 60px 0px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-prev {
+        width: 5%;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-next {
+        width: 5%;
+    }
+
+    .gun_devil_wrapper {
+        height: 500px;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box1 {
+        flex-wrap: wrap;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_imgbox2 {
+        width: 100%;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box2 .upcoming_box .upcoming_textbox {
+        padding: 0px 0px 40px 20px;
+    }
+
+    .gun_threat_wrapper {
+        padding: 100px 0px;
+    }
+
+    .gunselling_comp_wrapper .selling_box1 .selling-img_box img {
+        max-width: 95%;
+    }
+}
+
+@media (max-width:576px) {
+    h1 {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+
+    h4 {
+        font-size: 22px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-2 .gun_slider_shape {
+        left: 0%;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .carousel-item {
+        padding: 0px 45px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-prev {
+        width: 7%;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-next {
+        width: 7%;
+    }
+
+
+    .gun_devil_wrapper .video-wrap a img {
+        width: 70px;
+    }
+
+    .partner-main-wrap .partner-slider .partner-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title_box {
+        font-size: 20px;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box {
+        padding-left: 18px;
+        bottom: 5%;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box1 .blog_letter_box {
+        padding-left: 18px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box2 {
+        width: 100%;
+    }
+
+    footer .gun_footer_wrapper .footer_middle_box .info_box {
+        flex-wrap: wrap;
+        row-gap: 20px;
+    }
+
+    footer .gun_footer_wrapper .footer_middle_box .info_box .infor_wrap {
+        width: 100%;
+    }
+
+    footer .gun_footer_wrapper .footer_middle_box .contact_box ul li span {
+        margin-right: 15px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul {
+        row-gap: 15px;
+    }
+
+}
+
+@media(max-width:425px) {
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .carousel-item {
+        padding: 0px 15px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-prev {
+        position: relative;
+        display: none !important;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .carousel-control-next {
+        position: relative;
+        display: none !important;
+    }
+
+    .gun_product_wrapper .product_inner_box {
+        padding: 0px 15px;
+    }
+
+    .gunselling_comp_wrapper .selling_box2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .title-heading {
+        text-align: center;
+    }
+
+    .weapon_training_wrapper .weapon_formbox {
+        padding: 0px 25px;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box1 .blog_date_box .title-heading {
+        margin: 10px 0px;
+        text-align: left;
+        padding-right: 5px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box2 input {
+        padding: 15px 15px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box .news_box2 button {
+        padding: 15px 25px;
+    }
+
+    .gun_news_wrapper .latest_slider_box .news_box1 .img_box img {
+        height: 300px;
+    }
+
+    .gun_news_wrapper .latest_slider_box {
+        padding: 0px 15px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box {
+        padding: 40px 20px;
+    }
+
+    .weapon_training_wrapper .weapon_formbox .gun_title_box .title_box {
+        padding: 22px 35px;
+    }
+
+    .gun_gallery-wrapper .gallery_box .gallery_inner_box .gallery_box2 {
+        flex-wrap: wrap;
+        row-gap: 20px;
+    }
+
+    .gun_gallery-wrapper .gallery_box .row {
+        row-gap: 20px;
+    }
+
+    footer .gun_footer_wrapper .footer_top_box .newsletter_box {
+        padding: 30px 20px;
+    }
+
+    .gun_upcoming_wrapper .gun_upcoming_inner_box1 .upcoming_textbox {
+        padding: 0px 20px 30px 20px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-2 .gun_slider_shape svg {
+        width: 115px;
+        height: 115px;
+    }
+
+    .js-menu {
+        padding: 15px;
+    }
+
+    .js-menu__context .shopping_cart_innerbody .shopping_box .cart_section1 .detailbox h6 a {
+        font-size: 18px;
+    }
+}
+
+@media (max-width:375px) {
+    h1 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 21px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box ul li a {
+        font-size: 17px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box ul li a span {
+        margin-right: 3px;
+    }
+
+    .gun_pricing_table .pricing_table_wrap .pricing_box .price_detail_box {
+        padding: 40px 15px;
+    }
+
+    footer .footer_heading {
+        margin-bottom: 18px;
+    }
+
+    footer .gun_footer_wrapper .footer_middle_box .info_box {
+        flex-wrap: wrap;
+        row-gap: 35px;
+    }
+
+    .gun_threat_wrapper {
+        padding: 70px 0px;
+    }
+
+    .weapon_training_wrapper .weapon_formbox .gun_title_box .title_box {
+        padding: 22px 22px;
+    }
+
+    .gun_product_wrapper .product_inner_box .products .img-box ul {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .gunselling_comp_wrapper .selling_box2 .selling_ul_box {
+        column-gap: 40px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .gun-box-1 .gun_btn_box ul li .gun_client_box p {
+        font-size: 18px;
+    }
+
+    .gun-selling-wrapper .gun-slider-first-box .gun_slider_box .carousel-item {
+        padding: 0px 5px;
+    }
+
+    .gun_devil_wrapper {
+        height: 420px;
+    }
+}
