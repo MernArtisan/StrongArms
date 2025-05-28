@@ -33,9 +33,9 @@ Route::get('/cleareverything', function () {
     Artisan::call('optimize:clear');
     return "Cache is cleared";
 });
-
-
+// skdhsmd
 Route::get('/', [HomeController::class, 'index']);
+
 
 Route::group(['middleware' => ['admin.guest']], function () {
     Route::get('/login', [AuthConroller::class, 'login'])->name('login');
