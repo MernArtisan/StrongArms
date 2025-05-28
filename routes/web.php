@@ -36,7 +36,6 @@ Route::get('/cleareverything', function () {
 // skdhsmd
 Route::get('/', [HomeController::class, 'index']);
 
-
 Route::group(['middleware' => ['admin.guest']], function () {
     Route::get('/login', [AuthConroller::class, 'login'])->name('login');
     Route::post('/authenticate', [AuthConroller::class, 'Authenticate'])->name('authenticate');
