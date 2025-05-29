@@ -28,20 +28,24 @@ class AuthConroller extends Controller
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
-    
+
             if (Auth::attempt($request->only('email', 'password'))) {
-                return redirect()->intended('/dashboard')
-                    ->with('success', 'Welcome back! You have successfully logged in.');
+                $user = Auth::user();
+
+                if ($user->hasRole('customer')) {
+                    return redirect()->intended('/')->with('success', 'Welcome!');
+                }
+
+                return redirect()->intended('/dashboard')->with('success', 'Welcome back!');
             }
-    
+
             return back()->with('error', 'Invalid email or password. Please try again.');
-            
         } catch (\Throwable $th) {
-         
             return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
         }
     }
-    
+
+
 
     public function logout(Request $request)
     {
@@ -51,7 +55,7 @@ class AuthConroller extends Controller
 
         return redirect()->route('login');
     }
-    
+
     public function register()
     {
         return view('Frontend.auth.register');
@@ -59,7 +63,7 @@ class AuthConroller extends Controller
 
     public function registerSubmit(Request $request)
     {
-        
+
         try {
             $request->validate([
                 'name'                  => 'required|string|max:255',
@@ -74,8 +78,8 @@ class AuthConroller extends Controller
 
             DB::beginTransaction();
 
-            $role = Role::where('id',3)->first();
-    
+            $role = Role::where('id', 3)->first();
+
             $user = User::create([
                 'name'         => $request->name,
                 'email'        => $request->email,
@@ -87,7 +91,7 @@ class AuthConroller extends Controller
                 'shipping_option' => $request->has('shipping-option') ? true : false,
             ]);
             $user->roles()->attach($role->id);
-           DB::commit();
+            DB::commit();
             return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -106,24 +110,24 @@ class AuthConroller extends Controller
     {
         try {
             $user = Auth::user();
-    
+
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . '_' . $image->getClientOriginalName();
-            
+
                 // Create folder if not exists
                 $destinationPath = public_path('users');
                 if (!file_exists($destinationPath)) {
                     mkdir($destinationPath, 0755, true);
                 }
                 $image->move($destinationPath, $imageName);
-            
+
                 // Save path to DB
                 $imagePath = 'users/' . $imageName;
             } else {
-                $imagePath = $user->image; 
+                $imagePath = $user->image;
             }
-            
+
             // Update user data
             $user->update([
                 'name'          => $request->name,
@@ -139,13 +143,13 @@ class AuthConroller extends Controller
                 'gender'        => $request->gender,
                 'image'         => $imagePath,
             ]);
-    
+
             return redirect()->back()->with('success', 'Profile updated successfully.');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
     }
-    
+
     public function update(Request $request)
     {
         $request->validate([
@@ -162,7 +166,7 @@ class AuthConroller extends Controller
             'gender' => 'nullable',
         ]);
 
-        auth()->user()->update($request->only('name', 'email', 'phone', 'website', 'address_line', 'city', 'state', 'country', 'zip', 'company_name', 'gender'));   
+        auth()->user()->update($request->only('name', 'email', 'phone', 'website', 'address_line', 'city', 'state', 'country', 'zip', 'company_name', 'gender'));
 
         return back()->with('success', 'Profile updated successfully!');
     }
@@ -266,6 +270,4 @@ class AuthConroller extends Controller
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
     }
-
-
 }

@@ -2341,7 +2341,7 @@ header .main-header .cart-head button {
   position: relative;
 }
 header .main-header .cart-head button:after {
-  content: '2';
+  /* content: '2'; */
   position: absolute;
   top: 5px;
   right: -5px;

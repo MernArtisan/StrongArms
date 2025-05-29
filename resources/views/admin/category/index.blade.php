@@ -16,12 +16,12 @@
                             <h4>Category List</h4>
                             <div class="card-header-action">
                             @if($isAdmin) 
-                              <button class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
+                              <button class="btn btn-dark" data-toggle="modal" data-target="#addCategoryModal">
                                 <i class="fas fa-plus"></i> Add
                             </button>
                             @else
                             @can('categories-create')
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
+                            <button class="btn btn-dark" data-toggle="modal" data-target="#addCategoryModal">
                                 <i class="fas fa-plus"></i> Add
                               </button> 
                             @endcan
@@ -49,21 +49,24 @@
                                                 <button class="btn btn-info btn-edit"
                                                     data-id="{{ $category->id }}"
                                                     data-name="{{ $category->name }}"
-                                                    data-toggle="modal" data-target="#editCategoryModal">Edit</button>
+                                                    data-toggle="modal" data-target="#editCategoryModal">
+                                                  <i class="fas fa-edit"></i></a>
+                                                  </button>
                                               @else
                                               @can('categories-edit')
                                                     <button class="btn btn-info btn-edit"
                                                     data-id="{{ $category->id }}"
                                                     data-name="{{ $category->name }}"
-                                                    data-toggle="modal" data-target="#editCategoryModal">Edit</button>
+                                                    data-toggle="modal" data-target="#editCategoryModal">
+                                                  <i class="fas fa-edit"></i></a></button>
                                               @endcan
                                               @endif
                                               
                                               @if($isAdmin) 
-                                                  <a href="{{ route('product-category.destroy', $category->id) }}" class="btn btn-danger">Delete</a>
+                                                  <a href="{{ route('product-category.destroy', $category->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                   @else
                                               @can('categories-delete')
-                                                <a href="{{ route('product-category.destroy', $category->id) }}" class="btn btn-danger">Delete</a>
+                                                <a href="{{ route('product-category.destroy', $category->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                @endcan
                                               @endif
                                               </td>

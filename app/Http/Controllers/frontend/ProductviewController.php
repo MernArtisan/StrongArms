@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Models\product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ProductviewController extends Controller
 {
 
     public function index(Request $request)
     {
-     
+        // $content = Cart::content();
+        // return $content;
+        // dd($content->toArray());
         $query = Product::query()->where('status', 'active');
 
         if ($request->filled('q')) {

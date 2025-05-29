@@ -50,12 +50,12 @@
                                                     <td>{{ $role->name }}</td>
                                                     <td class="text-center">
                                                         @if($isAdmin)
-                                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-sm btn-primary">
+                                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-sm btn-info">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         @else
                                                         @can('role-edit')
-                                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-sm btn-primary">
+                                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-sm btn-info">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         @endcan

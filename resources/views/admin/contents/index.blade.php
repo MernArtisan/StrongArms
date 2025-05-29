@@ -47,7 +47,7 @@
                                                     <td>{{ $content->updated_at }}</td>
                                                     <td>
                                                         <a href="{{ route('content.edit', $content->id) }}"
-                                                            class="btn btn-sm btn-primary">
+                                                            class="btn btn-sm btn-info">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                     </td>

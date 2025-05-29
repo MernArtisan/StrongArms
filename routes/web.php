@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\ContentController;
 use App\Http\Controllers\admin\InquiryController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\ContactController;
+// use App\Http\Middleware\ProviderAuthenticate;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/cleareverything', function () {
@@ -53,8 +54,8 @@ Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkE
 
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
-Route::middleware('auth')->group(function () {
 
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [AuthConroller::class, 'profile'])->name('profile');
     Route::put('/profile-update', [AuthConroller::class, 'profileUpdate'])->name('profile.update');
@@ -69,29 +70,37 @@ Route::middleware('auth')->group(function () {
     Route::resource('blogs-upload', BlogController::class);
     Route::delete('/product-image/{id}', [ProductController::class, 'deleteImage'])->name('images.destroy');
 });
- 
-    Route::resource('homebanner', HomebannerController::class);
-    Route::get('blogs-view', [BlogViewController::class,'all_blogs'])->name('blogs.all_blogs');
-    Route::get('blogs-view/{slug}', [BlogViewController::class,'detail'])->name('blogs.detail');
-    Route::resource('content', ContentController::class);
-    Route::get('about-us', [AboutController::class, 'index'])->name('about.us');
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    Route::get('/products/by-category/{id}', [HomeController::class, 'getByCategory'])->name('products.byCategory');
-    Route::get('/product-view', [ProductviewController::class, 'index'])->name('productview.index');
-    Route::get('/product-detail/{slug}', [ProductviewController::class, 'productdetail'])->name('productview.productdetail');
-    Route::get('/all-services', [ServiceViewController::class, 'index'])->name('services.index');
-    Route::post('/comments', [BlogViewController::class, 'comments'])->name('blog.comment.submit');
-    Route::get('contact-us', [ContactController::class, 'index'])->name('contact.us');
-    Route::Post('contact-save',[ContactController::class,'store'])->name('contact.save');
-    Route::get('/inquiry', [InquiryController::class, 'query'])->name('inquiry');
- 
-    Route::prefix('cart')->name('cart.')->group(function () {
-        Route::get('/', [CartController::class, 'index'])->name('index');
-        Route::post('/add', [CartController::class, 'add'])->name('add');
-        Route::post('/update', [CartController::class, 'update'])->name('update');
-        Route::post('/remove', [CartController::class, 'remove'])->name('remove');
-        Route::post('/clear', [CartController::class, 'clear'])->name('clear');// web.php
-        Route::get('/cart/mini', [CartController::class, 'miniCart'])->name('mini');
 
+Route::resource('homebanner', HomebannerController::class);
+Route::get('blogs-view', [BlogViewController::class, 'all_blogs'])->name('blogs.all_blogs');
+Route::get('blogs-view/{slug}', [BlogViewController::class, 'detail'])->name('blogs.detail');
+Route::resource('content', ContentController::class);
+Route::get('about-us', [AboutController::class, 'index'])->name('about.us');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/by-category/{id}', [HomeController::class, 'getByCategory'])->name('products.byCategory');
+Route::get('/product-view', [ProductviewController::class, 'index'])->name('productview.index');
+Route::get('/product-detail/{slug}', [ProductviewController::class, 'productdetail'])->name('productview.productdetail');
+Route::get('/all-services', [ServiceViewController::class, 'index'])->name('services.index');
+Route::post('/comments', [BlogViewController::class, 'comments'])->name('blog.comment.submit');
+Route::get('contact-us', [ContactController::class, 'index'])->name('contact.us');
+Route::Post('contact-save', [ContactController::class, 'store'])->name('contact.save');
+Route::get('/inquiry', [InquiryController::class, 'query'])->name('inquiry');
+
+// Route::prefix('cart')->name('cart.')->group(function () {
+//     Route::get('/', [CartController::class, 'index'])->name('index');
+//     Route::post('/add', [CartController::class, 'add'])->name('add');
+//     Route::post('/update', [CartController::class, 'update'])->name('update');
+//     Route::post('/remove', [CartController::class, 'remove'])->name('remove');
+//     Route::post('/clear', [CartController::class, 'clear'])->name('clear'); // web.php
+//     Route::get('/cart/mini', [CartController::class, 'miniCart'])->name('mini');
+// });
+
+
+Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/add', 'add')->name('add');
+        Route::post('/update', 'update')->name('update');
+        Route::post('/remove', 'remove')->name('remove');
+        Route::post('/clear', 'clear')->name('clear');
+        Route::get('/mini', 'miniCart')->name('mini');
     });
-        

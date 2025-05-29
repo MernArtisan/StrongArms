@@ -8,53 +8,53 @@
                 <div class="col-sm-12 pd-0">
                     <div class="item-content">
                         @foreach ($banners as $bnr)
-                        <div class="item-slider bg-img" style="background-image: url('{{ asset('uploads/homebanners/' . $bnr->image) }}');">
+                            <div class="item-slider bg-img"
+                                style="background-image: url('{{ asset('uploads/homebanners/' . $bnr->image) }}');">
 
-                            <div class="slider_section_overlay"></div>
-                            <div class="container position-relative text-center">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="contents text-left">
-                                            <h2 class="wow animated fadeInUp" data-wow-duration="1s">{{ $bnr->title }}</h2>
-                                            <p class="mr-lu mr-ru wow animated fadeInDown" data-wow-duration="1.5s" style="width: 430px;">   {!! $bnr->description !!}</p>
-                                            <div class="buttons wow animated fadeInUp" data-wow-duration="2s">
-                                                <a href="{{ $bnr->redirect_url }}" class="btn1">Read More</a>
+                                <div class="slider_section_overlay"></div>
+                                <div class="container position-relative text-center">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="contents text-left">
+                                                <h2 class="wow animated fadeInUp" data-wow-duration="1s">{{ $bnr->title }}
+                                                </h2>
+                                                <p class="mr-lu mr-ru wow animated fadeInDown" data-wow-duration="1.5s"
+                                                    style="width: 430px;"> {!! $bnr->description !!}</p>
+                                                <div class="buttons wow animated fadeInUp" data-wow-duration="2s">
+                                                    <a href="{{ $bnr->redirect_url }}" class="btn1">Read More</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
-                        
+
                     </div>
                     <div class="col-sm-12">
                         <div class="item-thumbnail">
-                    @if ($Product->isEmpty())
-                    @else
-
-                        @foreach ($Product as $prd)
-                            
-                            <a href="#" class="col-sm-3" data-slide-index="0">
-                                <div class="items">
-                                    <div class="dbox">
-                                        <div >
-                                         <img src="{{ asset($prd->image) }}" alt="" style="width: 35%;">
-                                        </div>
-                                        <div class="dright">
-                                            <div class="content">
-                                                <h3>{{ $prd->name }}</h3>
-                                                <p>{{ $prd->price }}</p>
+                            @if ($Product->isEmpty())
+                            @else
+                                @foreach ($Product as $prd)
+                                    <a href="#" class="col-sm-3" data-slide-index="0">
+                                        <div class="items">
+                                            <div class="dbox">
+                                                <div>
+                                                    <img src="{{ asset($prd->image) }}" alt="" style="width: 35%;">
+                                                </div>
+                                                <div class="dright">
+                                                    <div class="content">
+                                                        <h3>{{ $prd->name }}</h3>
+                                                        <p>{{ $prd->price }}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </a>
-                           
-                            @endforeach
-                                                 
-                    @endif
+                                    </a>
+                                @endforeach
+
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -68,12 +68,12 @@
             <div class="row">
                 <div class="col-md-7 col-sm-12">
                     <div class="section-heading2">
-                        <h2>{{ $Content->item_1 ??'' }}</h2>
+                        <h2>{{ $Content->item_1 ?? '' }}</h2>
                     </div>
                     <div class="about-contents">
-                        <p>{{ $Content->description_1 ??'' }}</p>
-                        <blockquote>{{ $Content->description_2 ??'' }}</blockquote>
-                        <p>{{ $Content->description_3 ??'' }}
+                        <p>{{ $Content->description_1 ?? '' }}</p>
+                        <blockquote>{{ $Content->description_2 ?? '' }}</blockquote>
+                        <p>{{ $Content->description_3 ?? '' }}
                         </p>
                         <div class="buttons">
                             <a href="#" class="btn1">Read More</a>
@@ -144,7 +144,7 @@
                                     class="fas fa-play"></i></a>
                         </div>
                         <div class="section-heading mr-0">
-                            <h2 class="mr-0">{{ $Content->video_text??'' }}</h2>
+                            <h2 class="mr-0">{{ $Content->video_text ?? '' }}</h2>
                         </div>
                     </div>
                 </div>
@@ -209,22 +209,24 @@
                 <div class="col-md-12 col-sm-12 pd-0">
                     <div class="pro-sliders">
                         @foreach ($Product as $product)
-                        <div class="col-sm-12">
-                            <div class="products text-center">
-                                <figure style="width: 100%; height: 200px; overflow: hidden;">
-                                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
-                                        style="width: 100%; height: 100%; object-fit: cover;">
-                                </figure>
-                                <div class="contents">
-                                    <h3>{{ $product->name }}</h3>
-                                    <span>${{ number_format($product->price, 2) }}</span>
-                                    <a href="#" class="btn4">Add To Cart</a>
+                            <div class="col-sm-12">
+                                <div class="products text-center">
+                                    <figure style="width: 100%; height: 200px; overflow: hidden;">
+                                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    </figure>
+                                    <div class="contents">
+                                        <h3>{{ $product->name }}</h3>
+                                        <span>${{ number_format($product->price, 2) }}</span>
+                                        <a href="javascript:void(0)" class="btn4 add-to-cart-btn"
+                                            data-id="{{ $product->id }}">Add To Cart</a>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
-                    
+
                 </div>
                 <div class="col-md-12 col-sm-12">
                     <div class="load-btn text-center mr-t80">
@@ -598,28 +600,28 @@
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12 pd-0">
                     <div class="ln-sliders">
-                     
-                @foreach ($blogs as $blog)
-                
-                        <div class="col-sm-12" style="height: 130%">
-                            <div class="main_news_right_box">
-                                <div class="news_right_box1_wrapper">
-                                    <div class="news_right_box1">
-                                        <h3>{{  $blog->title }}</h3>
-                                        <h6><i class="fa fa-calendar-alt"></i>{{ $blog->created_at->format('d M Y') }}</h6>
-                                        <div class="news_border_bottom">
+
+                        @foreach ($blogs as $blog)
+                            <div class="col-sm-12" style="height: 130%">
+                                <div class="main_news_right_box">
+                                    <div class="news_right_box1_wrapper">
+                                        <div class="news_right_box1">
+                                            <h3>{{ $blog->title }}</h3>
+                                            <h6><i class="fa fa-calendar-alt"></i>{{ $blog->created_at->format('d M Y') }}
+                                            </h6>
+                                            <div class="news_border_bottom">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="news_botton_cont">
-                                    <p>{{ $blog->description }}.</p>
-                                    <h5><a href="#">Read More</a> &nbsp;<i class="fa fa-long-arrow-alt-right"></i>
-                                    </h5>
+                                    <div class="news_botton_cont">
+                                        <p>{{ $blog->description }}.</p>
+                                        <h5><a href="#">Read More</a> &nbsp;<i
+                                                class="fa fa-long-arrow-alt-right"></i>
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                     @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -628,11 +630,11 @@
 
 @endsection
 @section('scripts')
-<script>
-    function loadCategory(categoryId) {
-        $.get(`/shop/category/${categoryId}`, function(data) {
-            $('#product-container').html(data);
-        });
-    }
-</script>
+    <script>
+        function loadCategory(categoryId) {
+            $.get(`/shop/category/${categoryId}`, function(data) {
+                $('#product-container').html(data);
+            });
+        }
+    </script>
 @endsection

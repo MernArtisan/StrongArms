@@ -8,12 +8,12 @@
             <h1>Products</h1>
             <div class="section-header-button ml-auto">
                 @if($isAdmin) 
-                <a href="{{ route('product.create') }}" class="btn btn-primary">
+                <a href="{{ route('product.create') }}" class="btn btn-dark">
                     <i class="fas fa-plus"></i> Add Product
                 </a>
                 @else
                 @can('product-create')
-                <a href="{{ route('product.create') }}" class="btn btn-primary">
+                <a href="{{ route('product.create') }}" class="btn btn-dark">
                     <i class="fas fa-plus"></i> Add Product
                   </a>
                 @endcan
@@ -31,7 +31,7 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="">
+                                <table class="table table-striped" id="table-1">
                                     <thead>
                                         <tr>
                                             <th class="text-center">#</th>
@@ -124,10 +124,3 @@
 </div>
 @endsection
 
-@section('scripts')
-<script>
-    $(document).ready(function () {
-        $('#table-1').DataTable();
-    });
-</script>
-@endsection

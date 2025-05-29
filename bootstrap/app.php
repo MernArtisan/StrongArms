@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin.guest' => \App\Http\Middleware\AdminGuestMiddleware::class,
             'permission' => \App\Http\Middleware\CheckPermission::class,
+            // 'role' => \App\Http\Middleware\RoleMiddleware::class,
             'verifyCsrfToken' => \App\Http\Middleware\CustomVerifyCsrfToken::class
         ]);
 
