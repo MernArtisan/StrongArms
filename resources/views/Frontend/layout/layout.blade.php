@@ -20,17 +20,17 @@
     <style>
         .cart-count-badge {
             position: absolute;
-            top: 4px;
-            right: -10px;
+            top: 6px;
+            right: -5px;
             background-color: red;
             color: white;
             border-radius: 50%;
             padding: 2px 6px;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
             line-height: 1;
             min-width: 18px;
-            text-align: center;
+            text-align: left;
         }
     </style>
 </head>
@@ -43,273 +43,14 @@
         </div>
     </div>
 
-    <header>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-12">
-                    <div class="logo-area">
-                        <a href="">
-                            <img src="{{ asset('assets/images/logo/logo.png') }}" alt="" class="img-fluid" />
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-10 col-sm-10 d-md-block d-sm-none d-none">
-                    <div class="main-header">
-                        <div class="main-menus">
-                            <nav>
-                                <ul class="mamnu">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="{{ route('about.us') }}">About</a></li>
-                                    <li><a href="{{ route('services.index') }}">Services</a></li>
-                                    <li><a href="{{ route('productview.index') }}">Products</a></li>
-
-
-                                    <li><a href="{{ route('blogs.all_blogs') }}">Blog</a></li>
-
-                                    <li><a href="{{ route('contact.us') }}">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        @php
-                            $cartItems = \Gloudemans\Shoppingcart\Facades\Cart::content();
-                            $cartSubtotal = \Gloudemans\Shoppingcart\Facades\Cart::subtotal();
-                        @endphp
-                        <div class="cart-head">
-                            <button style="position: relative;">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span id="cart-count" class="cart-count-badge">{{ $cartItems->count() }}</span>
-                            </button>
-
-                            <div class="nav-shop-cart">
-                                <div class="widget_shopping_cart_content">
-                                    {{-- Initial content loaded server side --}}
-
-
-                                    @if ($cartItems->count() > 0)
-                                        <ul class="product_list_widget">
-                                            @foreach ($cartItems as $item)
-                                                <li class="mini_cart_item" data-rowid="{{ $item->rowId }}">
-                                                    <a href="#">
-                                                        <img src="{{ asset($item->options->image) }}"
-                                                            alt="{{ $item->name }}" />
-                                                        <p class="product-name">{{ $item->name }}</p>
-                                                    </a>
-                                                    <p class="quantity">{{ $item->qty }} x <strong
-                                                            class="Price-amount">${{ number_format($item->price, 2) }}</strong>
-                                                    </p>
-                                                    <a href="javascript:void(0)" class="remove-item"
-                                                        title="Remove this item" data-rowid="{{ $item->rowId }}">x</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                        <p class="total"><strong>Subtotal:</strong> <span
-                                                class="amount">${{ $cartSubtotal }}</span></p>
-                                        <p class="buttons">
-                                            <a href="{{ route('cart.index') }}" class="btn1">View Cart</a>
-                                            <a href="#" class="btn2">Checkout</a>
-                                        </p>
-                                    @else
-                                        <p class="text-center">Your cart is empty.</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        @if (Auth::user())
-                            <div class="sing-in-btn">
-
-                                @if (Auth::user()->hasRole('provider') || Auth::user()->hasRole('admin'))
-                                    <div class="sing-in-btn">
-                                        <a href="{{ route('dashboard') }}" class="btn btn-primary"
-                                            style="color: #fff; background-color: #878244; border-color: #847e2e;">
-                                            <i data-feather="monitor"></i> Dashboard
-                                        </a>
-                                        <a href="{{ route('logout') }}" class="btn btn-primary"
-                                            style="color: #fff; background-color: #878244; border-color: #847e2e;">
-                                            <i data-feather="log-out"></i> Logout
-                                        </a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </div>
-                                @else
-                                    <div class="sing-in-btn">
-                                        <a href="#" class="btn btn-primary"
-                                            style="color: #fff;background-color: #878244;border-color: #847e2e;">
-                                            <i data-feather="user"></i> Account
-                                        </a>
-                                        <a href="{{ route('logout') }}" class="btn btn-primary"
-                                            style="color: #fff; background-color: #878244; border-color: #847e2e;">
-                                            <i data-feather="log-out"></i> Logout
-                                        </a>
-
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </div>
-                                @endif
-
-                            </div>
-                        @else
-                            <div class="sing-in-btn">
-                                <a href="{{ route('login') }}" class="btn btn-primary"
-                                    style="color: #fff;background-color: #878244;border-color: #847e2e;">Sign in</a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Responsive Menu -->
-        <div class="mobilemenu">
-            <div class="mobile-menu d-md-none d-sm-block d-block">
-                <nav>
-                    <ul>
-                        <li><a href="index-2.php">Home</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="services.php">Services</a></li>
-                        <li><a href="javascript:void(0)">Pages</a>
-                            <ul>
-                                <li><a href="about.php">About</a></li>
-                                <li><a href="shop.php">Shop</a></li>
-                                <li><a href="product-single.php">Shop Single</a></li>
-                                <li><a href="event.php">Event</a></li>
-                                <li><a href="event-single.php">Event Single</a></li>
-                                <li><a href="gallery.php">Gallery</a></li>
-                                <li><a href="blog.php">Blog</a></li>
-                                <li><a href="blog-single.php">Blog Single</a></li>
-                                <li><a href="contact.php">Contact</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Shop</a>
-                            <ul>
-                                <li><a href="shop.php">Shop Page</a></li>
-                                <li><a href="product-single.php">Shop Single</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Blog</a>
-                            <ul>
-                                <li><a href="blog.php">Blog Page</a></li>
-                                <li><a href="blog-single.php">Blog Single</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ route('contact.us') }}">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+    @include('Frontend.layout.header')
 
 
     @yield('content')
 
+    @include('Frontend.partials.latestnews')
 
-    <section class="subscribe-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="subscribe">
-                        <span class="ico"><i class="far fa-envelope"></i></span>
-                        <div class="conts">
-                            <h2>Get Our Latest News</h2>
-                            <p>Subscribe our Newsletter Now!</p>
-                        </div>
-                        <form>
-                            <input type="email" placeholder="Email Address">
-                            <button type="submit" class="btn1">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="jarallax">
-        <div class="footer-top section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="foo-about">
-                            <figure><img src="{{ asset('assets/images/logo/logo.png') }}" alt="" /></figure>
-                            <div class="contents">
-                                <p>All modern weapons can appreciate our broad services. Lorem Ipsum placeholder.</p>
-                                <a href="#" class="btn3">Read more <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                            <ul class="foo-social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>Latest News</h2>
-                        <div class="foo-news">
-                            <div class="newslists">
-                                <div class="dbox">
-                                    <div class="dleft">
-                                        <figure><img src="{{ asset('assets/images/blog/sm-1.jpg') }}"
-                                                alt="" /></figure>
-                                    </div>
-                                    <div class="dright">
-                                        <h4><a href="#">Weapons 2024</a></h4>
-                                        <p>Weapons can appreciate our services.</p>
-                                        <span><i class="fas fa-calendar"></i> 12 Jan 2024</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="newslists">
-                                <div class="dbox">
-                                    <div class="dleft">
-                                        <figure><img src="{{ asset('assets/images/blog/sm-2.jpg') }}"
-                                                alt="" /></figure>
-                                    </div>
-                                    <div class="dright">
-                                        <h4><a href="#">Weapons 2024</a></h4>
-                                        <p>Weapons can appreciate our services.</p>
-                                        <span><i class="fas fa-calendar"></i> 12 Jan 2024</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>Product Shop</h2>
-                        <div class="products-foo">
-                            <ul>
-                                <li><a href="#"><img src="{{ asset('assets/images/products/sm1.jpg') }}"
-                                            alt="" /></a></li>
-                                <li><a href="#"><img src="{{ asset('assets/images/products/sm2.jpg') }}"
-                                            alt="" /></a></li>
-                                <li><a href="#"><img src="{{ asset('assets/images/products/sm3.jpg') }}"
-                                            alt="" /></a></li>
-                                <li><a href="#"><img src="{{ asset('assets/images/products/sm4.jpg') }}"
-                                            alt="" /></a></li>
-                            </ul>
-                            <p>For more products and guns click here!</p>
-                            <a href="#" class="btn1">Our Shop</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Copyright © 2024 <a href="#">Strong Arms</a></p>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="foo-links">
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Copyright Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('Frontend.layout.footer')
 
     <!-- Scripts -->
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>

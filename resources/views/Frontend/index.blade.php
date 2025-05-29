@@ -63,75 +63,8 @@
     </section>
     <!--Slider area end here-->
     <!--About area start here-->
-    <section class="about-area section bg-img jarallax">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 col-sm-12">
-                    <div class="section-heading2">
-                        <h2>{{ $Content->item_1 ?? '' }}</h2>
-                    </div>
-                    <div class="about-contents">
-                        <p>{{ $Content->description_1 ?? '' }}</p>
-                        <blockquote>{{ $Content->description_2 ?? '' }}</blockquote>
-                        <p>{{ $Content->description_3 ?? '' }}
-                        </p>
-                        <div class="buttons">
-                            <a href="#" class="btn1">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5 col-sm-12 ">
-                    <div class="about-cata">
-                        <div class="cata-list list-t1">
-                            <div class="dbox">
-                                <div class="dleft">
-                                    <div class="content">
-                                        <h4>Hunting</h4>
-                                        {{-- <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a> --}}
-                                    </div>
-                                </div>
-                                <div class="dright">
-                                    <div class="cate-ico">
-                                        <img src="assets/images/icons/01.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cata-list list-t2">
-                            <div class="dbox">
-                                <div class="dleft">
-                                    <div class="content">
-                                        <h4>Trainning</h4>
-                                        {{-- <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a> --}}
-                                    </div>
-                                </div>
-                                <div class="dright">
-                                    <div class="cate-ico">
-                                        <img src="assets/images/icons/02.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cata-list list-t1">
-                            <div class="dbox">
-                                <div class="dleft">
-                                    <div class="content">
-                                        <h4>Shoot Range</h4>
-                                        {{-- <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a> --}}
-                                    </div>
-                                </div>
-                                <div class="dright">
-                                    <div class="cate-ico">
-                                        <img src="assets/images/icons/03.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+    @include('Frontend.partials.whoweare')
 
     <!--Videos area start here-->
     <section class="banner-area2 bg-img jarallax af">
@@ -238,32 +171,7 @@
     </section>
     <!--Products area end here-->
     <!--Twitter area start here-->
-    <div class="twitter-posts section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 pd-0">
-                    <div class="twitt-sliders">
-                        <div class="col-sm-12">
-                            <div class="contents">
-                                <p>New Item on Weapon Store. We are Happy too show my new item on our store Machine Gun
-                                    <br>#weapon #gun #webstrot
-                                </p>
-                                <span>by AkshayHandge @HandgeAkshay - Jan 23, 2024</span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="contents">
-                                <p>New Item on Weapon Store. We are Happy too show my new item on our store Machine Gun
-                                    <br>#weapon #gun #webstrot
-                                </p>
-                                <span>by AkshayHandge @HandgeAkshay - Jan 23, 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('Frontend.partials.twitter')
     <!--Twitter area end here-->
     <!--Gallery area start here-->
     <section class="gallery-area section2 bg-img jarallax position-relative">
