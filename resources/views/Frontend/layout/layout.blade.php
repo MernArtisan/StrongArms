@@ -198,6 +198,7 @@
                         timer: 1500
                     });
                     loadMiniCart();
+                    refreshFullCart();
                 }
             });
         });
@@ -230,6 +231,37 @@
                 }
             });
         });
+    </script>
+    <script>
+        $(document).on('change', '.update-cart-qty', function() {
+            let rowId = $(this).data('rowid');
+            let qty = $(this).val();
+
+            $.ajax({
+                url: "{{ route('cart.update') }}",
+                method: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    rowId: rowId,
+                    quantity: qty
+                },
+                success: function(res) {
+                    toastr.success(res.message);
+                    // Refresh cart HTML and totals
+                    refreshFullCart();
+                    loadMiniCart(); // already defined in layout
+                }
+            });
+        });
+
+        function refreshFullCart() {
+            $.get("{{ route('cart.index') }}", function(response) {
+                let itemsHtml = $(response).find('.view-cart-items').html();
+                let subtotal = $(response).find('#cart-subtotal').text();
+                $('.view-cart-items').html(itemsHtml);
+                $('#cart-subtotal').text(subtotal);
+            });
+        }
     </script>
     @yield('scripts')
 </body>

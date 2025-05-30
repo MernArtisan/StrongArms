@@ -37,9 +37,7 @@
 
                             <div class="nav-shop-cart">
                                 <div class="widget_shopping_cart_content">
-                                   
-
-
+                                
                                     @if ($cartItems->count() > 0)
                                         <ul class="product_list_widget">
                                             @foreach ($cartItems as $item)

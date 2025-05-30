@@ -103,4 +103,6 @@ Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(f
         Route::post('/remove', 'remove')->name('remove');
         Route::post('/clear', 'clear')->name('clear');
         Route::get('/mini', 'miniCart')->name('mini');
+        Route::get('/checkout', 'checkout')->name('checkout');
+
     });
