@@ -1,29 +1,30 @@
 <?php
 
-use App\Http\Controllers\frontend\AboutController;
-use App\Http\Controllers\frontend\AuthConroller;
-use App\Http\Controllers\admin\BlogController;
-use App\Http\Controllers\frontend\BlogviewController;
-use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\admin\ProductController;
-use App\Http\Controllers\frontend\ProductviewController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\ServiceController;
-use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\HomebannerController;
-use App\Http\Controllers\frontend\ForgotPasswordController;
-use App\Http\Controllers\admin\ResetPasswordController;
-use App\Http\Controllers\frontend\ServiceViewController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\frontend\AuthConroller;
 use App\Http\Controllers\admin\ContentController;
 use App\Http\Controllers\admin\InquiryController;
+use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\frontend\AboutController;
+use App\Http\Controllers\frontend\OrderController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\HomebannerController;
+use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\frontend\ContactController;
+use App\Http\Controllers\frontend\BlogviewController;
+use App\Http\Controllers\admin\ResetPasswordController;
+use App\Http\Controllers\frontend\ProductviewController;
 // use App\Http\Middleware\ProviderAuthenticate;
-use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\frontend\ServiceViewController;
+use App\Http\Controllers\frontend\ForgotPasswordController;
 
 Route::get('/cleareverything', function () {
     Artisan::call('cache:clear');
@@ -69,6 +70,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('role', RoleController::class);
     Route::resource('blogs-upload', BlogController::class);
     Route::delete('/product-image/{id}', [ProductController::class, 'deleteImage'])->name('images.destroy');
+
+    Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function () {
+        Route::post('/order', 'order')->name('index');
+        Route::get('orders', [OrderController::class, 'getOrders']);
+    });
 });
 
 Route::resource('homebanner', HomebannerController::class);
@@ -97,12 +103,11 @@ Route::get('/inquiry', [InquiryController::class, 'query'])->name('inquiry');
 
 
 Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/add', 'add')->name('add');
-        Route::post('/update', 'update')->name('update');
-        Route::post('/remove', 'remove')->name('remove');
-        Route::post('/clear', 'clear')->name('clear');
-        Route::get('/mini', 'miniCart')->name('mini');
-        Route::get('/checkout', 'checkout')->name('checkout');
-
-    });
+    Route::get('/', 'index')->name('index');
+    Route::post('/add', 'add')->name('add');
+    Route::post('/update', 'update')->name('update');
+    Route::post('/remove', 'remove')->name('remove');
+    Route::post('/clear', 'clear')->name('clear');
+    Route::get('/mini', 'miniCart')->name('mini');
+    Route::get('/checkout', 'checkout')->name('checkout');
+});

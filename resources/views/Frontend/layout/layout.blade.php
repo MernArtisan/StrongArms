@@ -102,7 +102,34 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmdG8C6ItElq5ipuFv6O9AE48wyZm_vqU&amp;callback=initMap">
     </script>
+
+
+
+
     <script>
+        function refreshFullCart() {
+            debugger;
+            $.get("{{ route('cart.index') }}", function(response) {
+
+                let itemsHtml = $(response).find('.view-cart-items').html();
+                $('.view-cart-items').html(itemsHtml);
+                // Update subtotal count
+                let subtotalCount = $(response).find('#cart-subtotal-count').text();
+                $('#cart-subtotal-count').text(subtotalCount);
+
+                // Update subtotal value
+                let subtotalValue = $(response).find('#cart-subtotal-value').text();
+                $('#cart-subtotal-value').text(subtotalValue);
+
+                // Update total
+                let total = $(response).find('#cart-total').text();
+                $('#cart-total').text(total);
+
+                let subTotal = $(response).find('#cart-subtotal').text();
+                $('#cart-subtotal').text(subTotal);
+
+            });
+        }
         // Function to load mini cart content from backend
         function loadMiniCart() {
             // debugger;
@@ -128,7 +155,7 @@
                                 <p class="total"><strong>Subtotal:</strong> <span class="amount">$${parseFloat(res.cartTotal).toFixed(2)}</span></p>
                                 <p class="buttons">
                             <a href="{{ route('cart.index') }}" class="btn1">View Cart</a>
-                            <a href="#" class="btn2">Checkout</a>
+                            <a href="{{ route('cart.checkout')}}" class="btn2">Checkout</a>
                                 </p>`;
                     } else {
                         html = '<p class="text-center">Your cart is empty.</p>';
@@ -143,42 +170,40 @@
             });
         }
 
-        // Call loadMiniCart on page load to ensure mini cart is fresh
         $(document).ready(function() {
             loadMiniCart();
         });
 
 
-        function renderMiniCart(cartItems, cartTotal) {
+        // function renderMiniCart(cartItems, cartTotal) {
 
-            let html = '';
-            if (cartItems.length > 0) {
-                html += '<ul class="product_list_widget">';
-                $.each(cartItems, function(index, item) {
-                    html += `
-            <li class="mini_cart_item" data-rowid="${item.rowId}">
-                <a href="#">
-                    <img src="/${item.options.image}" alt="${item.name}" />
-                    <p class="product-name">${item.name}</p>
-                </a>
-                <p class="quantity">${item.qty} x <strong class="Price-amount">$${item.price}</strong></p>
-                <a href="javascript:void(0)" class="remove-item" title="Remove this item" data-rowid="${item.rowId}">x</a>
-            </li>`;
-                });
-                html += `</ul>
-        <p class="total"><strong>Subtotal:</strong> <span class="amount">${cartTotal}</span></p>
-        <p class="buttons">
-            <a href="{{ route('cart.index') }}" class="btn1">View Cart</a>
-            <a href="#" class="btn2">Checkout</a>
-        </p>`;
-            } else {
-                html = '<p class="text-center">Your cart is empty.</p>';
-            }
+        //     let html = '';
+        //     if (cartItems.length > 0) {
+        //         html += '<ul class="product_list_widget">';
+        //         $.each(cartItems, function(index, item) {
+        //             html += `
+        //     <li class="mini_cart_item" data-rowid="${item.rowId}">
+        //         <a href="#">
+        //             <img src="/${item.options.image}" alt="${item.name}" />
+        //             <p class="product-name">${item.name}</p>
+        //         </a>
+        //         <p class="quantity">${item.qty} x <strong class="Price-amount">$${item.price}</strong></p>
+        //         <a href="javascript:void(0)" class="remove-item" title="Remove this item" data-rowid="${item.rowId}">x</a>
+        //     </li>`;
+        //         });
+        //         html += `</ul>
+        // <p class="total"><strong>Subtotal:</strong> <span class="amount">${cartTotal}</span></p>
+        // <p class="buttons">
+        //     <a href="{{ route('cart.index') }}" class="btn1">View Cart</a>
+        //     <a href="#" class="btn2">Checkout</a>
+        // </p>`;
+        //     } else {
+        //         html = '<p class="text-center">Your cart is empty.</p>';
+        //     }
 
-            $('.widget_shopping_cart_content').html(html);
-        }
+        //     $('.widget_shopping_cart_content').html(html);
+        // }
 
-        // Remove item from mini cart via AJAX (optional: bind click event)
         $(document).on('click', '.remove-item', function() {
             let rowId = $(this).data('rowid');
 
@@ -197,8 +222,9 @@
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    loadMiniCart();
                     refreshFullCart();
+                    loadMiniCart();
+
                 }
             });
         });
@@ -253,15 +279,6 @@
                 }
             });
         });
-
-        function refreshFullCart() {
-            $.get("{{ route('cart.index') }}", function(response) {
-                let itemsHtml = $(response).find('.view-cart-items').html();
-                let subtotal = $(response).find('#cart-subtotal').text();
-                $('.view-cart-items').html(itemsHtml);
-                $('#cart-subtotal').text(subtotal);
-            });
-        }
     </script>
     @yield('scripts')
 </body>

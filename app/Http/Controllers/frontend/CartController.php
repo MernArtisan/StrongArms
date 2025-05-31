@@ -5,6 +5,8 @@ namespace App\Http\Controllers\frontend;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -14,11 +16,9 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = Cart::content();
-        // return $cartItems;  // get all cart items
-        $cartTotal = Cart::subtotal();  
-        // return $cartTotal;  // get cart total
+        return $cartItems;
+        $cartTotal = Cart::subtotal();
 
-        // dd($cartItems->all());
         return view('frontend.cart.index', compact('cartItems', 'cartTotal'));
     }
 
@@ -105,6 +105,7 @@ class CartController extends Controller
         ]);
     }
 
+
     // Clear entire cart
     public function clear()
     {
@@ -118,7 +119,7 @@ class CartController extends Controller
     // Optional: get mini cart content (small summary, useful for header cart icon)
     public function miniCart()
     {
-        $cartItems = Cart::content(); 
+        $cartItems = Cart::content();
         $cartCount = Cart::count();
 
         $items = $cartItems->map(function ($item) {
@@ -140,16 +141,22 @@ class CartController extends Controller
         ]);
     }
 
-    public function checkout(){
+    public function checkout()
+    {
 
         $cartItems = Cart::content();
-        $cartTotal = Cart::subtotal(); 
-         
-        return view('Frontend.Cart.checkout', compact('cartItems', 'cartTotal'));
+        $cartTotal = Cart::subtotal();
 
-        
+        if (Auth::check()) {
+            if ($cartItems->count() == 0) {
+                return redirect()->back()->with('error', 'Your cart is currently empty. Please add items before proceeding to checkout.');
+            } else {
+                return view('Frontend.Cart.checkout', compact('cartItems', 'cartTotal'));
+            }
+        }else{
+            return redirect()->route('login')->with('error', 'Please Login Befor Placing Order');
+        }
     }
-}
-
 
     
+}

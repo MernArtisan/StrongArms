@@ -383,7 +383,7 @@
                 <!--my-code--->
                 <div class="view-cart-container">
                     <div class="cart-container">
-                        @if ($cartItems->count() > 0)
+                        @if ($cartItems->count() >= 0)
                             <div class="view-cart-items">
                                 @foreach ($cartItems as $item)
                                     <div class="cart-item d-flex justify-content-between align-items-center py-2 border-bottom"
@@ -429,30 +429,16 @@
                         <div class="view-cart-totals">
                             <h3 class="view-cart-summary-title">ORDER SUMMARY</h3>
                             <div class="view-cart-total-row">
-                                <span>Subtotal ({{ $cartItems->count() }})</span>
-                                <span>{{ $cartTotal }}</span>
-                            </div>
-                            {{-- <div class="view-cart-total-row view-cart-total-tax">
-                                <span>Tax</span>
-                                <span>$106.75</span>
-                            </div> --}}
-                            <div class="view-cart-total-row view-cart-grand-total">
-                                <span>TOTAL</span>
-                                <span>{{ $cartTotal }}</span>
+                                <span>Subtotal (<span id="cart-subtotal-count">{{ $cartItems->count() }}</span>)</span>
+                                <span id="cart-subtotal-value">${{ $cartTotal }}</span>
                             </div>
 
-                            {{-- <div class="view-cart-legal">
-                                <div class="view-cart-age-verify">
-                                    <input type="checkbox" id="view-cart-age-check" required>
-                                    <label for="view-cart-age-check">I certify that I am at least 21 years old and legally
-                                        eligible to purchase these items</label>
-                                </div>
-                                <div class="view-cart-terms">
-                                    <input type="checkbox" id="view-cart-terms-check" required>
-                                    <label for="view-cart-terms-check">I agree to all terms and conditions including
-                                        background check requirements</label>
-                                </div>
-                            </div> --}}
+
+                            <div class="view-cart-total-row view-cart-grand-total">
+                                <span>TOTAL</span>
+                                <span id="cart-total">${{ $cartTotal }}</span>
+                            </div>
+
 
                             <a href="{{ route('cart.checkout') }}" class="view-cart-checkout-btn">
                                 PROCEED TO SECURE CHECKOUT <i class="fas fa-lock"></i>

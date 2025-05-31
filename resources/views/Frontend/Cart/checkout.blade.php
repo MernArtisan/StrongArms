@@ -446,7 +446,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="#" method="POST">
+                <form action="{{ route('order.index') }}" method="POST">
                     @csrf
                     <div class="row justify-content-center">
                         <div class="checkout-container">
@@ -463,17 +463,24 @@
                                             <div class="checkout-form-grid">
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">First Name *</label>
-                                                    <input type="text" class="checkout-input" name="first_name"
-                                                        value="{{ Auth::user()->name }}" style="color: #333" required>
+                                                    <input type="text" class="checkout-input" name="name"
+                                                        value="{{ Auth::user()->name ?? '' }} " style="color: #333"
+                                                        required>
                                                 </div>
                                                 {{-- <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">Last Name *</label>
                                                     <input type="text" class="checkout-input" name="last_name" required>
                                                 </div> --}}
                                                 <div class="checkout-form-group">
+                                                    <label class="checkout-label">Email *</label>
+                                                    <input type="email" class="checkout-input" name="email"
+                                                        value="{{ Auth::user()->email ?? '' }}" style="color: #333"
+                                                        required>
+                                                </div>
+                                                <div class="checkout-form-group">
                                                     <label class="checkout-label">Address *</label>
                                                     <input type="text" class="checkout-input" name="address"
-                                                        value="{{ Auth::user()->address_line }}" style="color: #333"
+                                                        value="{{ Auth::user()->address_line ?? '' }}" style="color: #333"
                                                         required>
                                                 </div>
                                                 <div class="checkout-form-group">
@@ -483,13 +490,14 @@
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">City *</label>
                                                     <input type="text" class="checkout-input" name="city"
-                                                        value="{{ Auth::user()->city }}" style="color: #333" required>
+                                                        value="{{ Auth::user()->city ?? '' }}" style="color: #333" required>
                                                 </div>
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">State *</label>
                                                     <select class="checkout-select" name="state" required>
                                                         <option value="">Select State</option>
-                                                        <option value="state">{{ Auth::user()->state }}</option>
+                                                        <option value="cali">california</option>
+                                                        <option value="state">{{ Auth::user()->state ?? '' }}</option>
 
                                                         <!-- Insert state options here -->
                                                     </select>
@@ -497,56 +505,26 @@
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">ZIP Code *</label>
                                                     <input type="text" class="checkout-input" name="zip"
-                                                        value="{{ Auth::user()->zip }}" style="color: #333" required>
+                                                        value="{{ Auth::user()->zip ?? '' }}" style="color: #333" required>
                                                 </div>
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">Country *</label>
                                                     <select class="checkout-select" name="country" required>
                                                         <option value="">Select Country</option>
+                                                        <option value="usa">USA</option>
+
                                                         <!-- Add other countries if needed -->
-                                                        <option value="country">{{ Auth::user()->country }}</option>
+                                                        <option value="country">{{ Auth::user()->country ?? '' }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="checkout-form-group">
                                                     <label class="checkout-label">Phone Number *</label>
                                                     <input type="tel" class="checkout-input" name="phone"
-                                                        value="{{ Auth::user()->phone }}" style="color: #333" required>
+                                                        value="{{ Auth::user()->phone ?? '' }}" style="color: #333"
+                                                        required>
                                                 </div>
-                                                <div class="checkout-form-group">
-                                                    <label class="checkout-label">Email *</label>
-                                                    <input type="email" class="checkout-input" name="email"
-                                                        value="{{ Auth::user()->email }}" style="color: #333" required>
-                                                </div>
+
                                             </div>
-
-                                            <!-- FFL Section -->
-                                            {{-- <div class="checkout-ffl-section">
-                                                <h3 class="checkout-ffl-title">FFL DEALER INFORMATION (FOR FIREARMS)</h3>
-                                                <div class="checkout-ffl-toggle">
-                                                    <input type="checkbox" id="checkout-ffl-required" name="ffl_required"
-                                                        value="1">
-                                                    <label for="checkout-ffl-required">This order contains firearms
-                                                        requiring
-                                                        FFL transfer</label>
-                                                </div>
-
-                                                <div class="checkout-ffl-details" style="display:none;">
-                                                    <div class="checkout-form-group">
-                                                        <label class="checkout-label">FFL Dealer Name *</label>
-                                                        <input type="text" class="checkout-input" name="ffl_name">
-                                                    </div>
-                                                    <div class="checkout-form-group">
-                                                        <label class="checkout-label">FFL License Number *</label>
-                                                        <input type="text" class="checkout-input" name="ffl_license">
-                                                    </div>
-                                                    <div class="checkout-form-group">
-                                                        <label class="checkout-label">FFL Dealer Phone *</label>
-                                                        <input type="tel" class="checkout-input" name="ffl_phone">
-                                                    </div>
-                                                    <button type="button" class="checkout-ffl-find-btn">FIND NEAREST FFL
-                                                        DEALER</button>
-                                                </div>
-                                            </div> --}}
                                         </section>
                                     </div>
                                 </div>
@@ -566,15 +544,21 @@
                                                             alt="{{ $item->name }}" class="checkout-review-img">
                                                         <div>
                                                             <h4 class="checkout-review-name">{{ $item->name }}</h4>
-
                                                         </div>
                                                     </div>
                                                     <div class="checkout-review-qty">{{ $item->qty }}</div>
                                                     <div class="checkout-review-price">
-                                                        ${{ number_format($item->price * $item->qty, 2) }}</div>
+                                                        ${{ number_format($item->price * $item->qty, 2) }}
+                                                    </div>
                                                 </div>
                                             @endforeach
+                                            <div class="checkout-review-subtotal"
+                                                style="margin-top: 15px; display: flex; justify-content: space-between; font-weight: bold; border-top: 1px solid #ccc; padding-top: 10px;">
+                                                <span>Total</span>
+                                                <span>${{ $cartTotal, 2 }}</span>
+                                            </div>
                                         </div>
+
 
                                         <button type="submit" class="checkout-submit-btn">
                                             PLACE ORDER <i class="fas fa-lock"></i>
