@@ -34,14 +34,19 @@
 
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea name="description" class="form-control" rows="3">{{ old('description') }}</textarea>
+                                        <textarea name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Image</label>
-                                        <input type="file" name="image" class="form-control">
-                                       
+                                        <input type="file" name="image" class="form-control" id="imageInput"
+                                            accept="image/*">
                                     </div>
+
+                                    <div class="form-group mt-2" style="display:none;" id="previewContainer">
+                                        <img id="previewImage" style="max-height: 100px;" alt="Image Preview">
+                                    </div>
+
 
                                     <div class="form-group">
                                         <label>Price</label>
@@ -65,7 +70,7 @@
                                                 Inactive</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="text-end">
                                         <button type="submit" class="btn btn-primary">Save Service</button>
                                     </div>
@@ -83,6 +88,25 @@
 @section('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const previewImage = document.getElementById('previewImage');
+            const previewContainer = document.getElementById('previewContainer');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    previewImage.src = event.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+                previewImage.src = '';
+            }
+        });
+    </script>
 
     <script>
         $(document).ready(function() {

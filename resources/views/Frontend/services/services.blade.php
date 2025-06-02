@@ -78,7 +78,7 @@
                             <h3 class="card-title">{{ $service->name }}</h3>
                             {{-- <h3 class="card-title">{{ $service->user->name }}</h3> --}}
                             <p class="card-text">{{ $service->description }}</p>
-                            <p class="text-muted mb-1">Last updated {{ $service->updated_at->diffForHumans()}} minutes ago</p>
+                            <p class="text-muted mb-1">Last updated {{ $service->updated_at->diffForHumans()}} </p>
                             <h4 class="text-warning mt-3">$ {{ $service->price }}</h4>
                             <img src="{{ asset($service->user->image) }}" class="img-fluid" style="object-fit: cover;width: 40px;height: 40px;border-radius: 40%;" alt="Car Image"> {{ $service->user->name }}
                            
