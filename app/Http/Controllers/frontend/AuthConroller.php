@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\frontend;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
-use DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use App\Models\provider_detail;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class AuthConroller extends Controller
 {
@@ -197,6 +198,7 @@ class AuthConroller extends Controller
 
     public function registerTrainerSubmit(Request $request)
     {
+        // dd($request->all());
         // Validate request
         $validator = Validator::make($request->all(), [
             'store_name'        => 'required|string|max:255',
@@ -211,12 +213,15 @@ class AuthConroller extends Controller
             'city'              => 'required|string|max:100',
             'store_description' => 'nullable|string|max:1000',
             'logo'              => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'role'              => 'required'
         ]);
 
+        // dd($request->all());
         if ($validator->fails()) {
+            // dd($request->all());
             return back()->withErrors($validator)->withInput();
         }
-
+        // dd($request->all());
         DB::beginTransaction();
 
         try {
@@ -238,7 +243,12 @@ class AuthConroller extends Controller
                 'image'    => $logoPath,
                 'status'   => 'in_active',
             ]);
-
+            if ($request->role === 'provider') {
+                $role = Role::where('name', 'provider')->first();
+            } else {
+                $role = Role::where('name', 'customer')->first();
+            }
+            
             // Create provider details
             provider_detail::create([
                 'user_id'           => $user->id,
@@ -260,12 +270,13 @@ class AuthConroller extends Controller
                 'store_description' => $request->store_description,
             ]);
 
+            $user->roles()->attach($role->id);
             DB::commit();
 
             return back()->with('success', 'Trainer registered successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error('Trainer Registration Error: ' . $e->getMessage());
+            Log::error('Trainer Registration Error: ' . $e->getMessage());
 
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }

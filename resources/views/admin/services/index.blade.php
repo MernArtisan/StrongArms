@@ -2,9 +2,10 @@
 @section('title', 'Service')
 
 @section('content')
-     @php
+    @php
         $isProvider = Auth::check() && Auth::user()->hasRole('provider');
     @endphp
+
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -58,6 +59,21 @@
                                                     <td>{{ $u->description }}</td>
                                                     <td>
                                                         <div style="display: flex; align-items: center;">
+                                                             @if ($isProvider || $isAdmin)
+                                                                <a href="{{ route('service.show', $u->id) }}"
+                                                                    class="btn btn-sm btn-warning"
+                                                                    style="margin-right: 0.5rem;">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </a>
+                                                            @else
+                                                                @can('service-view')
+                                                                    <a href="{{ route('service.show', $u->id) }}"
+                                                                        class="btn btn-sm btn-warning"
+                                                                        style="margin-right: 0.5rem;">
+                                                                        <i class="fas fa-eye"></i>
+                                                                    </a>
+                                                                @endcan
+                                                            @endif
                                                             @if ($isProvider)
                                                                 <a href="{{ route('service.edit', $u->id) }}"
                                                                     class="btn btn-sm btn-info"
@@ -73,7 +89,7 @@
                                                                     </a>
                                                                 @endcan
                                                             @endif
-                                                            @if ($isProvider || $isAdmin)
+                                                            @if ($isProvider)
                                                                 <form action="{{ route('service.destroy', $u->id) }}"
                                                                     method="POST"
                                                                     onsubmit="return confirm('Are you sure you want to delete this user?');"

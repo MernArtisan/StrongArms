@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\provider_detail;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 class ServiceController extends Controller
 {
     public function __construct()
@@ -14,10 +17,31 @@ class ServiceController extends Controller
         $this->middleware('permission:services-edit')->only(['edit', 'update']);
         $this->middleware('permission:services-delete')->only('destroy');
     }
+
     public function index()
     {
-        $services = Service::all();
-        return view('admin.services.index', compact('services'));
+        try {
+
+            $user = Auth::user();
+
+            if ($user->hasRole('admin')) {
+                $services = Service::orderBy('created_at','desc')->get();
+            } else {
+                $provider = provider_detail::where('user_id', $user->id)->first();
+
+                if ($provider) {
+                    $services = Service::where('provider_id', $provider->id)->get();
+                } else {
+                    // No provider detail found, return empty collection
+                    $services = collect(); // Empty collection
+                }
+            }
+
+                
+            return view('admin.services.index', compact('services'));
+        } catch (\Throwable $e) {
+            return back()->with('error', 'Something went wrong while loading services.');
+        }
     }
 
     public function create()
@@ -36,6 +60,11 @@ class ServiceController extends Controller
             'status' => 'required|string',
         ]);
 
+        $user = Auth::user()->id;
+        $providerDetail = provider_detail::where('user_id', $user)->first();
+
+        // dd($user->getRoleNames()->first());
+        // return $providerDetail;
 
         try {
             // Image Upload
@@ -47,15 +76,18 @@ class ServiceController extends Controller
             } else {
                 $imagePath = null;
             }
-        
+
+            // $provider = provider_detail::where('user_id', Auth::id())->first();
+            // dd($provider);
             Service::create([
                 'name' => $request->name,
+                'provider_id' => $providerDetail->id,
                 'description' => $request->description,
                 'image' => $imagePath,
                 'price' => $request->price,
                 'type' => $request->type,
                 'status' => $request->status,
-                'added_by' => auth()->user()->id,
+                'added_by' => Auth::user()->id,
             ]);
 
             return redirect()->route('service.index')->with('success', 'Service added successfully.');
@@ -64,10 +96,10 @@ class ServiceController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit($id)   
     {
         $service = Service::findOrFail($id);
-        return view('admin.services.edit',compact('service'));
+        return view('admin.services.edit', compact('service'));
     }
 
     public function update(Request $request, $id)
@@ -85,7 +117,7 @@ class ServiceController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time().'_'.$image->getClientOriginalName();
+            $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('services'), $imageName);
             $service->image = 'services/' . $imageName;
         }
@@ -100,12 +132,18 @@ class ServiceController extends Controller
         ]);
 
         return redirect()->route('service.index')->with('success', 'Service updated successfully.');
-    } 
+    }
 
     public function destroy($id)
     {
         $service = Service::findOrFail($id);
         $service->delete();
         return redirect()->route('service.index')->with('success', 'Service deleted successfully.');
+    }
+
+    public function show($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('admin.services.show', compact('service'));
     }
 }

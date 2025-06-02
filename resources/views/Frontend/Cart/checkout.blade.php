@@ -523,6 +523,12 @@
                                                         value="{{ Auth::user()->phone ?? '' }}" style="color: #333"
                                                         required>
                                                 </div>
+                                                <div class="checkout-form-group checkout-col-2">
+                                                    <label for="order-note" class="checkout-label">Order Note
+                                                        (Optional)</label>
+                                                    <textarea name="note" class="checkout-input" style="color: #333; min-height: 100px;"
+                                                        placeholder="Write any special instructions or notes"></textarea>
+                                                </div>
 
                                             </div>
                                         </section>

@@ -88,7 +88,7 @@
                     </div>
 
                     <ul class="sidebar-menu">
-                    
+
                         {{-- Dashboard (always visible) --}}
                         <li class="menu-header">Dashboard</li>
                         <li class="dropdown">
@@ -96,10 +96,10 @@
                                 <i data-feather="monitor"></i> Dashboard
                             </a>
                         </li>
-
-                        {{-- User Management --}}
-                        <li class="menu-header">User Management</li>
                         @if ($isAdmin)
+                            {{-- User Management --}}
+                            <li class="menu-header">User Management</li>
+
                             <li class="dropdown">
                                 <a href="{{ route('all-users.index') }}" class="nav-link">
                                     <i data-feather="user"></i> User/Providers
@@ -144,10 +144,10 @@
                                 <i data-feather="image"></i> Content
                             </a>
                         </li>
-
-                        {{-- Access Control --}}
-                        <li class="menu-header">Access Control</li>
                         @if ($isAdmin)
+                            {{-- Access Control --}}
+                            <li class="menu-header">Access Control</li>
+
                             <li class="dropdown">
                                 <a href="{{ route('role.index') }}" class="nav-link">
                                     <i data-feather="lock"></i> Roles
@@ -162,10 +162,10 @@
                                 </li>
                             @endcan
                         @endif
+                        @if ($isAdmin || $isProvider)
+                            {{-- Product Management --}}
+                            <li class="menu-header">Product Management</li>
 
-                        {{-- Product Management --}}
-                        <li class="menu-header">Product Management</li>
-                        @if ($isAdmin)
                             <li class="dropdown">
                                 <a href="{{ route('product-category.index') }}" class="nav-link">
                                     <i data-feather="grid"></i> Categories
@@ -269,7 +269,7 @@
             <script src="{{ asset('/admin/js/custom.js') }}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
             <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-            
+
             <script>
                 toastr.options = {
                     "closeButton": true,

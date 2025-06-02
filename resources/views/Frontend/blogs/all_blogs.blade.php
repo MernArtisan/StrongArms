@@ -10,7 +10,7 @@
                         <div class="content">
                             <h2>Our Blog's</h2>
                             <ul>
-                                <li><a href="index-2.html">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="javascript:void(0)">blog</a></li>
                             </ul>
                         </div>

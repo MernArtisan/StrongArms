@@ -69,7 +69,7 @@
                         <div class="content">
                             <h2>Our products</h2>
                             <ul>
-                                <li><a href="index-2.html">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="javascript:void(0)">shop</a></li>
                             </ul>
                         </div>

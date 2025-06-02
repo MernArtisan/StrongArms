@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class provider_detail extends Model
 {
-   protected $fillable = [
+
+    protected $fillable = [
         'user_id',
         'logo',
         'store_name',
@@ -25,6 +26,6 @@ class provider_detail extends Model
         'status',
         'store_description',
         'website',
+        'provider_id'
     ];
-
 }

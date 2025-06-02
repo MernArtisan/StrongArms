@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Order extends Model
 {
     protected $guarded = [];
+    // protected $fillable = [
+    //     'order_notes'
+    // ];
     
 
     public function items(): HasMany

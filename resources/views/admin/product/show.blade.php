@@ -23,7 +23,6 @@
         <section class="section">
             <div class="section-body">
                 <div class="row">
-
                         <!-- Admin ke liye dono sections -->
                         <div class="col-6">
                             <div class="card mb-4 shadow-sm"> <!-- Added shadow for better depth -->

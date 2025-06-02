@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
-use DB;
-use App\Models\User;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Hash;
 use Auth;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -32,7 +32,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = DB::table('roles')->wherenotin('id', [1])->get();
-        return view('admin.users.create',compact('roles'));
+        return view('admin.users.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -51,27 +51,24 @@ class UserController extends Controller
             'gender' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
-    
+
         $request->validate($rules);
-    
+
         DB::beginTransaction();
-    
+
         try {
-            // Assign role based on request
-            if ($request->role === 'Shooter') {
-                $role = Role::where('name', 'Shooter')->first();
+            if ($request->role === 'provider') {
+                $role = Role::where('name', 'provider')->first();
             } else {
                 $role = Role::where('name', 'customer')->first();
             }
-        // dd($role);
-            // Handle image upload if exists
             $imagePath = null;
             if ($request->hasFile('image')) {
                 $filename = time() . '_' . Str::random(10) . '.' . $request->image->getClientOriginalExtension();
                 $request->image->move(public_path('users'), $filename);
                 $imagePath = 'users/' . $filename;
             }
-    
+
             // Create user
             $user = User::create([
                 'name' => $request->name,
@@ -89,12 +86,13 @@ class UserController extends Controller
                 'website' => $request->website,
                 'company_name' => $request->company_name
             ]);
-    
+
+            
             // Attach role
             $user->roles()->attach($role->id);
-    
+
             DB::commit();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'User created successfully.',
@@ -102,7 +100,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('User creation failed: ' . $e->getMessage());
-    
+
             return response()->json([
                 'success' => false,
                 'message' => 'Something went wrong. Please try again.',
@@ -110,18 +108,18 @@ class UserController extends Controller
             ], 500);
         }
     }
-    
+
 
     public function edit($id)
     {
         $user = User::find($id);
         $roles = DB::table('roles')->wherenotin('id', [1])->get();
-        return view('admin.users.edit',compact('user','roles'));
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        
+
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
@@ -138,8 +136,17 @@ class UserController extends Controller
             }
 
             $user->update($request->only([
-                'name', 'email', 'phone', 'country', 'state', 'city', 'zip', 'website',
-                'company_name', 'gender', 'address_line'
+                'name',
+                'email',
+                'phone',
+                'country',
+                'state',
+                'city',
+                'zip',
+                'website',
+                'company_name',
+                'gender',
+                'address_line'
             ]));
 
             // Update role
@@ -157,7 +164,7 @@ class UserController extends Controller
     }
 
 
-   
+
     public function show()
     {
         return view('admin.users.show');
@@ -167,9 +174,5 @@ class UserController extends Controller
     {
         User::findOrFail($id)->delete();
         return back()->with('success', 'User deleted successfully.');
-        
     }
-
-
-    
 }
