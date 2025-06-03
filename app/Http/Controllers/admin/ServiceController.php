@@ -25,7 +25,7 @@ class ServiceController extends Controller
             $user = Auth::user();
 
             if ($user->hasRole('admin')) {
-                $services = Service::orderBy('created_at','desc')->get();
+                $services = Service::orderBy('created_at', 'desc')->get();
             } else {
                 $provider = provider_detail::where('user_id', $user->id)->first();
 
@@ -37,7 +37,7 @@ class ServiceController extends Controller
                 }
             }
 
-                
+
             return view('admin.services.index', compact('services'));
         } catch (\Throwable $e) {
             return back()->with('error', 'Something went wrong while loading services.');
@@ -96,7 +96,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function edit($id)   
+    public function edit($id)
     {
         $service = Service::findOrFail($id);
         return view('admin.services.edit', compact('service'));

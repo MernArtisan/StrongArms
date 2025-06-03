@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function order(Request $request)
     {
         $cartItems = Cart::content();
-        $cartTotal = Cart::subtotal(); // e.g., "100.00"
+        $cartTotal = Cart::subtotal();
 
         try {
             $request->validate([
@@ -73,11 +73,5 @@ class OrderController extends Controller
     public function orderIdgenerator()
     {
         return 'SA-ORD' . strtoupper(Str::random(6));
-    }
-
-    public function getOrders()
-    {
-        $orders = Order::with('items.product.images')->get();
-        return $orders;
     }
 }

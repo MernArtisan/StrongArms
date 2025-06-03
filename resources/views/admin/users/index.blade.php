@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <ul class="nav nav-tabs mb-4" id="userTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="all-users-tab" data-toggle="tab" href="#all-users" role="tab">All Users</a>
+                                    <a class="nav-link active" id="customers-tab" data-toggle="tab" href="#customers" role="tab">Customers</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="providers-tab" data-toggle="tab" href="#providers" role="tab">Providers</a>
@@ -38,10 +38,10 @@
                             </ul>
 
                             <div class="tab-content" id="userTabContent">
-                                <!-- All Users Tab -->
-                                <div class="tab-pane fade show active" id="all-users" role="tabpanel">
+                                <!-- Customers Tab -->
+                                <div class="tab-pane fade show active" id="customers" role="tabpanel">
                                     <div class="table-responsive">
-                                        <table class="table table-striped" id="table-1">
+                                        <table class="table table-striped" id="table-customers">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">#</th>
@@ -54,6 +54,7 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($users->filter(fn($u) => $u->getRoleNames()->contains('customer')) as $index => $u)
+                                                    <tr>
                                                         <td class="text-center">{{ $loop->iteration }}</td>
                                                         <td>
                                                             <img src="{{ $u->image ? asset($u->image) : asset('default/default-user.jpg') }}" width="40px" height="40px" alt="">
@@ -85,7 +86,7 @@
                                 </div>
 
                                 <!-- Providers Tab -->
-                                <div class="tab-pane fade" id="table-1" role="tabpanel">
+                                <div class="tab-pane fade" id="providers" role="tabpanel">
                                     <div class="table-responsive">
                                         <table class="table table-striped" id="table-providers">
                                             <thead>
@@ -101,7 +102,7 @@
                                             <tbody>
                                                 @foreach ($users->filter(fn($u) => $u->getRoleNames()->contains('provider')) as $index => $u)
                                                     <tr>
-                                                        <td class="text-center">{{ $index + 1 }}</td>
+                                                        <td class="text-center">{{ $loop->iteration }}</td>
                                                         <td>
                                                             <img src="{{ $u->image ? asset($u->image) : asset('default/default-user.jpg') }}" width="40px" height="40px" alt="">
                                                         </td>
@@ -130,9 +131,9 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div> <!-- tab-content -->
-                        </div> <!-- card-body -->
-                    </div> <!-- card -->
+                            </div> <!-- .tab-content -->
+                        </div> <!-- .card-body -->
+                    </div> <!-- .card -->
                 </div>
             </div>
         </div>
@@ -143,7 +144,7 @@
 @section('scripts')
 <script>
     $(document).ready(function () {
-        $('#table-all').DataTable();
+        $('#table-customers').DataTable();
         $('#table-providers').DataTable();
     });
 </script>

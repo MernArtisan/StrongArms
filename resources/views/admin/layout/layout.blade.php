@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title')</title>
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('/admin/css/app.min.css') }}">
@@ -227,6 +229,24 @@
                             @endcan
                         @endif
 
+                        @if ($isAdmin || $isProvider)
+                            {{-- Product Management --}}
+                            <li class="menu-header">Availability</li>
+                            <li class="dropdown">
+                                <a href="{{ route('avail.index') }}" class="nav-link">
+                                    <i data-feather="clock"></i> Availabilities
+                                </a>
+                            </li>
+                        @else
+                            @can('categories-view')
+                                <li class="dropdown">
+                                    <a href="{{ route('avail.index') }}" class="nav-link">
+                                        <i data-feather="grid"></i> Categories
+                                    </a>
+                                </li>
+                            @endcan
+                        @endif
+
                         {{-- Profile and Misc --}}
                         <li class="menu-header">Other</li>
                         <li class="dropdown">
@@ -269,7 +289,13 @@
             <script src="{{ asset('/admin/js/custom.js') }}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
             <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
+            <script>
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+            </script>
             <script>
                 toastr.options = {
                     "closeButton": true,

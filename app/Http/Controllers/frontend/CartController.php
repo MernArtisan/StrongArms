@@ -16,7 +16,7 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = Cart::content();
-        return $cartItems;
+        // return $cartItems;
         $cartTotal = Cart::subtotal();
 
         return view('frontend.cart.index', compact('cartItems', 'cartTotal'));

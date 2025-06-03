@@ -28,4 +28,8 @@ class provider_detail extends Model
         'website',
         'provider_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
