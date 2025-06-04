@@ -446,7 +446,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('order.index') }}" method="POST">
+                <form action="{{ route('order.checkout') }}" method="POST">
                     @csrf
                     <div class="row justify-content-center">
                         <div class="checkout-container">

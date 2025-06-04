@@ -111,6 +111,9 @@ Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(f
     Route::get('/mini', 'miniCart')->name('mini');
     Route::get('/checkout', 'checkout')->name('checkout');
 });
+
 Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function () {
-    Route::post('/order', 'order')->name('index');
+    Route::post('/checkout', 'createStripeSession')->name('checkout'); // Stripe session create
+    Route::get('/success', 'stripeSuccess')->name('success');          // Stripe redirect success
+    Route::get('/cancel', 'stripeCancel')->name('cancel');            // Stripe redirect cancel
 });
