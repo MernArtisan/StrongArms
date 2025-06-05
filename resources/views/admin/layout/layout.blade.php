@@ -141,6 +141,26 @@
                             @endif
                         @endif
 
+                        @if ($isAdmin)
+                            {{-- Product Management --}}
+                            <li class="menu-header">Orders</li>
+                            <li class="dropdown">
+                                <a href="{{ route('orders.management') }}" class="nav-link">
+                                    <i data-feather="shopping-bag"></i> Orders
+                                </a>
+                            </li>
+                        @else
+                            @can('categories-view')
+                                <li class="dropdown">
+                                    <a href="{{ route('orders.management') }}" class="nav-link">
+                                        <i data-feather="shopping-bag"></i> Order
+                                    </a>
+                                </li>
+                            @endcan
+                        @endif
+
+                        <li class="menu-header">Content</li>
+
                         <li class="dropdown">
                             <a href="{{ route('content.index') }}" class="nav-link">
                                 <i data-feather="image"></i> Content
@@ -322,6 +342,7 @@
                     float: right;
                 }
             </style>
+            
             @yield('scripts')
 </body>
 

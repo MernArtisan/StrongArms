@@ -12,7 +12,6 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class CartController extends Controller
 {
 
-
     public function index()
     {
         $cartItems = Cart::content();
@@ -59,15 +58,21 @@ class CartController extends Controller
 
         $cartItems = Cart::content()->map(function ($item) {
             return [
-                'rowId' => $item->rowId,
+                'id' => $item->id,
                 'name' => $item->name,
                 'qty' => $item->qty,
                 'price' => $item->price,
                 'options' => [
-                    'image' => $item->options->image ?? 'default.jpg'
+                    'image' => $item->options->image ?? 'default.jpg',
+                    'specification' => $item->options->specification ?? null,
                 ]
             ];
-        })->values();
+        })->values()->toArray();
+
+        // 🔐 If not logged in, also save cart items to session
+        if (!auth()->check()) {
+            session(['pre_login_cart' => $cartItems]);
+        }
 
         return response()->json([
             'status' => $status,
@@ -77,7 +82,6 @@ class CartController extends Controller
             'cartCount' => Cart::count()
         ]);
     }
-
 
 
     // Update cart item quantity
@@ -143,20 +147,18 @@ class CartController extends Controller
 
     public function checkout()
     {
-
         $cartItems = Cart::content();
         $cartTotal = Cart::subtotal();
 
-        if (Auth::check()) {
-            if ($cartItems->count() == 0) {
-                return redirect()->back()->with('error', 'Your cart is currently empty. Please add items before proceeding to checkout.');
-            } else {
-                return view('Frontend.Cart.checkout', compact('cartItems', 'cartTotal'));
-            }
-        }else{
-            return redirect()->route('login')->with('error', 'Please Login Befor Placing Order');
+        if (!Auth::check()) {
+            session()->put('pre_login_cart', Cart::content()->toArray());
+            return redirect()->route('login')->with('error', 'Please login before placing an order.');
         }
-    }
 
-    
+        if ($cartItems->count() == 0) {
+            return redirect()->back()->with('error', 'Your cart is currently empty.');
+        }
+
+        return view('Frontend.Cart.checkout', compact('cartItems', 'cartTotal'));
+    }
 }

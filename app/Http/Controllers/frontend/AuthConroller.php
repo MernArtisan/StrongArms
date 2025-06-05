@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
 
 class AuthConroller extends Controller
@@ -33,11 +34,25 @@ class AuthConroller extends Controller
             if (Auth::attempt($request->only('email', 'password'))) {
                 $user = Auth::user();
 
-                if ($user->hasRole('customer')) {
-                    return redirect()->intended('/')->with('success', 'Welcome!');
+                // ✅ Restore pre-login cart (if available)
+                $preLoginCart = session('pre_login_cart', []);
+                if (!empty($preLoginCart)) {
+                    Cart::destroy();
+
+                    foreach ($preLoginCart as $item) {
+                        Cart::add([
+                            'id' => $item['id'],
+                            'name' => $item['name'],
+                            'qty' => $item['qty'],
+                            'price' => $item['price'],
+                            'options' => $item['options'] ?? [],
+                        ]);
+                    }
+
+                    session()->forget('pre_login_cart');
                 }
 
-                return redirect()->intended('/dashboard')->with('success', 'Welcome back!');
+                return redirect()->intended('/')->with('success', 'Welcome back!');
             }
 
             return back()->with('error', 'Invalid email or password. Please try again.');
@@ -45,7 +60,6 @@ class AuthConroller extends Controller
             return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
         }
     }
-
 
 
     public function logout(Request $request)
@@ -248,7 +262,7 @@ class AuthConroller extends Controller
             } else {
                 $role = Role::where('name', 'customer')->first();
             }
-            
+
             // Create provider details
             provider_detail::create([
                 'user_id'           => $user->id,

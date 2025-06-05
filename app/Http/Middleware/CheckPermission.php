@@ -1,22 +1,37 @@
 <?php
- 
+
 namespace App\Http\Middleware;
- 
+
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
- 
+
 class CheckPermission
 {
-    public function handle(Request $request, Closure $next, $permission)
+    public function handle(Request $request, Closure $next, $permission = null)
     {
-        if (Auth::user()->hasRole('admin')) {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        if ($user->hasAnyRole(['admin', 'provider'])) {
+            if ($permission && !$user->can($permission)) {
+                return redirect()->back()->withErrors([
+                    'error' => 'You do not have permission to perform this action.'
+                ]);
+            }
             return $next($request);
         }
-        if (!Auth::user()->can($permission)) {
-            return redirect()->route('permission-denied');
+
+        // User has no required roles, either abort or redirect with error message
+        if ($request->expectsJson()) {
+            abort(403, 'Unauthorized');
         }
- 
-        return $next($request);
+
+        return redirect()->back()->withErrors([
+            'error' => 'You do not have permission to access this resource.'
+        ]);
     }
 }

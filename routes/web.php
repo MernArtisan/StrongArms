@@ -18,6 +18,7 @@ use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\HomebannerController;
+use App\Http\Controllers\admin\OrderManagementController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\BlogviewController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['admin.guest']], function () {
     Route::post('/profile/change-password', [AuthConroller::class, 'changePassword'])->name('profile.changePassword');
 });
 
+Route::get('/logout', [AuthConroller::class, 'logout'])->name('logout');
 
 Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -57,11 +59,10 @@ Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkE
 Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'permission'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [AuthConroller::class, 'profile'])->name('profile');
     Route::put('/profile-update', [AuthConroller::class, 'profileUpdate'])->name('profile.update');
-    Route::get('/logout', [AuthConroller::class, 'logout'])->name('logout');
     Route::get('/denied', [PermissionController::class, 'denied'])->name('permission-denied');
     Route::resource('product-category', CategoryController::class);
     Route::resource('product', ProductController::class);
@@ -72,6 +73,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('blogs-upload', BlogController::class);
     Route::delete('/product-image/{id}', [ProductController::class, 'deleteImage'])->name('images.destroy');
 
+
+    Route::get('/order', [OrderManagementController::class, 'index'])->name('orders.management');
+    Route::get('/order/show/{id}', [OrderManagementController::class, 'show'])->name('order.show');
+    Route::put('/admin/orders/{id}/update-status', [OrderManagementController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
 
     Route::controller(AvailabilityController::class)->prefix('avail')->name('avail.')->group(function () {

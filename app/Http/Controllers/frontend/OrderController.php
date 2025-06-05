@@ -7,10 +7,12 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\OrderPlacedMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Stripe\Checkout\Session as StripeSession;
+use Illuminate\Support\Facades\Mail;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Stripe\Checkout\Session as StripeSession;
 
 class OrderController extends Controller
 {
@@ -105,6 +107,7 @@ class OrderController extends Controller
 
         $session = StripeSession::create([
             'payment_method_types' => ['card'],
+            'customer_email' => $request->email,
             'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('order.success') . '?session_id={CHECKOUT_SESSION_ID}',
@@ -120,6 +123,7 @@ class OrderController extends Controller
                 'country' => $request->country,
                 'phone' => $request->phone,
                 'note' => $request->note,
+
             ]
         ]);
 
@@ -153,6 +157,8 @@ class OrderController extends Controller
             'country' => $metadata->country,
             'phone' => $metadata->phone,
             'order_notes' => $metadata->note,
+            'payment_method' => 'online',
+            'status' => 'paid',
             'total' => floatval(str_replace(',', '', $cartTotal)),
         ]);
 
@@ -167,6 +173,8 @@ class OrderController extends Controller
                 'total' => $item->price * $item->qty,
             ]);
         }
+        
+        Mail::to($order->email)->send(new OrderPlacedMail($order));
 
         Cart::destroy();
 
