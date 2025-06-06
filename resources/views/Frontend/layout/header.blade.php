@@ -85,7 +85,7 @@
                                 </div>
                             @else
                                 <div class="sing-in-btn">
-                                    <a href="#" class="btn btn-primary"
+                                    <a href="{{ route('account.profile') }}" class="btn btn-primary"
                                         style="color: #fff;background-color: #878244;border-color: #847e2e;">
                                         <i data-feather="user"></i> Account
                                     </a>

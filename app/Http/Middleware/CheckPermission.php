@@ -16,11 +16,17 @@ class CheckPermission
             return redirect()->route('login');
         }
 
-        if ($user->hasAnyRole(['admin', 'provider'])) {
+
+        if ($user->hasRole('admin')) {
+            return $next($request);
+        }
+
+        if ($user->hasRole('provider')) {
             if ($permission && !$user->can($permission)) {
-                return redirect()->back()->withErrors([
-                    'error' => 'You do not have permission to perform this action.'
-                ]);
+                return redirect()->back()->with(
+                    'error',
+                    'You do not have permission to perform this action.'
+                );
             }
             return $next($request);
         }

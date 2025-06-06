@@ -18,14 +18,15 @@ use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\HomebannerController;
-use App\Http\Controllers\admin\OrderManagementController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\frontend\ContactController;
+use App\Http\Controllers\frontend\ProfileController;
 use App\Http\Controllers\frontend\BlogviewController;
 use App\Http\Controllers\admin\ResetPasswordController;
 // use App\Http\Middleware\ProviderAuthenticate;
 use App\Http\Controllers\frontend\ProductviewController;
 use App\Http\Controllers\frontend\ServiceViewController;
+use App\Http\Controllers\admin\OrderManagementController;
 use App\Http\Controllers\frontend\ForgotPasswordController;
 
 Route::get('/cleareverything', function () {
@@ -90,7 +91,6 @@ Route::middleware(['auth', 'permission'])->group(function () {
 
 
 
-
 Route::resource('homebanner', HomebannerController::class);
 Route::get('blogs-view', [BlogViewController::class, 'all_blogs'])->name('blogs.all_blogs');
 Route::get('blogs-view/{slug}', [BlogViewController::class, 'detail'])->name('blogs.detail');
@@ -121,4 +121,14 @@ Route::controller(OrderController::class)->prefix('order')->name('order.')->grou
     Route::post('/checkout', 'createStripeSession')->name('checkout'); // Stripe session create
     Route::get('/success', 'stripeSuccess')->name('success');          // Stripe redirect success
     Route::get('/cancel', 'stripeCancel')->name('cancel');            // Stripe redirect cancel
+});
+
+
+Route::controller(App\Http\Controllers\frontend\AccountController::class)->prefix('account')->name('account.')->group(function () {
+    Route::get('/profile', 'profile')->name('profile');
+    Route::get('/orders', 'orders')->name('order');
+    Route::post('/booking', 'booking')->name('booking');
+    Route::post('/editprofile', 'editprofile')->name('editprofile');
+    Route::post('/wishlist', 'wishlist')->name('wishlist');
+    Route::post('/change-password', 'changePassword')->name('changePassword');
 });

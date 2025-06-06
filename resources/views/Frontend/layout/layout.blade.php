@@ -155,7 +155,7 @@
                                 <p class="total"><strong>Subtotal:</strong> <span class="amount">$${parseFloat(res.cartTotal).toFixed(2)}</span></p>
                                 <p class="buttons">
                             <a href="{{ route('cart.index') }}" class="btn1">View Cart</a>
-                            <a href="{{ route('cart.checkout')}}" class="btn2">Checkout</a>
+                            <a href="{{ route('cart.checkout') }}" class="btn2">Checkout</a>
                                 </p>`;
                     } else {
                         html = '<p class="text-center">Your cart is empty.</p>';
@@ -182,21 +182,21 @@
         //         html += '<ul class="product_list_widget">';
         //         $.each(cartItems, function(index, item) {
         //             html += `
-        //     <li class="mini_cart_item" data-rowid="${item.rowId}">
-        //         <a href="#">
-        //             <img src="/${item.options.image}" alt="${item.name}" />
-        //             <p class="product-name">${item.name}</p>
-        //         </a>
-        //         <p class="quantity">${item.qty} x <strong class="Price-amount">$${item.price}</strong></p>
-        //         <a href="javascript:void(0)" class="remove-item" title="Remove this item" data-rowid="${item.rowId}">x</a>
-        //     </li>`;
+    //     <li class="mini_cart_item" data-rowid="${item.rowId}">
+    //         <a href="#">
+    //             <img src="/${item.options.image}" alt="${item.name}" />
+    //             <p class="product-name">${item.name}</p>
+    //         </a>
+    //         <p class="quantity">${item.qty} x <strong class="Price-amount">$${item.price}</strong></p>
+    //         <a href="javascript:void(0)" class="remove-item" title="Remove this item" data-rowid="${item.rowId}">x</a>
+    //     </li>`;
         //         });
         //         html += `</ul>
-        // <p class="total"><strong>Subtotal:</strong> <span class="amount">${cartTotal}</span></p>
-        // <p class="buttons">
-        //     <a href="{{ route('cart.index') }}" class="btn1">View Cart</a>
-        //     <a href="#" class="btn2">Checkout</a>
-        // </p>`;
+    // <p class="total"><strong>Subtotal:</strong> <span class="amount">${cartTotal}</span></p>
+    // <p class="buttons">
+    //     <a href="{{ route('cart.index') }}" class="btn1">View Cart</a>
+    //     <a href="#" class="btn2">Checkout</a>
+    // </p>`;
         //     } else {
         //         html = '<p class="text-center">Your cart is empty.</p>';
         //     }
@@ -232,7 +232,10 @@
         $(document).on('click', '.add-to-cart-btn', function(e) {
             e.preventDefault();
 
-            let productId = $(this).data('id');
+            let btn = $(this);
+            let form = btn.closest('form.add-to-cart-form');
+            let productId = btn.data('id');
+            let quantity = form.find('input[name="quantity"]').val() || 1;
 
             $.ajax({
                 url: "{{ route('cart.add') }}",
@@ -240,16 +243,16 @@
                 data: {
                     _token: "{{ csrf_token() }}",
                     product_id: productId,
-                    quantity: 1
+                    quantity: parseInt(quantity)
                 },
                 success: function(res) {
-                    loadMiniCart();
+                    loadMiniCart(); // Your existing function to update mini cart UI
                     if (res.status === 'added') {
                         toastr.success('Added to cart!');
                     } else if (res.status === 'updated') {
                         toastr.info('Cart updated successfully.');
                     } else {
-                        toastr.success(res.message); // fallback
+                        toastr.success(res.message);
                     }
                 },
                 error: function() {

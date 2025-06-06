@@ -98,6 +98,7 @@
                                 <i data-feather="monitor"></i> Dashboard
                             </a>
                         </li>
+                        
                         @if ($isAdmin)
                             {{-- User Management --}}
                             <li class="menu-header">User Management</li>
@@ -150,7 +151,7 @@
                                 </a>
                             </li>
                         @else
-                            @can('categories-view')
+                            @can('order-index')
                                 <li class="dropdown">
                                     <a href="{{ route('orders.management') }}" class="nav-link">
                                         <i data-feather="shopping-bag"></i> Order

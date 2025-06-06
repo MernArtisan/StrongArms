@@ -25,14 +25,22 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::wherenotin('id', [1])->get();
-        return view('admin.users.index', compact('users'));
+        try {
+            $users = User::wherenotin('id', [1])->get();
+            return view('admin.users.index', compact('users'));
+        } catch (\Exception $th) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function create()
     {
-        $roles = DB::table('roles')->wherenotin('id', [1])->get();
-        return view('admin.users.create', compact('roles'));
+        try {
+            $roles = DB::table('roles')->wherenotin('id', [1])->get();
+            return view('admin.users.create', compact('roles'));
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function store(Request $request)
@@ -87,7 +95,7 @@ class UserController extends Controller
                 'company_name' => $request->company_name
             ]);
 
-            
+
             // Attach role
             $user->roles()->attach($role->id);
 
@@ -112,9 +120,13 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = DB::table('roles')->wherenotin('id', [1])->get();
-        return view('admin.users.edit', compact('user', 'roles'));
+        try {
+            $user = User::find($id);
+            $roles = DB::table('roles')->wherenotin('id', [1])->get();
+            return view('admin.users.edit', compact('user', 'roles'));
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
@@ -167,12 +179,20 @@ class UserController extends Controller
 
     public function show()
     {
-        return view('admin.users.show');
+        try {
+            return view('admin.users.show');
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 
     public function destroy($id)
     {
-        User::findOrFail($id)->delete();
-        return back()->with('success', 'User deleted successfully.');
+        try {
+            User::findOrFail($id)->delete();
+            return back()->with('success', 'User deleted successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 }
