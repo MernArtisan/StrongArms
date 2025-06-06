@@ -87,7 +87,7 @@
                                 <div class="sing-in-btn">
                                     <a href="{{ route('account.profile') }}" class="btn btn-primary"
                                         style="color: #fff;background-color: #878244;border-color: #847e2e;">
-                                        <i data-feather="user"></i> Account
+                                        <i data-feather="user"></i> {{Auth::user()->name}}
                                     </a>
                                     <a href="{{ route('logout') }}" class="btn btn-primary"
                                         style="color: #fff; background-color: #878244; border-color: #847e2e;">
