@@ -62,7 +62,7 @@
                                             alt="" /></a></li>
                             </ul>
                             <p>For more products and guns click here!</p>
-                            <a href="#" class="btn1">Our Shop</a>
+                            <a href="{{route("productview.index")}}" class="btn1">Our Shop</a>
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
+
     public function profile()
     {
         return view('Frontend.account.partail.profile');
@@ -79,33 +80,24 @@ class AccountController extends Controller
         return view('Frontend.account.partail.reset-password');
     }
 
-    public function reset(Request $request)
+    public function changePassword(Request $request)
     {
-        try {
-            $request->validate([
-                'email' => 'required|email|exists:users,email',
-                'password' => 'required|min:8|confirmed',
-                'token' => 'required'
-            ]);
 
-            $record = DB::table('password_resets')
-                ->where('email', $request->email)
-                ->where('token', $request->token)
-                ->first();
+        // dd($request->all());
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
 
-            if (!$record || Carbon::parse($record->created_at)->addMinutes(60)->isPast()) {
+        $user = auth()->user();
 
-                return back()->with(['error' => 'Token expired or invalid.']);
-            }
-
-            User::where('email', $request->email)
-                ->update(['password' => Hash::make($request->password)]);
-
-            DB::table('password_resets')->where('email', $request->email)->delete();
-
-            return redirect()->route('login')->with('success', 'Password has been reset.');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Something went wrong. Please try again later.']);
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->with('error', 'Current password is incorrect.');
         }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return back()->with('success', 'Password changed successfully!');
     }
 }

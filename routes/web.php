@@ -124,14 +124,19 @@ Route::controller(OrderController::class)->prefix('order')->name('order.')->grou
 });
 
 
-Route::controller(App\Http\Controllers\frontend\AccountController::class)->prefix('account')->name('account.')->group(function () {
-    Route::get('/profile', 'profile')->name('profile');
-    Route::get('/orders', 'orders')->name('order');
-    Route::get('/edit', 'edit')->name('edit');
-    Route::post('/editprofile/{id}', 'editprofile')->name('editprofile');
-    Route::post('/booking', 'booking')->name('booking');
-    Route::post('/wishlist', 'wishlist')->name('wishlist');
-    Route::get('/password','showResetForm')->name('password');
-    Route::put('/change-password', 'changePassword')->name('changePassword');
-    Route::get('/orders/{orderId}',  'orderDetails')->name('account.orders.details');
+Route::middleware('auth')->group(function () {
+    Route::controller(App\Http\Controllers\frontend\AccountController::class)
+        ->prefix('account')
+        ->name('account.')
+        ->group(function () {
+            Route::get('/profile', 'profile')->name('profile');
+            Route::get('/orders', 'orders')->name('order');
+            Route::get('/edit', 'edit')->name('edit');
+            Route::post('/editprofile/{id}', 'editprofile')->name('editprofile');
+            Route::post('/booking', 'booking')->name('booking');
+            Route::post('/wishlist', 'wishlist')->name('wishlist');
+            Route::get('/password', 'showResetForm')->name('password');
+            Route::put('/change-password', 'changePassword')->name('changePassword');
+            Route::get('/orders/{orderId}', 'orderDetails')->name('account.orders.details');
+        });
 });

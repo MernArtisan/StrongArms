@@ -16,11 +16,9 @@
                                 <li><a href="/">Home</a></li>
                                 <li><a href="{{ route('about.us') }}">About</a></li>
                                 <li><a href="{{ route('services.index') }}">Services</a></li>
+                                <li><a href="#">Trainers</a></li>
                                 <li><a href="{{ route('productview.index') }}">Products</a></li>
-
-
                                 <li><a href="{{ route('blogs.all_blogs') }}">Blog</a></li>
-
                                 <li><a href="{{ route('contact.us') }}">Contact</a></li>
                             </ul>
                         </nav>
@@ -87,7 +85,7 @@
                                 <div class="sing-in-btn">
                                     <a href="{{ route('account.profile') }}" class="btn btn-primary"
                                         style="color: #fff;background-color: #878244;border-color: #847e2e;">
-                                        <i data-feather="user"></i> {{Auth::user()->name}}
+                                        <i data-feather="user"></i> {{ Auth::user()->name }}
                                     </a>
                                     <a href="{{ route('logout') }}" class="btn btn-primary"
                                         style="color: #fff; background-color: #878244; border-color: #847e2e;">

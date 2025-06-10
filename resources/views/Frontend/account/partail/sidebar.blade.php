@@ -15,7 +15,7 @@
             </li>
             <!-- <li><a href="#"><i class="fas fa-id-card"></i> FFL License</a></li> -->
             <li><a href="wishlist.php"><i class="fas fa-heart"></i> Wishlist</a></li>
-            <li><a href="{{route('account.changePassword')}}"><i class="fas fa-lock"></i> Change Password</a></li>
+            <li><a href="{{route('account.password')}}"><i class="fas fa-lock"></i> Change Password</a></li>
             <!--  <li><a href="#"><i class="fas fa-book"></i> Training Courses</a></li> -->
             <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>

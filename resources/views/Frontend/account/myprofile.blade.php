@@ -261,7 +261,7 @@
                         <div class="content">
                             <h2>My Profile</h2>
                             <ul>
-                                <li><a href="index.php">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="javascript:void(0)">My Profile</a></li>
                             </ul>
                         </div>
@@ -295,10 +295,10 @@
             @include('Frontend.account.partail.sidebar')
             <!--start Main Content -->
             <!-- <div class="my-profile-container py-4">
-                                                <div class="row"> -->
+                                                        <div class="row"> -->
             @yield('profile-content')
             <!--  </div>
-                                            </div> -->
+                                                    </div> -->
             <!----end-main-code----->
 
         </div>

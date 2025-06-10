@@ -25,16 +25,18 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        if(Schema::hasTable('contents')){
+        if (Schema::hasTable('contents')) {
             $cms_content = Content::all();
         }
 
-        View::share('cms_content',$cms_content);
+        View::share('cms_content', $cms_content);
 
 
         View::composer('*', function ($view) {
             $isAdmin = Auth::check() && Auth::user()->hasRole('admin');
+            $isProvider = Auth::check() && Auth::user()->hasRole('provider');
             $view->with('isAdmin', $isAdmin);
+            $view->with('isProvider', $isProvider);
         });
     }
 }

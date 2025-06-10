@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-md-12 col-sm-12">
                     <div class="load-btn text-center mr-t80">
-                        <a href="#" class="btn1">View All</a>
+                        <a href="{{ route('productview.index') }}" class="btn1">View All</a>
                     </div>
                 </div>
             </div>
@@ -306,25 +306,26 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="training-forms">
-                        <form>
+                        <form id="contactform" action="{{route('contact.save')}}" method="POST">
+                            @csrf
                             <fieldset>
-                                <input type="text" placeholder="Full Name">
+                                <input type="text" placeholder="Full Name" name="full_name" value="{{old('full_name')}}">
                             </fieldset>
                             <fieldset>
-                                <input type="email" placeholder="Email Address">
+                                <input type="email" placeholder="Email Address" name="email" value="{{old('email')}}" >
                             </fieldset>
                             <fieldset>
-                                <input type="text" placeholder="Phone No.">
+                                <input type="text" placeholder="Subject" name="subject" value="{{old('subject')}}">
                             </fieldset>
-                            <fieldset>
+                            {{-- <fieldset>
                                 <select>
                                     <option>Weapon / Plans</option>
                                     <option>Weapon / Plans</option>
                                     <option>Weapon / Plans</option>
                                     <option>Weapon / Plans</option>
                                 </select>
-                            </fieldset>
-                            <fieldset class="arrows">
+                            </fieldset> --}}
+                            {{-- <fieldset class="arrows">
                                 <div class="row">
                                     <div class="col-md-5 col-sm-6 pd-0">
                                         <select>
@@ -337,9 +338,9 @@
                                         <input type="number" placeholder="Age">
                                     </div>
                                 </div>
-                            </fieldset>
+                            </fieldset> --}}
                             <fieldset>
-                                <textarea placeholder="Message"></textarea>
+                                <textarea placeholder="Message" name="message" value="{{old('message')}}"></textarea>
                             </fieldset>
                             <button type="submit" class="btn1">Send Now</button>
                         </form>

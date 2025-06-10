@@ -224,7 +224,7 @@
 
                 modalContent.innerHTML = '<p>Loading...</p>';
 
-                fetch(`/account/orders/details/${orderId}`)
+                fetch(`/account/orders/${orderId}`)
 
                     .then(response => {
                         if (!response.ok) throw new Error('Network response was not ok');
