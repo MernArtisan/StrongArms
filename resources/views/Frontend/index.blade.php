@@ -306,16 +306,19 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="training-forms">
-                        <form id="contactform" action="{{route('contact.save')}}" method="POST">
+                        <form id="contactform" action="{{ route('contact.save') }}" method="POST">
                             @csrf
                             <fieldset>
-                                <input type="text" placeholder="Full Name" name="full_name" value="{{old('full_name')}}">
+                                <input type="text" placeholder="Full Name" name="full_name"
+                                    value="{{ old('full_name') }}">
                             </fieldset>
                             <fieldset>
-                                <input type="email" placeholder="Email Address" name="email" value="{{old('email')}}" >
+                                <input type="email" placeholder="Email Address" name="email"
+                                    value="{{ old('email') }}">
                             </fieldset>
                             <fieldset>
-                                <input type="text" placeholder="Subject" name="subject" value="{{old('subject')}}">
+                                <input type="text" placeholder="Subject" name="subject"
+                                    value="{{ old('subject') }}">
                             </fieldset>
                             {{-- <fieldset>
                                 <select>
@@ -340,7 +343,7 @@
                                 </div>
                             </fieldset> --}}
                             <fieldset>
-                                <textarea placeholder="Message" name="message" value="{{old('message')}}"></textarea>
+                                <textarea placeholder="Message" name="message" value="{{ old('message') }}"></textarea>
                             </fieldset>
                             <button type="submit" class="btn1">Send Now</button>
                         </form>
@@ -500,7 +503,8 @@
                                     </div>
                                     <h6><i class="fa fa-calendar-alt"></i>29-Jan-2024</h6>
                                     <h3>Weapon Services - 2024</h3>
-                                    <h5><a href="#">Read More</a> &nbsp;<i class="fa fa-long-arrow-alt-right"></i>
+                                    <h5><a href="{{ route('blogs.all_blogs') }}">Read More</a> &nbsp;<i
+                                            class="fa fa-long-arrow-alt-right"></i>
                                     </h5>
                                 </div>
                             </div>
@@ -524,7 +528,7 @@
                                     </div>
                                     <div class="news_botton_cont">
                                         <p>{{ $blog->description }}.</p>
-                                        <h5><a href="#">Read More</a> &nbsp;<i
+                                        <h5><a href="{{ route('blogs.all_blogs') }}">Read More</a> &nbsp;<i
                                                 class="fa fa-long-arrow-alt-right"></i>
                                         </h5>
                                     </div>

@@ -42,7 +42,8 @@
                 </div>
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset(Auth()->user()->image) }}" class="user-img-radious-style">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right pullDown">
@@ -63,7 +64,8 @@
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
                         <a href="/">
-                            <img src="{{ asset('assets/images/logo/logo.png') }}" class="header-logo" width="30px" height="80px" />
+                            <img src="{{ asset('assets/images/logo/logo.png') }}" class="header-logo" width="30px"
+                                height="80px" />
                             <span class="logo-name">StrongArms</span>
                         </a>
                     </div>

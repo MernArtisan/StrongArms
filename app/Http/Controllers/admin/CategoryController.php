@@ -21,31 +21,32 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin.category.create');
     }
 
     public function store(Request $request)
     {
-        try{
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255'
+            ]);
 
-        Category::create(['name' => $request->name]);
+            Category::create(['name' => $request->name]);
 
-        return back()->with('success', 'Category added successfully.');
-    }catch(\Throwable $th){
-        return back()->with('error', $th->getMessage());
-    }
+            return back()->with('success', 'Category added successfully.');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255'
-        ]); 
-        
+        ]);
+
 
         $category = Category::findOrFail($id);
         $category->update(['name' => $request->name]);
@@ -61,7 +62,4 @@ class CategoryController extends Controller
 
         return back()->with('success', 'Category deleted.');
     }
-    
-    
-
 }
