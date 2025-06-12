@@ -51,7 +51,7 @@
 
                                     <div class="form-group">
                                         <label for="time_slot">Time Slot</label>
-                                        <input type="text" name="time_slot" class="form-control"
+                                        <input type="time" name="time_slot" class="form-control"
                                             placeholder="e.g. 10:00  - 11:00 " required>
                                     </div>
 

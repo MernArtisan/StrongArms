@@ -44,8 +44,15 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/trainers/{id}/services', [HomeController::class, 'trainerservices'])->name('provider.service');
 Route::get('/trainers', [HomeController::class, 'trainers'])->name('trainers');
 
-Route::get('/booking-details/{id}', [ServiceViewController::class, 'booking'])->name('booking-details');
-Route::post('/appointment', [ServiceViewController::class, 'appointment'])->name('appointment');
+Route::controller(ServiceViewController::class)->group(function () {
+    Route::get('/booking-details/{id}', 'booking')->name('booking.details');
+
+    Route::prefix('appointment')->group(function () {
+        Route::post('/stripe-session', 'createStripeAppointmentSession')->name('appointment.stripe.session');
+        Route::get('/stripe-success', 'stripeAppointmentSuccess')->name('appointment.stripe.success');
+        Route::get('/stripe-cancel', 'stripeAppointmentCancel')->name('appointment.stripe.cancel');
+    });
+});
 
 
 
@@ -88,7 +95,6 @@ Route::middleware(['auth', 'permission'])->group(function () {
     Route::put('/admin/orders/{id}/update-status', [OrderManagementController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
     Route::resource('/bookings', BookingController::class);
-    // Route::resource('/booking/{id}', BookingController::class);
 
     Route::controller(AvailabilityController::class)->prefix('avail')->name('avail.')->group(function () {
         Route::get('/index', 'index')->name('index');

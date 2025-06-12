@@ -97,7 +97,7 @@
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <h6 class="m-b-20 text-right">Bookings</h6>
-                                                    <h4 class="text-right"><span>------</span></h4>
+                                                    <h4 class="text-right"><span>{{$bookings}}</span></h4>
                                                 </div>
                                             </div>
                                             <div id="cardChart2"></div>
@@ -165,7 +165,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-7">
-                                                    <h6 class="m-b-20 text-right">Revenue</h6>
+                                                    <h6 class="m-b-20 text-right"> Order Revenue</h6>
                                                     <h4 class="text-right"><span>$ {{ $revenue }}</span></h4>
                                                 </div>
                                             </div>

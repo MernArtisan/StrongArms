@@ -117,7 +117,7 @@
                         </div>
 
                         <!-- Appointment Button -->
-                        <form method="POST" action="{{ route('appointment') }}">
+                        <form method="POST" action="{{ route('appointment.stripe.session') }}">
                             @csrf
                             <input type="hidden" name="service_id" value="{{ $service->id }}">
                             <input type="hidden" name="time_slot" id="selectedTimeInput" value="">

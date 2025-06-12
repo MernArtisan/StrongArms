@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\frontend;
 
+use Stripe\Stripe;
 use App\Models\Booking;
+use App\Models\Payment;
 use App\Models\Service;
 use App\Models\Availability;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Stripe\Checkout\Session as StripeSession;
 
 class ServiceViewController extends Controller
 {
@@ -16,19 +19,39 @@ class ServiceViewController extends Controller
         $services = Service::paginate(15);
         return view('frontend.services.services', compact('services'));
     }
+
     public function booking($id)
     {
         $service = Service::findOrFail($id);
 
+        $today = now()->toDateString();
+        $currentTime = now()->format('H:i');
+
         $availability = Availability::where('service_id', $id)
             ->where('status', 'available')
+            ->where(function ($query) use ($today, $currentTime) {
+                $query->where('date', '>', $today)
+                    ->orWhere(function ($query) use ($today, $currentTime) {
+                        $query->where('date', $today)
+                            ->where('time_slot', '>', $currentTime);
+                    });
+            })
             ->orderBy('date')
+            ->orderBy('time_slot')
             ->get()
             ->map(function ($item) {
+                [$start, $end] = array_map('trim', explode('-', $item->time_slot));
+
+                $startTime = \Carbon\Carbon::createFromFormat('H:i', $start);
+                $endTime = \Carbon\Carbon::createFromFormat('H:i', $end);
+
+                $formattedTimeSlot = $startTime->format('g:i A') . ' - ' . $endTime->format('g:i A');
+
                 return [
                     'id' => $item->id,
                     'date' => $item->date,
-                    'time_slot' => $item->time_slot
+                    'time_slot' => $item->time_slot,
+                    'formatted_time_slot' => $formattedTimeSlot
                 ];
             });
 
@@ -37,19 +60,17 @@ class ServiceViewController extends Controller
         return view('Frontend.services.booking', compact('service', 'availability', 'availableDates'));
     }
 
-
-    public function appointment(Request $request)
+    // NEW: create Stripe session for appointment
+    public function createStripeAppointmentSession(Request $request)
     {
-        // Validate request
         $request->validate([
             'service_id' => 'required|exists:services,id',
-            'time_slot' => 'required|string'
+            'time_slot' => 'required|string',
+            'note' => 'nullable|string'
         ]);
 
-        // Find service
         $service = Service::findOrFail($request->service_id);
 
-        // Find matching availability (just to get date + availability_id)
         $availability = Availability::where('service_id', $request->service_id)
             ->where('time_slot', $request->time_slot)
             ->where('status', 'available')
@@ -59,18 +80,84 @@ class ServiceViewController extends Controller
             return back()->withErrors(['time_slot' => 'Selected time slot is not available.']);
         }
 
-        // Create booking (without marking availability as booked)
-        $booking = Booking::create([
-            'user_id' => Auth::id(),
-            'provider_id' => $service->provider_id,
-            'service_id' => $request->service_id,
-            'availability_id' => $availability->id,
-            'date' => $availability->date,
-            'time_slot' => $request->time_slot,
-            'note' => $request->note ?? null,
-            'status' => 'confirmed', // default status
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $session = StripeSession::create([
+            'payment_method_types' => ['card'],
+            'customer_email' => Auth::user()->email,
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => $service->name,
+                    ],
+                    'unit_amount' => $service->price * 100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('appointment.stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('appointment.stripe.cancel'),
+            'metadata' => [
+                'user_id' => Auth::id(),
+                'service_id' => $service->id,
+                'availability_id' => $availability->id,
+                'time_slot' => $request->time_slot,
+                'note' => $request->note ?? '',
+            ]
         ]);
 
-        return redirect()->back()->with('success', 'Appointment booked successfully!');
+        return redirect($session->url);
+    }
+
+    // NEW: Stripe success — create booking
+    public function stripeAppointmentSuccess(Request $request)
+    {
+        $sessionId = $request->get('session_id');
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $session = StripeSession::retrieve($sessionId);
+
+        $metadata = $session->metadata ?? null;
+        if (!$metadata) {
+            return redirect()->route('home')->with('error', 'Payment metadata missing.');
+        }
+
+        // Safety check
+        $availability = Availability::find($metadata->availability_id);
+
+        if (!$availability || $availability->status != 'available') {
+            return redirect()->route('home')->with('error', 'Selected time slot is no longer available.');
+        }
+
+        // Create booking
+        Booking::create([
+            'user_id' => $metadata->user_id,
+            'provider_id' => Service::find($metadata->service_id)->provider_id,
+            'service_id' => $metadata->service_id,
+            'availability_id' => $metadata->availability_id,
+            'date' => $availability->date,
+            'time_slot' => $metadata->time_slot,
+            'note' => $metadata->note,
+            'status' => 'confirmed',
+        ]);
+
+        // Create payment record (only availability_id and amount)
+        Payment::create([
+            'availability_id' => $metadata->availability_id,
+            'amount' => $session->amount_total / 100,
+        ]);
+
+        // Optional: mark availability as booked
+        // $availability->update(['status' => 'booked']);
+
+        return view('Frontend.partials.thankyou')->with('success', 'Appointment booked successfully via Stripe!');
+    }
+
+
+    // Optional fallback: user canceled payment
+    public function stripeAppointmentCancel()
+    {
+        return redirect()->route('home')->with('error', 'Payment canceled.');
     }
 }
