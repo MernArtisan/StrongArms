@@ -16,7 +16,7 @@
                                 <li><a href="/">Home</a></li>
                                 <li><a href="{{ route('about.us') }}">About</a></li>
                                 <li><a href="{{ route('services.index') }}">Services</a></li>
-                                <li><a href="#">Trainers</a></li>
+                                <li><a href="{{ route('trainers') }}">Trainers</a></li>
                                 <li><a href="{{ route('productview.index') }}">Products</a></li>
                                 <li><a href="{{ route('blogs.all_blogs') }}">Blog</a></li>
                                 <li><a href="{{ route('contact.us') }}">Contact</a></li>

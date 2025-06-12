@@ -17,8 +17,12 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.category.index', compact('categories'));
+        try {
+            $categories = Category::all();
+            return view('admin.category.index', compact('categories'));
+        } catch (\Throwable $th) {
+            return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
+        }
     }
 
     public function create()
@@ -43,15 +47,19 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255'
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255'
+            ]);
 
 
-        $category = Category::findOrFail($id);
-        $category->update(['name' => $request->name]);
+            $category = Category::findOrFail($id);
+            $category->update(['name' => $request->name]);
 
-        return back()->with('success', 'Category updated successfully.');
+            return back()->with('success', 'Category updated successfully.');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
+        }
     }
 
 

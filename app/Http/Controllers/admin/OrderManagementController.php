@@ -6,7 +6,9 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderStatusChangedMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderManagementController extends Controller
 {
@@ -28,10 +30,11 @@ class OrderManagementController extends Controller
             $order = Order::with('items')->findOrFail($id);
 
             return view('admin.order.show', compact('order'));
-        }else{
+        } else {
             return redirect()->route('permission-denied');
         }
     }
+
 
     public function updateStatus(Request $request, $id)
     {
@@ -43,6 +46,9 @@ class OrderManagementController extends Controller
         $order->order_status = $request->order_status;
         $order->save();
 
-        return redirect()->back()->with('success', 'Order status updated successfully.');
+        // Send email
+        Mail::to($order->email)->send(new OrderStatusChangedMail($order));
+
+        return redirect()->back()->with('success', 'Order status updated successfully and email sent to customer.');
     }
 }

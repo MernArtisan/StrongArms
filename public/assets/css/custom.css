@@ -5,3 +5,368 @@ header .logo-area img {
 .foo-about img {
     width: 40%;
 }
+/****myaccordion-css******/
+ .myaccordion {
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .myaccordion-item {
+            margin-bottom: 10px;
+            overflow: hidden;
+            background: unset;
+        }
+        
+        .myaccordion-header {
+            cursor: pointer;
+            align-items: center;
+            color: #fff;
+            font-size: 18px;
+        }
+        
+        .myaccordion-header i {
+            transition: transform 0.3s ease;
+            color: #878244;
+        }
+        
+        .myaccordion-header.active i {
+            transform: rotate(90deg);
+        }
+        
+        .myaccordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .myaccordion-content.show {
+            padding: 15px;
+            max-height: 500px;
+        }
+        /*********privacy and terms css***********/
+
+        .container.my-cont-pri-term {
+            margin-top: 60px !important;
+            margin-bottom: 60px !important;
+        }
+        .privacy-terms h2 {
+            color: #878244;
+            font-size: 43px;
+            font-family: "Audiowide", cursive;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 22px;
+        }
+        .privacy-terms p {
+            color: #fff;
+            font-size: 16px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+        .privacy-terms i.fa.fa-angle-double-right {
+            color: #878244;
+            margin-right: 10px;
+        }
+        .privacy-terms li {
+            color: #fff;
+        }
+        /******all-services****/
+        .service-box {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 40px;
+}
+.icon-box {
+    height: 250px;
+    overflow: hidden;
+}
+.service-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.service-box:hover .icon-box {
+    transform: scale(1.1);
+}
+.my-serv-content {
+    padding: 25px;
+}
+.my-serv-content h3 {
+    color: #878244;
+}
+ul.features {
+    margin-bottom: 25px;
+}
+.my-serv-content p {
+    color: #000;
+}
+/**********index-provider*************/
+  /* Provider Cards Styling */
+    .all-provider {
+        margin-top: 30px;
+    }
+    
+    .provider-card {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        background: #222222;
+        border: 1px solid #6a6a6a;
+    }
+    
+    .provider-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .provider-img-container {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+    
+    .provider-weapon-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .provider-card:hover .provider-weapon-img {
+        transform: scale(1.05);
+    }
+    
+    .provider-tag {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #d82e2e;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    .provider-body {
+        padding: 20px;
+    }
+    
+    .provider-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: #878244;
+    }
+    
+    .provider-details {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .provider-info, .provider-contact {
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    
+    .provider-name, .provider-exp, 
+    .provider-phone, .provider-email {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #fff;
+    }
+    
+    .provider-name i, .provider-exp i,
+    .provider-phone i, .provider-email i {
+        margin-right: 8px;
+        color: #878244;
+        font-size: 14px;
+    }
+    
+    .provider-features {
+        margin: 15px 0;
+    }
+    
+    .provider-features ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    .provider-features li {
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: #fff;
+    }
+    
+    .provider-features i {
+        color: #878244;
+        margin-right: 8px;
+    }
+    
+    .provider-action {
+        margin-top: 15px;
+    }
+    
+    .btn-provider {
+        display: block;
+        width: 100%;
+        padding: 0 60px;
+        background: #878244;
+        position: relative;
+        line-height: 50px;
+        height: 50px;
+        cursor: pointer;
+        text-transform: capitalize;
+        -webkit-clip-path: polygon(12% 0%, 100% 0, 88% 100%, 0% 100%);
+        clip-path: polygon(12% 0%, 100% 0, 88% 100%, 0% 100%);
+        color: white;
+        text-align: center;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+    }
+    .btn-provider:hover {
+        background: #fff;
+        color: #000;
+        text-decoration: none;
+    }
+
+    /**********service-details*************/
+
+/* Weapon Service Detail Styles */
+    .weapon-service-detail {
+        padding: 60px 0;
+    }
+    
+    .weapon-gallery .main-image {
+        border: 1px solid #eee;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    
+    .thumb-img {
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        padding: 5px;
+    }
+    
+    .thumb-img:hover, .thumb-img.active {
+        border-color: #878244;
+    }
+    
+    .weapon-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+        color: #878244;
+    }
+    
+    .weapon-meta .badge {
+        margin-right: 8px;
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    
+    .specs-title, .pricing-title, .section-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        color: #878244;
+    }
+    
+    .service-pricing {
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+    }
+    
+    .service-pricing .price {
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .service-pricing .price-description {
+        color: #fff;
+        margin-bottom: 0;
+    }
+    
+    /* Time Slots Styles */
+    .time-slot-header {
+        color: #fff;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .time-slot {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 8px;
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .time-slot:hover {
+        background: #e9ecef;
+    }
+    
+    .time-slot.active {
+        background: #878244;
+        color: white;
+        border-color: #878244;
+    }
+    
+    .date-nav {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .current-date {
+        font-size: 18px;
+        margin: 0 15px;
+        color: #fff;
+    }
+    .table th {
+    color: #fff;
+}
+
+.table td {
+    color: #fff;
+}
+.selected-slot-info h4 {
+    color: #fff;
+}
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .weapon-title {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        
+        .time-slots .col-md-4 {
+            margin-bottom: 20px;
+        }
+    }

@@ -173,12 +173,12 @@ class OrderController extends Controller
                 'total' => $item->price * $item->qty,
             ]);
         }
-        
+
         Mail::to($order->email)->send(new OrderPlacedMail($order));
 
         Cart::destroy();
 
-        return redirect()->route('productview.index')->with('success', 'Order placed successfully via Stripe!');
+        return view('Frontend.partials.thankyou')->with('success', 'Order placed successfully via Stripe!');
     }
 
     public function stripeCancel()

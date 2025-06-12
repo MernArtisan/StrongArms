@@ -14,8 +14,13 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
-        return view('admin.blogs.index', compact('blogs'));
+        try {
+            $blogs = Blog::all();
+            return view('admin.blogs.index', compact('blogs'));
+        } catch (\Exception $e) {
+
+            return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
+        }
     }
 
     /**
@@ -30,8 +35,8 @@ class BlogController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-        
+    {
+
         $validatedData = $request->validate([
             'title' => 'required',
             'content' => 'required',
@@ -39,26 +44,25 @@ class BlogController extends Controller
         ]);
 
         try {
-    
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $filename = time() . '_' . Str::random(10) . '.' . $request->image->getClientOriginalExtension();
-            $request->image->move(public_path('blogs'), $filename);
-            $imagePath = 'blogs/' . $filename;
-        }
 
-        Blog::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'image' => $imagePath ?? null,
-            'slug' =>  str_replace(' ', '-', strtolower($request->title)),
-            'status' => $request->status,
-            'added_by' => auth()->user()->id
-        ]);
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $filename = time() . '_' . Str::random(10) . '.' . $request->image->getClientOriginalExtension();
+                $request->image->move(public_path('blogs'), $filename);
+                $imagePath = 'blogs/' . $filename;
+            }
 
-        return redirect()->route('blogs-upload.index')->with('success', 'Blog created successfully!');
-              
+            Blog::create([
+                'title' => $request->title,
+                'content' => $request->content,
+                'image' => $imagePath ?? null,
+                'slug' =>  str_replace(' ', '-', strtolower($request->title)),
+                'status' => $request->status,
+                'added_by' => auth()->user()->id
+            ]);
+
+            return redirect()->route('blogs-upload.index')->with('success', 'Blog created successfully!');
         } catch (\Throwable $th) {
             return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
         }
@@ -67,14 +71,18 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      */
-  
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $blog = Blog::find($id);
-        return view('admin.blogs.edit',compact('blog'));
+        try {
+            $blog = Blog::find($id);
+            return view('admin.blogs.edit', compact('blog'));
+        } catch (\Throwable $th) {
+            return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
+        }
     }
 
     /**
@@ -108,8 +116,7 @@ class BlogController extends Controller
             $blog->added_by = auth()->user()->id;
             $blog->save();
 
-            return redirect()->route('blogs-upload.index')->with('success','Blog updated successfully!');
-
+            return redirect()->route('blogs-upload.index')->with('success', 'Blog updated successfully!');
         } catch (\Throwable $th) {
             return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
         }
@@ -122,10 +129,9 @@ class BlogController extends Controller
 
 
 
-     public function destroy($id)
+    public function destroy($id)
     {
         Blog::findOrFail($id)->delete();
         return back()->with('success', 'Blog deleted successfully.');
     }
-
 }

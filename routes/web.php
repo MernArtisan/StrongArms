@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
@@ -40,6 +41,13 @@ Route::get('/cleareverything', function () {
 });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/trainers/{id}/services', [HomeController::class, 'trainerservices'])->name('provider.service');
+Route::get('/trainers', [HomeController::class, 'trainers'])->name('trainers');
+
+Route::get('/booking-details/{id}', [ServiceViewController::class, 'booking'])->name('booking-details');
+Route::post('/appointment', [ServiceViewController::class, 'appointment'])->name('appointment');
+
+
 
 Route::group(['middleware' => ['admin.guest']], function () {
     Route::get('/login', [AuthConroller::class, 'login'])->name('login');
@@ -79,6 +87,8 @@ Route::middleware(['auth', 'permission'])->group(function () {
     Route::get('/order/show/{id}', [OrderManagementController::class, 'show'])->name('order.show');
     Route::put('/admin/orders/{id}/update-status', [OrderManagementController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
+    Route::resource('/bookings', BookingController::class);
+    // Route::resource('/booking/{id}', BookingController::class);
 
     Route::controller(AvailabilityController::class)->prefix('avail')->name('avail.')->group(function () {
         Route::get('/index', 'index')->name('index');
@@ -122,6 +132,7 @@ Route::controller(OrderController::class)->prefix('order')->name('order.')->grou
     Route::get('/success', 'stripeSuccess')->name('success');          // Stripe redirect success
     Route::get('/cancel', 'stripeCancel')->name('cancel');            // Stripe redirect cancel
 });
+
 
 
 Route::middleware('auth')->group(function () {

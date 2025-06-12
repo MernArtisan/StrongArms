@@ -100,7 +100,7 @@
                             @can('user-view')
                                 <li class="dropdown">
                                     <a href="{{ route('all-users.index') }}" class="nav-link">
-                                        <i data-feather="users"></i> User/Providers
+                                        <i data-feather="users"></i> Accounts
                                     </a>
                                 </li>
                             @endcan
@@ -221,6 +221,21 @@
                                 <li class="dropdown">
                                     <a href="{{ route('service.index') }}" class="nav-link">
                                         <i data-feather="layers"></i> Services
+                                    </a>
+                                </li>
+                            @endcan
+                        @endif
+                        @if ($isAdmin || $isProvider)
+                            <li class="dropdown">
+                                <a href="{{ route('bookings.index') }}" class="nav-link">
+                                    <i data-feather="book"></i> Bookings
+                                </a>
+                            </li>
+                        @else
+                            @can('service-view')
+                                <li class="dropdown">
+                                    <a href="{{ route('bookings.index') }}" class="nav-link">
+                                        <i data-feather="book"></i> Bookings
                                     </a>
                                 </li>
                             @endcan
