@@ -11,6 +11,19 @@
         img:hover {
             transform: scale(1.02);
         }
+
+        /* Small badge button look */
+        .booking-status-badge {
+            cursor: pointer;
+            padding: 6px 12px;
+            font-size: 0.875rem;
+            border-radius: 12px;
+        }
+
+        .booking-status-select {
+            width: 140px;
+            margin-top: 6px;
+        }
     </style>
 
     <div class="main-content">
@@ -39,10 +52,37 @@
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Booking ID:</strong> <span>#{{ $booking->id }}</span>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
                                         <strong>Status:</strong>
-                                        <span class="badge badge-success">{{ ucfirst($booking->status) }}</span>
+                                        @if ($isProvider)
+                                            <div style="min-width: 160px; text-align: right;">
+                                                <!-- Badge -->
+                                                <span
+                                                    class="badge booking-status-badge badge-{{ $booking->status == 'confirmed' ? 'success' : 'primary' }}"
+                                                    data-booking-id="{{ $booking->id }}">
+                                                    {{ ucfirst($booking->status) }} <i class="fas fa-chevron-down ms-1"></i>
+                                                </span>
+
+                                                <!-- Hidden select -->
+                                                <select class="form-select form-select-sm booking-status-select d-none"
+                                                    data-booking-id="{{ $booking->id }}">
+                                                    <option value="confirmed"
+                                                        {{ $booking->status == 'confirmed' ? 'selected' : '' }}>Confirmed
+                                                    </option>
+                                                    <option value="completed"
+                                                        {{ $booking->status == 'completed' ? 'selected' : '' }}>Completed
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        @else
+                                            <span
+                                                class="badge booking-status-badge badge-{{ $booking->status == 'confirmed' ? 'success' : 'primary' }}"
+                                                data-booking-id="{{ $booking->id }}">
+                                                {{ ucfirst($booking->status) }} <i class="fas fa-chevron-down ms-1"></i>
+                                            </span>
+                                        @endif
                                     </li>
+
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Booked On:</strong>
                                         <span>{{ $booking->created_at->format('Y-m-d H:i') }}</span>
@@ -55,10 +95,6 @@
                                         <strong>Time Slot:</strong>
                                         <span>{{ $booking->time_slot }}</span>
                                     </li>
-                                    {{-- <li class="list-group-item">
-                                        <strong>Note:</strong>
-                                        <p class="mb-0">{{ $booking->note ?? 'N/A' }}</p>
-                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -77,7 +113,8 @@
                                         <strong>Type:</strong> <span>{{ ucfirst($booking->service->type ?? 'N/A') }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <strong>Price:</strong> <span>${{ number_format($booking->service->price ?? 0, 2) }}</span>
+                                        <strong>Price:</strong>
+                                        <span>${{ number_format($booking->service->price ?? 0, 2) }}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <strong>Description:</strong>
@@ -101,7 +138,8 @@
                                         <strong>Email:</strong> <span>{{ $booking->provider->email ?? 'N/A' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <strong>Phone:</strong> <span>{{ $booking->provider->phone_number ?? 'N/A' }}</span>
+                                        <strong>Phone:</strong>
+                                        <span>{{ $booking->provider->phone_number ?? 'N/A' }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -118,11 +156,13 @@
                                         <strong>Date:</strong> <span>{{ $booking->availability->date ?? 'N/A' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <strong>Time Slot:</strong> <span>{{ $booking->availability->time_slot ?? 'N/A' }}</span>
+                                        <strong>Time Slot:</strong>
+                                        <span>{{ $booking->availability->time_slot ?? 'N/A' }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <strong>Status:</strong>
-                                        <span class="badge badge-info">{{ ucfirst($booking->availability->status ?? 'N/A') }}</span>
+                                        <span
+                                            class="badge badge-info">{{ ucfirst($booking->availability->status ?? 'N/A') }}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -133,4 +173,64 @@
             </div>
         </section>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Click badge → show select
+            document.querySelectorAll('.booking-status-badge').forEach(function(badge) {
+                badge.addEventListener('click', function() {
+                    const bookingId = this.getAttribute('data-booking-id');
+                    const select = document.querySelector(
+                        `.booking-status-select[data-booking-id="${bookingId}"]`);
+                    select.classList.toggle('d-none');
+                });
+            });
+
+            // On select change → AJAX
+            document.querySelectorAll('.booking-status-select').forEach(function(select) {
+                select.addEventListener('change', function() {
+                    const bookingId = this.getAttribute('data-booking-id');
+                    const newStatus = this.value;
+
+                    fetch(`/bookings/${bookingId}/ajax-update-status`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: JSON.stringify({
+                                status: newStatus
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Update badge text and color
+                                const badge = document.querySelector(
+                                    `.booking-status-badge[data-booking-id="${bookingId}"]`);
+                                badge.textContent = newStatus.charAt(0).toUpperCase() +
+                                    newStatus.slice(1);
+                                badge.classList.remove('badge-success', 'badge-primary');
+
+                                if (newStatus === 'confirmed') {
+                                    badge.classList.add('badge-success');
+                                } else {
+                                    badge.classList.add('badge-primary');
+                                }
+
+                                // Hide select
+                                this.classList.add('d-none');
+                            } else {
+                                alert('Failed to update status.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Error updating status.');
+                        });
+                });
+            });
+        });
+    </script>
+
 @endsection

@@ -23,8 +23,13 @@ class Booking extends Model
         return $this->belongsTo(service::class);
     }
 
-      public function availability()
+    public function availability()
     {
         return $this->belongsTo(Availability::class);
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class,'booking_id');
     }
 }

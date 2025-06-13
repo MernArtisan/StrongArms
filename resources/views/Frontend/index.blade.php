@@ -94,9 +94,8 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-heading">
-                        <h2>Our Products</h2>
-                        <p>All modern weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum
-                            feugiat, gun are best velit mauris aks egestasut aliquam.</p>
+                        <h2>{{ $cms_content[4]->name ?? 'N/A' }}</h2>
+                        <p>{!! $cms_content[4]->description ?? 'N/A' !!}.</p>
                     </div>
                 </div>
             </div>
@@ -177,128 +176,115 @@
     <section class="gallery-area section2 bg-img jarallax position-relative">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-heading">
-                        <h2>Available Ranges</h2>
-                        <p>All modern weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum
-                            feugiat, gun are best velit mauris aks egestasut aliquam.</p>
+                <div class="col-md-12">
+                    <div class="section-heading text-center">
+                        <h2>{{ $cms_content[3]->name ?? 'Featured Products' }}</h2>
+                        <p>{!! $cms_content[3]->description ?? 'All modern weapons can appreciate our broad services.' !!}</p>
                     </div>
                 </div>
-                <div class="gallery col-sm-12 pd-0 position-relative">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 col-xs-12 pd-0">
-                            <div class="row">
-                                <div class="col-sm-12 mr-b30">
-                                    <div class="gimg">
-                                        <figure>
-                                            <a href="assets/images/gallery/1.jpg">
-                                                <img src="assets/images/gallery/1.jpg" alt="" />
-                                                <div class="con-pop">
-                                                    <span><i class="fas fa-search"></i></span>
-                                                </div>
-                                            </a>
-                                            <div class="content">
-                                                <h3>Bullets Roll</h3>
-                                                <p>All modern weaponts can aiate our broad services akshay.</p>
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 mr-b30">
-                                    <div class="gimg">
-                                        <figure>
-                                            <a href="assets/images/gallery/4.jpg">
-                                                <img src="assets/images/gallery/4.jpg" alt="" />
-                                                <div class="con-pop">
-                                                    <span><i class="fas fa-search"></i></span>
-                                                </div>
-                                            </a>
-                                            <div class="content">
-                                                <h3>Bullets Roll</h3>
-                                                <p>All modern weaponts can aiate our broad services akshay.</p>
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
+            </div>
+
+            <div class="row gallery-grid">
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="gimg">
+                        <figure>
+                             <a href="{{ route('productview.productdetail', $Product[0]->slug) }}">
+                                <img src="{{ isset($Product[0]) ? asset($Product[0]->image) : asset('assets/images/gallery/1.jpg') }}"
+                                    class="img-fluid w-100" />
+                                <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
+                            </a>
+                            <div class="content">
+                                <h3>{{ $Product[0]->name ?? 'Product Title' }}</h3>
+                                <p>{{ $Product[0]->description ?? 'Short product description goes here.' }}</p>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 pd-0">
-                            <div class="col-sm-12 mr-b30">
-                                <div class="gimg">
-                                    <figure>
-                                        <a href="assets/images/gallery/2.jpg">
-                                            <img src="assets/images/gallery/2.jpg" alt="" />
-                                            <div class="con-pop">
-                                                <span><i class="fas fa-search"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="content">
-                                            <h3>Bullets Roll</h3>
-                                            <p>All modern weaponts can aiate our broad services akshay.</p>
-                                        </div>
-                                    </figure>
-                                </div>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="gimg">
+                        <figure>
+                             <a href="{{ route('productview.productdetail', $Product[1]->slug) }}">
+                                <img src="{{ isset($Product[1]) ? asset($Product[1]->image) : asset('assets/images/gallery/2.jpg') }}"
+                                    class="img-fluid w-100" />
+                                <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
+                            </a>
+                            <div class="content">
+                                <h3>{{ $Product[1]->name ?? 'Product Title' }}</h3>
+                                <p>{{ $Product[1]->description ?? 'Short product description goes here.' }}</p>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 pd-0">
-                            <div class="row">
-                                <div class="col-sm-12 mr-b30">
-                                    <div class="gimg">
-                                        <figure>
-                                            <a href="assets/images/gallery/3.jpg">
-                                                <img src="assets/images/gallery/3.jpg" alt="" />
-                                                <div class="con-pop">
-                                                    <span><i class="fas fa-search"></i></span>
-                                                </div>
-                                            </a>
-                                            <div class="content">
-                                                <h3>Bullets Roll</h3>
-                                                <p>All modern weaponts can aiate our broad services akshay.</p>
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 mr-b30">
-                                    <div class="gimg">
-                                        <figure>
-                                            <a href="assets/images/gallery/6.jpg">
-                                                <img src="assets/images/gallery/6.jpg" alt="" />
-                                                <div class="con-pop">
-                                                    <span><i class="fas fa-search"></i></span>
-                                                </div>
-                                            </a>
-                                            <div class="content">
-                                                <h3>Bullets Roll</h3>
-                                                <p>All modern weaponts can aiate our broad services akshay.</p>
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="gimg">
+                        <figure>
+                             <a href="{{ route('productview.productdetail', $Product[2]->slug) }}">
+                                <img src="{{ isset($Product[2]) ? asset($Product[2]->image) : asset('assets/images/gallery/3.jpg') }}"
+                                    class="img-fluid w-100" />
+                                <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
+                            </a>
+                            <div class="content">
+                                <h3>{{ $Product[2]->name ?? 'Product Title' }}</h3>
+                                <p>{{ $Product[2]->description ?? 'Short product description goes here.' }}</p>
                             </div>
-                        </div>
-                        <div class="col-md-8 col-sm-8 col-xs-12 pd-0 position-relative">
-                            <div class="col-sm-12 mr-b30  lst_div_box_galery d-md-block d-sm-none d-none">
-                                <div class="gimg">
-                                    <figure>
-                                        <a href="assets/images/gallery/5.jpg">
-                                            <img src="assets/images/gallery/5.jpg" alt="" />
-                                            <div class="con-pop">
-                                                <span><i class="fas fa-search"></i></span>
-                                            </div>
-                                        </a>
-                                        <div class="content">
-                                            <h3>Bullets Roll</h3>
-                                            <p>All modern weaponts can aiate our broad services akshay.</p>
-                                        </div>
-                                    </figure>
-                                </div>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="gimg">
+                        <figure>
+                             <a href="{{ route('productview.productdetail', $Product[3]->slug) }}">
+                                <img src="{{ isset($Product[3]) ? asset($Product[3]->image) : asset('assets/images/gallery/4.jpg') }}"
+                                    class="img-fluid w-100" />
+                                <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
+                            </a>
+                            <div class="content">
+                                <h3>{{ $Product[3]->name ?? 'Product Title' }}</h3>
+                                <p>{{ $Product[3]->description ?? 'Short product description goes here.' }}</p>
                             </div>
-                        </div>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="gimg">
+                        <figure>
+                            < <a href="{{ route('productview.productdetail', $Product[4]->slug) }}">
+                                <img src="{{ isset($Product[4]) ? asset($Product[4]->image) : asset('assets/images/gallery/5.jpg') }}"
+                                    class="img-fluid w-100" />
+                                <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
+                            </a>
+                            <div class="content">
+                                <h3>{{ $Product[4]->name ?? 'Product Title' }}</h3>
+                                <p>{{ $Product[4]->description ?? 'Short product description goes here.' }}</p>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="gimg">
+                        <figure>
+                             <a href="{{ route('productview.productdetail', $Product[5]->slug) }}">
+                                <img src="{{ isset($Product[5]) ? asset($Product[5]->image) : asset('assets/images/gallery/6.jpg') }}"
+                                    class="img-fluid w-100" />
+                                <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
+                            </a>
+                            <div class="content">
+                                <h3>{{ $Product[5]->name ?? 'Product Title' }}</h3>
+                                <p>{{ $Product[5]->description ?? 'Short product description goes here.' }}</p>
+                            </div>
+                        </figure>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
     <!--Gallery area end here-->
     <!--Trainning area Start here-->
     <section class="training-area section bg-img jarallax af">
@@ -351,18 +337,15 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="training-con pd-t60">
-                        <h2>Weapon Trainings</h2>
-                        <p>With state-of-the-art indoor training facilities and full service custom shop on lion, we can
-                            accommodate most requests.</p>
-                        <h1>P. +880 451 455</h1>
-                        <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem is bibendum auctor, nisi
-                            elit consequat ipsum, nec sagittis sem nibh idlit. Duis sed odio sit amet nibh vulputate cursus
-                            a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt.</p>
+                        <h2>{{ $cms_content[5]->name ?? 'N/A' }}</h2>
+                        <p>{{ $cms_content[5]->description ?? 'N/A' }}</p>
+                        <h1>{{ $cms_content[5]->description_1 ?? 'N/A' }}</h1>
+                        <p>{{ $cms_content[5]->description_2 ?? 'N/A' }}</p>
                         <ul>
-                            <li><i class="fas fa-long-arrow-alt-right"></i>Trainning x2 Hand Gun Full Pack</li>
-                            <li><i class="fas fa-long-arrow-alt-right"></i>Machine Gun CS5 4141 Full Pack </li>
-                            <li><i class="fas fa-long-arrow-alt-right"></i>Custom Shooting Range For Trainning</li>
-                            <li><i class="fas fa-long-arrow-alt-right"></i>Outfitters hunting and tactical shooting</li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i>{{ $cms_content[5]->item_1 ?? 'N/A' }}</li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i>{{ $cms_content[5]->item_2 ?? 'N/A' }}</li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i>{{ $cms_content[5]->item_3 ?? 'N/A' }}</li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i>{{ $cms_content[5]->item_4 ?? 'N/A' }}</li>
                         </ul>
                     </div>
                 </div>
@@ -380,10 +363,8 @@
                 <div class="col-md-7 col-sm-12 col-md-offset-5">
                     <div class="content">
                         <div class="con">
-                            <h2>THREAT-MANAGEMENT <br>EXPERTS</h2>
-                            <p>Our facilities in Tilden, TX offer great ranges and accommns for anyone looking to attend one
-                                of our hunts or training ses. Tilden has a 1000 yard range with steel every 100 yards as
-                                well a unknown distance steel throughout. For aerial opens we have vehicle interdiction.</p>
+                            <h2>{{ $cms_content[7]->name ?? 'N/A' }}</h2>
+                            <p>{{ $cms_content[7]->description ?? 'N/A' }}</p>
                             <a href="#" class="btn1">read more</a>
                         </div>
                     </div>
@@ -398,9 +379,8 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-heading">
-                        <h2>Latest News</h2>
-                        <p>All modern weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum
-                            feugiat, gun are best velit mauris aks egestasut aliquam.</p>
+                        <h2>{{ $cms_content[8]->name ?? 'N/A' }}</h2>
+                        <p>{{ $cms_content[8]->description ?? 'N/A' }}</p>
                     </div>
                 </div>
             </div>

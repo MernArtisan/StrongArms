@@ -5,11 +5,8 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="section-heading">
-                            <h2>Trainers</h2>
-                            <p>We offer flexible and affordable training packages for every skill level — from first-time
-                                gun
-                                owners to advanced tactical operators. Each session is conducted by certified instructors in
-                                secure, professional environments. <br>Explore our most popular options:</p>
+                            <h2>{{ $cms_content[6]->name ?? 'N/A' }}</h2>
+                            <p>{{ $cms_content[6]->description ?? 'N/A' }}<br>Explore our most popular options:</p>
                         </div>
                     </div>
                 </div>

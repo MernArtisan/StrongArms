@@ -295,10 +295,10 @@
             @include('Frontend.account.partail.sidebar')
             <!--start Main Content -->
             <!-- <div class="my-profile-container py-4">
-                                                        <div class="row"> -->
+                                                            <div class="row"> -->
             @yield('profile-content')
             <!--  </div>
-                                                    </div> -->
+                                                        </div> -->
             <!----end-main-code----->
 
         </div>

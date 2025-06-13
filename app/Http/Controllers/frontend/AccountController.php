@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -26,6 +27,17 @@ class AccountController extends Controller
         // dd($order);
         return view('Frontend.account.partail.order', compact('order'));
     }
+
+    public function booking()
+    {
+        $bookings = Booking::with(['service.provider', 'availability'])
+            ->where('user_id', Auth::id())
+            ->orderBy('date', 'desc')
+            ->get();
+        // return $bookings;
+        return view('frontend.account.partail.booking', compact('bookings'));
+    }
+
 
     public function edit()
     {

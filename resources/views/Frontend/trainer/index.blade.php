@@ -30,9 +30,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="section-heading">
-                        <h2>Trainers</h2>
-                        <p>We offer flexible and affordable training packages for every skill level — from first-time gun
-                            owners to advanced tactical operators. Explore our most popular trainers:</p>
+                        <h2>{{ $cms_content[6]->name ?? 'N/A' }}</h2>
+                        <p>{{ $cms_content[6]->description ?? 'N/A' }}</p>
                     </div>
                 </div>
             </div>

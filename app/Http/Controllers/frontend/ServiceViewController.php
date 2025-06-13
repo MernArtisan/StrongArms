@@ -8,8 +8,10 @@ use App\Models\Payment;
 use App\Models\Service;
 use App\Models\Availability;
 use Illuminate\Http\Request;
+use App\Mail\BookingConfirmedMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Checkout\Session as StripeSession;
 
 class ServiceViewController extends Controller
@@ -63,6 +65,11 @@ class ServiceViewController extends Controller
     // NEW: create Stripe session for appointment
     public function createStripeAppointmentSession(Request $request)
     {
+
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login to continue.');
+        }
+
         $request->validate([
             'service_id' => 'required|exists:services,id',
             'time_slot' => 'required|string',
@@ -84,7 +91,7 @@ class ServiceViewController extends Controller
 
         $session = StripeSession::create([
             'payment_method_types' => ['card'],
-            'customer_email' => Auth::user()->email,
+            'customer_email' => 'abdulmoiz492@gmail.com',
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'usd',
@@ -113,6 +120,11 @@ class ServiceViewController extends Controller
     // NEW: Stripe success — create booking
     public function stripeAppointmentSuccess(Request $request)
     {
+
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login to continue.');
+        }
+
         $sessionId = $request->get('session_id');
 
         Stripe::setApiKey(config('services.stripe.secret'));
@@ -131,7 +143,7 @@ class ServiceViewController extends Controller
         }
 
         // Create booking
-        Booking::create([
+        $booking = Booking::create([
             'user_id' => $metadata->user_id,
             'provider_id' => Service::find($metadata->service_id)->provider_id,
             'service_id' => $metadata->service_id,
@@ -144,14 +156,15 @@ class ServiceViewController extends Controller
 
         // Create payment record (only availability_id and amount)
         Payment::create([
-            'availability_id' => $metadata->availability_id,
+            'booking_id' => $booking->id,  // <--- this is correct
             'amount' => $session->amount_total / 100,
         ]);
 
         // Optional: mark availability as booked
         // $availability->update(['status' => 'booked']);
+        Mail::to(Auth::user()->email)->send(new BookingConfirmedMail($booking));
 
-        return view('Frontend.partials.thankyou')->with('success', 'Appointment booked successfully via Stripe!');
+        return view('Frontend.partials.thankyou2')->with('success', 'Appointment booked successfully via Stripe!');
     }
 
 

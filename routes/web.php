@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\admin\BlogController;
-use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\frontend\AuthConroller;
+use App\Http\Controllers\admin\BookingController;
 use App\Http\Controllers\admin\ContentController;
 use App\Http\Controllers\admin\InquiryController;
 use App\Http\Controllers\admin\ProductController;
@@ -17,14 +17,15 @@ use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\OrderController;
+use App\Http\Controllers\admin\ContactUsController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\HomebannerController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\ProfileController;
 use App\Http\Controllers\frontend\BlogviewController;
-use App\Http\Controllers\admin\ResetPasswordController;
 // use App\Http\Middleware\ProviderAuthenticate;
+use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\frontend\ProductviewController;
 use App\Http\Controllers\frontend\ServiceViewController;
 use App\Http\Controllers\admin\OrderManagementController;
@@ -44,16 +45,10 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/trainers/{id}/services', [HomeController::class, 'trainerservices'])->name('provider.service');
 Route::get('/trainers', [HomeController::class, 'trainers'])->name('trainers');
 
-Route::controller(ServiceViewController::class)->group(function () {
-    Route::get('/booking-details/{id}', 'booking')->name('booking.details');
-
-    Route::prefix('appointment')->group(function () {
-        Route::post('/stripe-session', 'createStripeAppointmentSession')->name('appointment.stripe.session');
-        Route::get('/stripe-success', 'stripeAppointmentSuccess')->name('appointment.stripe.success');
-        Route::get('/stripe-cancel', 'stripeAppointmentCancel')->name('appointment.stripe.cancel');
-    });
-});
-
+Route::get('/booking-details/{id}', [ServiceViewController::class, 'booking'])->name('booking-details');
+Route::post('/appointment/stripe-session', [ServiceViewController::class, 'createStripeAppointmentSession'])->name('appointment.stripe.session');
+Route::get('/appointment/stripe-success', [ServiceViewController::class, 'stripeAppointmentSuccess'])->name('appointment.stripe.success');
+Route::get('/appointment/stripe-cancel', [ServiceViewController::class, 'stripeAppointmentCancel'])->name('appointment.stripe.cancel');
 
 
 Route::group(['middleware' => ['admin.guest']], function () {
@@ -88,13 +83,16 @@ Route::middleware(['auth', 'permission'])->group(function () {
     Route::resource('role', RoleController::class);
     Route::resource('blogs-upload', BlogController::class);
     Route::delete('/product-image/{id}', [ProductController::class, 'deleteImage'])->name('images.destroy');
-
+    Route::resource('contact-queries', ContactUsController::class);
 
     Route::get('/order', [OrderManagementController::class, 'index'])->name('orders.management');
     Route::get('/order/show/{id}', [OrderManagementController::class, 'show'])->name('order.show');
     Route::put('/admin/orders/{id}/update-status', [OrderManagementController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
     Route::resource('/bookings', BookingController::class);
+    // Route::resource('/booking/{id}', BookingController::class);
+    Route::post('/bookings/{booking}/ajax-update-status', [BookingController::class, 'ajaxUpdateStatus'])->name('admin.bookings.ajaxUpdateStatus');
+
 
     Route::controller(AvailabilityController::class)->prefix('avail')->name('avail.')->group(function () {
         Route::get('/index', 'index')->name('index');
@@ -150,7 +148,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/orders', 'orders')->name('order');
             Route::get('/edit', 'edit')->name('edit');
             Route::post('/editprofile/{id}', 'editprofile')->name('editprofile');
-            Route::post('/booking', 'booking')->name('booking');
+            Route::get('/booking', 'booking')->name('booking');
             Route::post('/wishlist', 'wishlist')->name('wishlist');
             Route::get('/password', 'showResetForm')->name('password');
             Route::put('/change-password', 'changePassword')->name('changePassword');

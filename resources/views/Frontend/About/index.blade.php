@@ -35,9 +35,8 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-heading">
-                        <h2>Our Trusted Partners</h2>
-                        <p>All modern weaponts can appreciate our broad services akshay handge pharetra, eratd fermentum
-                            feugiat, gun are best velit mauris aks egestasut aliquam.</p>
+                        <h2>{{ $cms_content[9]->name ?? 'N/A' }}</h2>
+                        <p>{{ $cms_content[9]->description ?? 'N/A' }}</p>
                     </div>
                 </div>
             </div>

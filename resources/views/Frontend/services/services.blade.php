@@ -30,8 +30,8 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-heading">
-                        <h2>Provider Services</h2>
-                        <p>Explore services offered by this provider:</p>
+                        <h2>{{ $cms_content[10]->name ?? 'N/A' }}</h2>
+                        <p>{{ $cms_content[10]->description ?? 'N/A' }}</p>
                     </div>
                 </div>
             </div>

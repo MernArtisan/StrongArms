@@ -48,7 +48,7 @@
 
     @yield('content')
 
-    @include('Frontend.partials.latestnews')
+    {{-- @include('Frontend.partials.latestnews') --}}
 
     @include('Frontend.layout.footer')
 

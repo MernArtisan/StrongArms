@@ -90,4 +90,20 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function ajaxUpdateStatus(Request $request, Booking $booking)
+    {
+        $request->validate([
+            'status' => 'required|in:confirmed,completed',
+        ]);
+
+        $booking->status = $request->status;
+        $booking->save();
+
+        return response()->json([
+            'success' => true,
+            'new_status' => $booking->status,
+        ]);
+    }
+    
 }

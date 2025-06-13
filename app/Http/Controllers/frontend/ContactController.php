@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\General;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\contact_query as Contact;
 
 class ContactController extends Controller
 {
     public function index()
     {
+
         return view('frontend.contact.contact');
     }
 
     public function store(Request $request)
     {
-
-
         $validatedData = $request->validate([
             'full_name' => 'required',
             'email' => 'required|email',

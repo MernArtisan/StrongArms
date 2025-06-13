@@ -79,12 +79,11 @@
                     </div>
 
                     <ul class="sidebar-menu">
-
                         {{-- Dashboard --}}
                         <li class="menu-header">Dashboard</li>
                         <li class="dropdown">
                             <a href="{{ route('dashboard') }}" class="nav-link">
-                                <i data-feather="monitor"></i> Dashboard
+                                <i data-feather="monitor"></i> <span>Dashboard</span>
                             </a>
                         </li>
 
@@ -93,14 +92,14 @@
                             <li class="menu-header">User Management</li>
                             <li class="dropdown">
                                 <a href="{{ route('all-users.index') }}" class="nav-link">
-                                    <i data-feather="users"></i> Accounts
+                                    <i data-feather="users"></i> <span>Accounts</span>
                                 </a>
                             </li>
                         @else
                             @can('user-view')
                                 <li class="dropdown">
                                     <a href="{{ route('all-users.index') }}" class="nav-link">
-                                        <i data-feather="users"></i> Accounts
+                                        <i data-feather="users"></i> <span>Accounts</span>
                                     </a>
                                 </li>
                             @endcan
@@ -110,21 +109,26 @@
                         <li class="menu-header">Content Management</li>
                         <li class="dropdown">
                             <a href="{{ route('blogs-upload.index') }}" class="nav-link">
-                                <i data-feather="file-text"></i> Blogs
+                                <i data-feather="edit-3"></i> <span>Blogs</span>
                             </a>
                         </li>
 
                         @if ($isAdmin)
                             <li class="dropdown">
+                                <a href="{{ route('contact-queries.index') }}" class="nav-link">
+                                    <i data-feather="message-circle"></i> <span>General Queries</span>
+                                </a>
+                            </li>
+                            <li class="dropdown">
                                 <a href="{{ route('homebanner.index') }}" class="nav-link">
-                                    <i data-feather="image"></i> Home Banners
+                                    <i data-feather="image"></i> <span>Home Banners</span>
                                 </a>
                             </li>
                         @else
                             @can('user-view')
                                 <li class="dropdown">
                                     <a href="{{ route('homebanner.index') }}" class="nav-link">
-                                        <i data-feather="image"></i> Home Banners
+                                        <i data-feather="image"></i> <span>Home Banners</span>
                                     </a>
                                 </li>
                             @endcan
@@ -135,14 +139,14 @@
                             <li class="menu-header">Orders</li>
                             <li class="dropdown">
                                 <a href="{{ route('orders.management') }}" class="nav-link">
-                                    <i data-feather="shopping-cart"></i> Orders
+                                    <i data-feather="shopping-bag"></i> <span>Orders</span>
                                 </a>
                             </li>
                         @else
                             @can('order-index')
                                 <li class="dropdown">
                                     <a href="{{ route('orders.management') }}" class="nav-link">
-                                        <i data-feather="shopping-cart"></i> Orders
+                                        <i data-feather="shopping-bag"></i> <span>Orders</span>
                                     </a>
                                 </li>
                             @endcan
@@ -152,7 +156,7 @@
                         <li class="menu-header">Content</li>
                         <li class="dropdown">
                             <a href="{{ route('content.index') }}" class="nav-link">
-                                <i data-feather="file"></i> Content
+                                <i data-feather="file-text"></i> <span>Content</span>
                             </a>
                         </li>
 
@@ -161,14 +165,14 @@
                             <li class="menu-header">Access Control</li>
                             <li class="dropdown">
                                 <a href="{{ route('role.index') }}" class="nav-link">
-                                    <i data-feather="lock"></i> Roles
+                                    <i data-feather="shield"></i> <span>Roles</span>
                                 </a>
                             </li>
                         @else
                             @can('role-view')
                                 <li class="dropdown">
                                     <a href="{{ route('role.index') }}" class="nav-link">
-                                        <i data-feather="lock"></i> Roles
+                                        <i data-feather="shield"></i> <span>Roles</span>
                                     </a>
                                 </li>
                             @endcan
@@ -179,14 +183,14 @@
                             <li class="menu-header">Product Management</li>
                             <li class="dropdown">
                                 <a href="{{ route('product-category.index') }}" class="nav-link">
-                                    <i data-feather="grid"></i> Categories
+                                    <i data-feather="layers"></i> <span>Categories</span>
                                 </a>
                             </li>
                         @else
                             @can('categories-view')
                                 <li class="dropdown">
                                     <a href="{{ route('product-category.index') }}" class="nav-link">
-                                        <i data-feather="grid"></i> Categories
+                                        <i data-feather="layers"></i> <span>Categories</span>
                                     </a>
                                 </li>
                             @endcan
@@ -196,14 +200,14 @@
                         @if ($isAdmin)
                             <li class="dropdown">
                                 <a href="{{ route('product.index') }}" class="nav-link">
-                                    <i data-feather="package"></i> Products
+                                    <i data-feather="box"></i> <span>Products</span>
                                 </a>
                             </li>
                         @else
                             @can('product-view')
                                 <li class="dropdown">
                                     <a href="{{ route('product.index') }}" class="nav-link">
-                                        <i data-feather="package"></i> Products
+                                        <i data-feather="box"></i> <span>Products</span>
                                     </a>
                                 </li>
                             @endcan
@@ -213,29 +217,31 @@
                         @if ($isAdmin || $isProvider)
                             <li class="dropdown">
                                 <a href="{{ route('service.index') }}" class="nav-link">
-                                    <i data-feather="layers"></i> Services
+                                    <i data-feather="briefcase"></i> <span>Services</span>
                                 </a>
                             </li>
                         @else
                             @can('service-view')
                                 <li class="dropdown">
                                     <a href="{{ route('service.index') }}" class="nav-link">
-                                        <i data-feather="layers"></i> Services
+                                        <i data-feather="briefcase"></i> <span>Services</span>
                                     </a>
                                 </li>
                             @endcan
                         @endif
+
+                        {{-- Bookings --}}
                         @if ($isAdmin || $isProvider)
                             <li class="dropdown">
                                 <a href="{{ route('bookings.index') }}" class="nav-link">
-                                    <i data-feather="book"></i> Bookings
+                                    <i data-feather="calendar"></i> <span>Bookings</span>
                                 </a>
                             </li>
                         @else
                             @can('service-view')
                                 <li class="dropdown">
                                     <a href="{{ route('bookings.index') }}" class="nav-link">
-                                        <i data-feather="book"></i> Bookings
+                                        <i data-feather="calendar"></i> <span>Bookings</span>
                                     </a>
                                 </li>
                             @endcan
@@ -246,14 +252,14 @@
                             <li class="menu-header">Availability</li>
                             <li class="dropdown">
                                 <a href="{{ route('avail.index') }}" class="nav-link">
-                                    <i data-feather="clock"></i> Availabilities
+                                    <i data-feather="clock"></i> <span>Availabilities</span>
                                 </a>
                             </li>
                         @else
                             @can('availability-view')
                                 <li class="dropdown">
                                     <a href="{{ route('avail.index') }}" class="nav-link">
-                                        <i data-feather="clock"></i> Availabilities
+                                        <i data-feather="clock"></i> <span>Availabilities</span>
                                     </a>
                                 </li>
                             @endcan
@@ -263,23 +269,23 @@
                         <li class="menu-header">Other</li>
                         <li class="dropdown">
                             <a href="{{ route('profile') }}" class="nav-link">
-                                <i data-feather="user"></i> Profile
+                                <i data-feather="user-check"></i> <span>Profile</span>
                             </a>
                         </li>
                         <li class="dropdown">
                             <a href="{{ route('inquiry') }}" class="nav-link">
-                                <i data-feather="mail"></i> Inquiry
+                                <i data-feather="help-circle"></i> <span>Inquiry</span>
                             </a>
                         </li>
                         <li class="dropdown">
                             <a href="{{ route('logout') }}" class="nav-link">
-                                <i data-feather="log-out"></i> Logout
+                                <i data-feather="log-out"></i> <span>Logout</span>
                             </a>
                         </li>
-
                     </ul>
                 </aside>
             </div>
+
 
             {{-- Main Content --}}
             @yield('content')

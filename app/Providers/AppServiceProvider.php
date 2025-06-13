@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Content;
+use App\Models\General;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -24,12 +25,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-
         if (Schema::hasTable('contents')) {
             $cms_content = Content::all();
         }
-
         View::share('cms_content', $cms_content);
+
+        if (Schema::hasTable('generals')) {
+            $generals = General::all();
+        }
+
+        View::share('generals', $generals);
 
 
         View::composer('*', function ($view) {

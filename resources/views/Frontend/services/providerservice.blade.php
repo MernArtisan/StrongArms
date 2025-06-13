@@ -55,7 +55,7 @@
                                             <li>Type: {{ ucfirst($service->type) }}</li>
                                             <li>Status: {{ ucfirst($service->status) }}</li>
                                         </ul>
-                                        <a href="#" class="btn1">Book Now</a>
+                                        <a href="{{ route('booking-details', $service->id) }}" class="btn1">Book Now</a>
                                     </div>
                                 </div>
                             </div>

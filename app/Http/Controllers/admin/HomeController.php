@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Blog;
 use App\Models\Content;
+use App\Models\General;
 use App\Models\Product;
 use App\Models\service;
 use App\Models\Category;
@@ -22,8 +23,8 @@ class HomeController extends Controller
         $categories = Category::all();
         $blogs = Blog::limit(3)->get();
         $providers = provider_detail::inRandomOrder()->take(3)->get();
-
-        return view('frontend.index', compact('banners', 'Product', 'Content', 'categories', 'blogs', 'providers'));
+        $contacts = General::findOrFail(1);
+        return view('frontend.index', compact('banners', 'Product', 'Content', 'categories', 'blogs', 'providers', 'contacts'));
     }
 
     public function getByCategory($id)
@@ -46,5 +47,4 @@ class HomeController extends Controller
         $providers = provider_detail::get();
         return view('Frontend.trainer.index', compact('providers'));
     }
-    
 }
