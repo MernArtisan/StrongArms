@@ -253,7 +253,7 @@
     </style>
 
     <div class="col-lg-8">
-        <form id="editProfileForm" action="{{ route('account.editprofile', auth()->user()->id) }}" method="POST"
+        <form id="editProfileForm" action="{{ route('account.editprofile') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')

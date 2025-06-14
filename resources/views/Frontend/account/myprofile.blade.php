@@ -277,8 +277,10 @@
             <div class="account-order-profile-header text-center text-md-start">
                 <div class="row align-items-center">
                     <div class="col-md-2 text-center mb-3 mb-md-0">
-                        <img src="{{ asset(Auth::user()->image) }}" alt="Profile" class="account-order-profile-img">
+                        <img src="{{ Auth::user()->image && file_exists(public_path(Auth::user()->image)) ? asset(Auth::user()->image) : asset('default.png') }}"
+                            alt="Profile" class="account-order-profile-img">
                     </div>
+
                     <div class="col-md-6">
                         <h3>{{ Auth::user()->name }}</h3>
                         <p class="mb-1"><i class="fas fa-shield-alt me-2"></i> Member Since:
@@ -295,10 +297,10 @@
             @include('Frontend.account.partail.sidebar')
             <!--start Main Content -->
             <!-- <div class="my-profile-container py-4">
-                                                            <div class="row"> -->
+                                                                                                        <div class="row"> -->
             @yield('profile-content')
             <!--  </div>
-                                                        </div> -->
+                                                                                                    </div> -->
             <!----end-main-code----->
 
         </div>

@@ -149,7 +149,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/profile', 'profile')->name('profile');
             Route::get('/orders', 'orders')->name('order');
             Route::get('/edit', 'edit')->name('edit');
-            Route::post('/editprofile/{id}', 'editprofile')->name('editprofile');
+            Route::put('/editprofile', 'editprofile')->name('editprofile');
             Route::get('/booking', 'booking')->name('booking');
             Route::post('/wishlist', 'wishlist')->name('wishlist');
             Route::get('/password', 'showResetForm')->name('password');

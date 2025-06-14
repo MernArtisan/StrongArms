@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Strong Arms</title>
+    <title>@yield('title')</title>
     <meta name="description" content="">
     <link rel="shortcut icon" type="image/icon" href="{{ asset('favicon.png') }}" />
 

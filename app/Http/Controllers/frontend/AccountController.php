@@ -45,7 +45,7 @@ class AccountController extends Controller
     }
 
 
-    public function editprofile(Request $request, $id)
+    public function editprofile(Request $request)
     {
         $user = Auth::user();
 
