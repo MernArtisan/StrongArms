@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
- 
+
     protected $fillable = [
         'name',
         'email',
@@ -28,12 +28,12 @@ class User extends Authenticatable
         'image',
         'status'
     ];
- 
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
- 
+
     protected function casts(): array
     {
         return [
@@ -44,13 +44,12 @@ class User extends Authenticatable
 
     public function services()
     {
-        return $this->hasMany(Service::class,'added_by');
+        return $this->hasMany(Service::class, 'added_by');
     }
 
     public function blogs()
     {
-        return $this->hasMany(Blog::class,'added_by');
+        return $this->hasMany(Blog::class, 'added_by');
     }
-
-    
+ 
 }

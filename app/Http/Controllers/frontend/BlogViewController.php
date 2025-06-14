@@ -11,18 +11,18 @@ class BlogViewController extends Controller
 {
     public function all_blogs()
     {
-        
-        $blogs = Blog::All();
-        $recent_blogs = Blog::orderBy('created_at','desc')->limit(6)->get();
-        return view('Frontend.blogs.all_blogs',compact('blogs','recent_blogs'));
+
+        $blogs = Blog::orderBy('created_at', 'desc')->where('status', 'published')->get();
+        $recent_blogs = Blog::orderBy('created_at', 'desc')->limit(6)->get();
+        return view('Frontend.blogs.all_blogs', compact('blogs', 'recent_blogs'));
     }
 
     public function detail($id)
     {
         $blog = Blog::find($id);
-        $recent_blogs = Blog::orderBy('created_at','desc')->limit(6)->get();
-        $blog_comments = blog_comments::where('blog_id','=',$id)->get();
-        return view('Frontend.blogs.blog_details',compact('blog','recent_blogs','blog_comments'));
+        $recent_blogs = Blog::orderBy('created_at', 'desc')->limit(6)->get();
+        $blog_comments = blog_comments::where('blog_id', '=', $id)->get();
+        return view('Frontend.blogs.blog_details', compact('blog', 'recent_blogs', 'blog_comments'));
     }
 
     public function comments(Request $request)
@@ -36,7 +36,6 @@ class BlogViewController extends Controller
                 'email' => $request->email
             ]);
             return redirect()->back();
-
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }

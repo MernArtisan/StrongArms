@@ -39,7 +39,7 @@
                   </div>
 
                   <!-- Cut Price -->
-                  <div class="form-group col-md-6">
+                  {{-- <div class="form-group col-md-6">
                     <label>Discounted Price</label>
                     <input type="text" name="cut_price" class="form-control">
                   </div>
@@ -48,7 +48,7 @@
                   <div class="form-group col-md-6">
                     <label>Discount Off (%)</label>
                     <input type="text" name="off" class="form-control">
-                  </div>
+                  </div> --}}
 
                   <!-- Quantity -->
                   <div class="form-group col-md-6">

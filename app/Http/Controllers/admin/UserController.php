@@ -36,7 +36,7 @@ class UserController extends Controller
     public function create()
     {
         try {
-            $roles = DB::table('roles')->wherenotin('id', [1])->get();
+            $roles = DB::table('roles')->whereNotIn('name',['admin', 'provider'])->get();
             return view('admin.users.create', compact('roles'));
         } catch (\Exception $e) {
             return back()->with('error', $e->getMessage());
@@ -77,7 +77,6 @@ class UserController extends Controller
                 $imagePath = 'users/' . $filename;
             }
 
-            // Create user
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -96,7 +95,6 @@ class UserController extends Controller
             ]);
 
 
-            // Attach role
             $user->roles()->attach($role->id);
 
             DB::commit();

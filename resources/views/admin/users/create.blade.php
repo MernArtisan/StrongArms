@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Create User</h4>
+                            <h4>Create Customer</h4>
                         </div>
 
                         <div class="card-body">
@@ -20,10 +20,11 @@
                                     <div class="form-group col-md-6">
                                         <label>Role</label>
                                         <select name="role" class="form-control" id="role">
-                                            <option value="">Select</option>
+                                            {{-- <option value="">Select</option>
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                            @endforeach
+                                            @endforeach --}}
+                                            <option value="customer">Customer</option>
                                         </select>
                                     </div>
 
@@ -52,7 +53,7 @@
                                     </div>
 
                                     <!-- Country -->
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-6">
                                         <label>Country</label>
                                         <input type="text" name="country" class="form-control" id="country">
                                     </div>
@@ -121,7 +122,7 @@
                                 </div>
 
                                 <div class="text-end">
-                                    <button type="submit" class="btn btn-success" id="submitBtn">Create User</button>
+                                    <button type="submit" class="btn btn-success" id="submitBtn">Create Customer</button>
                                 </div>
                             </form>
                         </div>
@@ -212,11 +213,11 @@
 
                                 toastr.error(response.message);
                             }
-                            $('#submitBtn').prop('disabled', false).text('Create User');
+                            $('#submitBtn').prop('disabled', false).text('Create Customer');
                         },
                         error: function(xhr, status, error) {
                             alert('Something went wrong. Please try again.');
-                            $('#submitBtn').prop('disabled', false).text('Create User');
+                            $('#submitBtn').prop('disabled', false).text('Create Customer');
                         }
                     });
                 }

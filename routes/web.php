@@ -29,7 +29,9 @@ use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\frontend\ProductviewController;
 use App\Http\Controllers\frontend\ServiceViewController;
 use App\Http\Controllers\admin\OrderManagementController;
+use App\Http\Controllers\admin\ProviderController;
 use App\Http\Controllers\frontend\ForgotPasswordController;
+
 
 Route::get('/cleareverything', function () {
     Artisan::call('cache:clear');
@@ -89,10 +91,12 @@ Route::middleware(['auth', 'permission'])->group(function () {
     Route::get('/order/show/{id}', [OrderManagementController::class, 'show'])->name('order.show');
     Route::put('/admin/orders/{id}/update-status', [OrderManagementController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
+
+    Route::resource('/provider', ProviderController::class);
+    
     Route::resource('/bookings', BookingController::class);
     // Route::resource('/booking/{id}', BookingController::class);
     Route::post('/bookings/{booking}/ajax-update-status', [BookingController::class, 'ajaxUpdateStatus'])->name('admin.bookings.ajaxUpdateStatus');
-
 
     Route::controller(AvailabilityController::class)->prefix('avail')->name('avail.')->group(function () {
         Route::get('/index', 'index')->name('index');
@@ -102,8 +106,6 @@ Route::middleware(['auth', 'permission'])->group(function () {
         Route::post('/avail/change-status', 'changeStatus')->name('changeStatus');
     });
 });
-
-
 
 Route::resource('homebanner', HomebannerController::class);
 Route::get('blogs-view', [BlogViewController::class, 'all_blogs'])->name('blogs.all_blogs');

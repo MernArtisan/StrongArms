@@ -92,7 +92,13 @@
                             <li class="menu-header">User Management</li>
                             <li class="dropdown">
                                 <a href="{{ route('all-users.index') }}" class="nav-link">
-                                    <i data-feather="users"></i> <span>Accounts</span>
+                                    <i data-feather="user"></i> <span>Customer </span>
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="{{route('provider.index')}}" class="nav-link">
+                                    <i data-feather="user"></i> <span>Providers </span>
                                 </a>
                             </li>
                         @else
