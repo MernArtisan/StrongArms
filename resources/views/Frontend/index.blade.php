@@ -21,7 +21,7 @@
                                                 <p class="mr-lu mr-ru wow animated fadeInDown" data-wow-duration="1.5s"
                                                     style="width: 430px;"> {!! $bnr->description !!}</p>
                                                 <div class="buttons wow animated fadeInUp" data-wow-duration="2s">
-                                                    <a href="{{ $bnr->redirect_url }}" class="btn1">Read More</a>
+                                                    {{-- <a href="{{ $bnr->redirect_url }}" class="btn1">Read More</a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +46,7 @@
                                                 <div class="dright">
                                                     <div class="content">
                                                         <h3>{{ $prd->name }}</h3>
-                                                        <p>{{ $prd->price }}</p>
+                                                        <p> $ {{ $prd->price }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -73,11 +73,11 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="videos-area text-center">
                         <div class="video-popups">
-                            <a href="https://www.youtube.com/watch?v=Eb9g9NB-Rnw" class="video-play-icon"><i
+                            <a href="{{ $cms_content[12]->description ?? 'N/A' }}" class="video-play-icon"><i
                                     class="fas fa-play"></i></a>
                         </div>
                         <div class="section-heading mr-0">
-                            <h2 class="mr-0">{{ $Content->video_text ?? '' }}</h2>
+                            <h2 class="mr-0">{{ $cms_content[12]->name ?? 'N/A' }}</h2>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12 col-sm-12 pro-ctg">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 pd-0">
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-md-12 col-sm-12 pd-0">
                     <div class="pro-sliders">
@@ -188,7 +188,7 @@
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="gimg">
                         <figure>
-                             <a href="{{ route('productview.productdetail', $Product[0]->slug) }}">
+                            <a href="{{ route('productview.productdetail', $Product[0]->slug) }}">
                                 <img src="{{ isset($Product[0]) ? asset($Product[0]->image) : asset('assets/images/gallery/1.jpg') }}"
                                     class="img-fluid w-100" />
                                 <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
@@ -204,7 +204,7 @@
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="gimg">
                         <figure>
-                             <a href="{{ route('productview.productdetail', $Product[1]->slug) }}">
+                            <a href="{{ route('productview.productdetail', $Product[1]->slug) }}">
                                 <img src="{{ isset($Product[1]) ? asset($Product[1]->image) : asset('assets/images/gallery/2.jpg') }}"
                                     class="img-fluid w-100" />
                                 <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
@@ -220,7 +220,7 @@
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="gimg">
                         <figure>
-                             <a href="{{ route('productview.productdetail', $Product[2]->slug) }}">
+                            <a href="{{ route('productview.productdetail', $Product[2]->slug) }}">
                                 <img src="{{ isset($Product[2]) ? asset($Product[2]->image) : asset('assets/images/gallery/3.jpg') }}"
                                     class="img-fluid w-100" />
                                 <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
@@ -236,7 +236,7 @@
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="gimg">
                         <figure>
-                             <a href="{{ route('productview.productdetail', $Product[3]->slug) }}">
+                            <a href="{{ route('productview.productdetail', $Product[3]->slug) }}">
                                 <img src="{{ isset($Product[3]) ? asset($Product[3]->image) : asset('assets/images/gallery/4.jpg') }}"
                                     class="img-fluid w-100" />
                                 <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
@@ -256,11 +256,11 @@
                                 <img src="{{ isset($Product[4]) ? asset($Product[4]->image) : asset('assets/images/gallery/5.jpg') }}"
                                     class="img-fluid w-100" />
                                 <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
-                            </a>
-                            <div class="content">
-                                <h3>{{ $Product[4]->name ?? 'Product Title' }}</h3>
-                                <p>{{ $Product[4]->description ?? 'Short product description goes here.' }}</p>
-                            </div>
+                                </a>
+                                <div class="content">
+                                    <h3>{{ $Product[4]->name ?? 'Product Title' }}</h3>
+                                    <p>{{ $Product[4]->description ?? 'Short product description goes here.' }}</p>
+                                </div>
                         </figure>
                     </div>
                 </div>
@@ -268,7 +268,7 @@
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="gimg">
                         <figure>
-                             <a href="{{ route('productview.productdetail', $Product[5]->slug) }}">
+                            <a href="{{ route('productview.productdetail', $Product[5]->slug) }}">
                                 <img src="{{ isset($Product[5]) ? asset($Product[5]->image) : asset('assets/images/gallery/6.jpg') }}"
                                     class="img-fluid w-100" />
                                 <div class="con-pop"><span><i class="fas fa-search"></i></span></div>
@@ -365,7 +365,7 @@
                         <div class="con">
                             <h2>{{ $cms_content[7]->name ?? 'N/A' }}</h2>
                             <p>{{ $cms_content[7]->description ?? 'N/A' }}</p>
-                            <a href="#" class="btn1">read more</a>
+                            {{-- <a href="#" class="btn1">read more</a> --}}
                         </div>
                     </div>
                 </div>
@@ -392,11 +392,14 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="news_left_cont position-relative">
                                     <p><i>News, weapons ,training</i></p>
-                                    <div class="heart_box">
+                                    {{-- <div class="heart_box">
                                         <a href="#"><i class="fa fa-heart"></i></a>
-                                    </div>
-                                    <h6><i class="fa fa-calendar-alt"></i>29-Jan-2024</h6>
-                                    <h3>Weapon Services - 2024</h3>
+                                    </div> --}}
+                                    <h6><i class="fa fa-calendar-alt"></i> {{ \Carbon\Carbon::now()->format('d-M-Y') }}
+                                    </h6>
+
+                                    <h3>Weapon Services - {{ \Carbon\Carbon::now()->year }}</h3>
+
                                     <h5><a href="{{ route('blogs.all_blogs') }}">Read More</a> &nbsp;<i
                                             class="fa fa-long-arrow-alt-right"></i>
                                     </h5>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\Blog;
+use App\Models\blog;
 use App\Models\Content;
 use App\Models\General;
 use App\Models\Product;

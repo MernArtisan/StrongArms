@@ -59,7 +59,7 @@
                                                 <tr>
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>
-                                                        <img src="{{ $u->image ? asset($u->image) : asset('default/default-user.jpg') }}"
+                                                        <img src="{{ $u->image ? asset($u->image) : asset('default.png') }}"
                                                             width="40px" height="40px" alt="">
                                                     </td>
                                                     <td>{{ $u->name }}</td>

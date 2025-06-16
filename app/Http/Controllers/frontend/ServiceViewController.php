@@ -171,6 +171,6 @@ class ServiceViewController extends Controller
     // Optional fallback: user canceled payment
     public function stripeAppointmentCancel()
     {
-        return redirect()->route('home')->with('error', 'Payment canceled.');
+        return redirect('/')->with('error', 'Payment canceled.');
     }
 }

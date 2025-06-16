@@ -102,7 +102,7 @@ class AuthConroller extends Controller
                 'phone'        => $request->phone,
                 'company_name' => $request->company_name,
                 'website'      => $request->website,
-                'address'      => $request->address_line,
+                'address_line'      => $request->address_line,
                 'shipping_option' => $request->has('shipping-option') ? true : false,
             ]);
             $user->roles()->attach($role->id);

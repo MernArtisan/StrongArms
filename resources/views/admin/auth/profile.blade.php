@@ -38,7 +38,7 @@
 
                     <div class="mb-3">
                       <label class="form-label">Email</label>
-                      <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
+                      <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}"  readonly required>
                     </div>
 
                     <div class="mb-3">

@@ -50,9 +50,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="time_slot">Time Slot</label>
-                                        <input type="text" name="time_slot" class="form-control"
-                                            placeholder="e.g. 10:00  - 11:00 " required>
+                                        <label>Time Slot</label>
+                                        <div class="d-flex gap-2">
+                                            <input type="time" id="start_time" class="form-control" required>
+                                            <span class="px-2">to</span>
+                                            <input type="time" id="end_time" class="form-control" required>
+                                        </div>
+                                        <input type="hidden" name="time_slot" id="time_slot">
                                     </div>
 
                                     <div class="form-group">
@@ -110,4 +114,22 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const start = document.getElementById('start_time');
+            const end = document.getElementById('end_time');
+            const combined = document.getElementById('time_slot');
+
+            function updateTimeSlot() {
+                if (start.value && end.value) {
+                    combined.value = `${start.value} - ${end.value}`;
+                }
+            }
+
+            start.addEventListener('change', updateTimeSlot);
+            end.addEventListener('change', updateTimeSlot);
+        });
+    </script>
+
 @endsection

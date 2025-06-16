@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         try {
-            $categories = Category::all();
+            $categories = Category::paginate(10);
             return view('admin.category.index', compact('categories'));
         } catch (\Throwable $th) {
             return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());

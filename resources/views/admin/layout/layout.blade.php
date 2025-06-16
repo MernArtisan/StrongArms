@@ -122,7 +122,7 @@
                         @if ($isAdmin)
                             <li class="dropdown">
                                 <a href="{{ route('contact-queries.index') }}" class="nav-link">
-                                    <i data-feather="message-circle"></i> <span>General Queries</span>
+                                    <i data-feather="message-circle"></i> <span>General </span>
                                 </a>
                             </li>
                             <li class="dropdown">

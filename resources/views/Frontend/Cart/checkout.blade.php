@@ -479,7 +479,7 @@
                                                 </div>
                                                 <div class="checkout-form-group">
                                                     <label class="checkout-label">Address *</label>
-                                                    <input type="text" class="checkout-input" name="address"
+                                                    <input type="text" class="checkout-input" id="location" name="address"
                                                         value="{{ Auth::user()->address_line ?? '' }}" style="color: #333"
                                                         required>
                                                 </div>
@@ -494,13 +494,8 @@
                                                 </div>
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">State *</label>
-                                                    <select class="checkout-select" name="state" required>
-                                                        <option value="">Select State</option>
-                                                        <option value="cali">california</option>
-                                                        <option value="state">{{ Auth::user()->state ?? '' }}</option>
-
-                                                        <!-- Insert state options here -->
-                                                    </select>
+                                                    <input type="text" class="checkout-input" name="state"
+                                                        value="{{ Auth::user()->state ?? '' }}" style="color: #333" required>
                                                 </div>
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">ZIP Code *</label>
@@ -509,13 +504,8 @@
                                                 </div>
                                                 <div class="checkout-form-group checkout-col-2">
                                                     <label class="checkout-label">Country *</label>
-                                                    <select class="checkout-select" name="country" required>
-                                                        <option value="">Select Country</option>
-                                                        <option value="usa">USA</option>
-
-                                                        <!-- Add other countries if needed -->
-                                                        <option value="country">{{ Auth::user()->country ?? '' }}</option>
-                                                    </select>
+                                                    <input type="text" class="checkout-input" name="country"
+                                                        value="{{ Auth::user()->country ?? '' }}" style="color: #333" required>
                                                 </div>
                                                 <div class="checkout-form-group">
                                                     <label class="checkout-label">Phone Number *</label>

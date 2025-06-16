@@ -32,6 +32,23 @@
             min-width: 18px;
             text-align: left;
         }
+
+        .modal-content {
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background-color: #222;
+            color: #fff;
+            border-bottom: none;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            font-size: 15px;
+            line-height: 1.8;
+        }
     </style>
 </head>
 
@@ -99,8 +116,26 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmdG8C6ItElq5ipuFv6O9AE48wyZm_vqU&amp;callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2zcZWYTrnjovVYwCR9zwHJwVEtUEufJk&libraries=places">
+    </script>
+    <script>
+        function initialize() {
+            var input = document.getElementById('location');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+                if (!place.geometry) return;
+                document.getElementById('latitude').value = place.geometry.location.lat();
+                document.getElementById('longitude').value = place.geometry.location.lng();
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script>
+        document.getElementById("headerserviceSearchForm").addEventListener("submit", function(e) {
+            // Redirect to service tab after submit
+            this.action = this.action + "#liton_service_list";
+        });
     </script>
 
 

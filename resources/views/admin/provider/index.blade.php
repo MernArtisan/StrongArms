@@ -38,9 +38,9 @@
                                         <tbody>
                                             @foreach ($providers as $index => $provider)
                                                 <tr>
-                                                    <td>{{ $index+1 }}</td>
+                                                    <td>{{ $index + 1 }}</td>
                                                     <td>
-                                                        <img src="{{ $provider->logo ? asset($provider->logo) : asset('default/default-user.jpg') }}"
+                                                        <img src="{{ $provider->logo ? asset($provider->logo) : asset('default.png') }}"
                                                             width="40" height="40" style="border-radius: 50%;">
                                                     </td>
                                                     <td>{{ $provider->store_name }}</td>

@@ -286,7 +286,7 @@
                         <div class="row align-items-center">
                             <div class="col-md-4">
                                 <h5 class="mb-1">{{ $booking->service->name }}</h5>
-                                <p class="mb-0 text-muted">Provider: {{ $booking->availability->service->type ?? 'N/A' }}
+                                <p class="mb-0 text-muted">Type: {{ $booking->availability->service->type ?? 'N/A' }}
                                 </p>
                             </div>
                             <div class="col-md-3">

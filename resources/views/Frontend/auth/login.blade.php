@@ -40,9 +40,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-md-offset-2">
                         <!-- login_wrapper -->
-
                         <div class="login_wrapper">
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-lg-6 col-md-12 col-xs-12 col-sm-12">
                                     <a href="#" class="custom_btn btn-primary" id="fb_btn"> <span>Login with
                                             Facebook</span><i class="fab fa-facebook-f"></i> </a>
@@ -50,8 +49,8 @@
                                 <div class="col-lg-6 col-md-12 col-xs-12 col-sm-12 ">
                                     <a href="#" class="custom_btn btn-primary google-plus"> Login with Google </a>
                                 </div>
-                            </div>
-                            <h2 class="d-lg-block d-md-none d-none">or</h2>
+                            </div> --}}
+                            {{-- <h2 class="d-lg-block d-md-none d-none">or</h2> --}}
                             <form action="{{ route('authenticate') }}" method="POST">
                                 @csrf
                                 <div class="formsix-pos">
@@ -70,10 +69,10 @@
                                     </div>
                                 </div>
                                 <div class="login_remember_box">
-                                    <label class="control control--checkbox">Remember me
+                                    {{-- <label class="control control--checkbox">Remember me
                                         <input type="checkbox">
                                         <span class="control__indicator"></span>
-                                    </label>
+                                    </label> --}}
                                     <a href="{{ route('password.request') }}" class="forget_password">
                                         Forgot Password
                                     </a>

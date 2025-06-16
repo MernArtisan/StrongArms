@@ -113,7 +113,7 @@
 @endsection
 
 @section('scripts')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('.status-toggle').on('click', function() {
                 let badge = $(this);
@@ -142,7 +142,7 @@
                 });
             });
         });
-    </script>
+    </script> --}}
     <script>
         $(document).ready(function() {
             $('#table-1').DataTable();

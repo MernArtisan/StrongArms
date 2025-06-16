@@ -86,28 +86,28 @@
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <input type="text" name="name" class="form-control" placeholder="Username *" required>
+                                        <input type="text" name="name" class="form-control" placeholder="Username *" value="{{ old('name')}}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="email" name="email" class="form-control" placeholder="Email *" required>
+                                        <input type="email" name="email" class="form-control" placeholder="Email *" value="{{ old('email')}}" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="password" name="password" class="form-control" placeholder="Password *" required>
+                                        <input type="password" name="password" class="form-control" placeholder="Password *"  required>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password *" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="phone" class="form-control" placeholder="Phone">
+                                        <input type="text" name="phone" class="form-control" placeholder="Phone" value="{{ old('phone')}}" >
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="company_name" class="form-control" placeholder="Company Name">
+                                        <input type="text" name="company_name" class="form-control" placeholder="Company Name" value="{{ old('company_name')}}" >
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="website" class="form-control" placeholder="Website">
+                                        <input type="text" name="website" class="form-control" placeholder="Website" value="{{ old('website')}}">
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="address_line" class="form-control" placeholder="Address Line">
+                                        <input type="text" name="address_line" class="form-control" placeholder="Address Line" value="{{ old('address_line')}}">
                                     </div>
                                     <div class="col-12 text-center">
                                         <div class="form-check">

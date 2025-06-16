@@ -97,7 +97,7 @@
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <h6 class="m-b-20 text-right">Bookings</h6>
-                                                    <h4 class="text-right"><span>{{$bookings}}</span></h4>
+                                                    <h4 class="text-right"><span>{{ $bookings }}</span></h4>
                                                 </div>
                                             </div>
                                             <div id="cardChart2"></div>
@@ -200,45 +200,78 @@
                     </div>
 
                     {{-- Revenue Chart --}}
+
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Revenue Chart</h4>
-                                    <div class="card-header-action">
-                                        <ul class="nav nav-pills" role="tablist" id="chart-tabs">
-                                            <li class="nav-item">
-                                                <a class="nav-link active card-tab-style" data-toggle="tab"
-                                                    data-id="1" role="tab" aria-selected="true">2017</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link card-tab-style" data-toggle="tab" data-id="2"
-                                                    role="tab" aria-selected="false">2018</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link card-tab-style" data-toggle="tab" data-id="3"
-                                                    role="tab" aria-selected="false">2019</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <h4>Monthly Revenue Overview</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div id="chart1"></div>
+                                    <div id="revenueChart"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </section>
             </div>
 
-            <footer class="main-footer">
+            {{-- <footer class="main-footer">
                 <div class="footer-left">
                     Copyright &copy; 2020 <div class="bullet"></div> Design By <a href="#">Redstar</a>
                 </div>
                 <div class="footer-right"></div>
-            </footer>
+            </footer> --}}
 
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const chartData = @json($revenueChartData);
+            const labels = chartData.map(item => item.month_year);
+            const values = chartData.map(item => parseFloat(item.revenue));
+
+            const options = {
+                chart: {
+                    type: 'bar',
+                    height: 350
+                },
+                series: [{
+                    name: 'Revenue',
+                    data: values
+                }],
+                xaxis: {
+                    categories: labels,
+                    title: {
+                        text: 'Month & Year'
+                    },
+                    labels: {
+                        rotate: -45
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'Revenue ($)'
+                    }
+                },
+                tooltip: {
+                    y: {
+                        formatter: function(val) {
+                            return "$" + val.toLocaleString();
+                        }
+                    }
+                },
+                title: {
+                    text: 'Monthly Revenue by Orders',
+                    align: 'left'
+                }
+            };
+
+            const chart = new ApexCharts(document.querySelector("#revenueChart"), options);
+            chart.render();
+        });
+    </script>
+
 @endsection

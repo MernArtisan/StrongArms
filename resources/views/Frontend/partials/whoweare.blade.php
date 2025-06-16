@@ -11,7 +11,7 @@
                      <p>{{ $cms_content[0]->description_3 ?? '' }}
                      </p>
                      <div class="buttons">
-                         <a href="#" class="btn1">Read More</a>
+                         {{-- <a href="#" class="btn1">Read More</a> --}}
                      </div>
                  </div>
              </div>

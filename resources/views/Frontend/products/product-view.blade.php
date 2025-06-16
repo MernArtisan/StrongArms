@@ -210,9 +210,9 @@
             $("#slider-range").slider({
                 range: true,
                 min: 0,
-                max: 10000000,
-                step: 1000,
-                values: [{{ request('min_price', 0) }}, {{ request('max_price', 10000000) }}],
+                max: 10000,
+                step: 100,
+                values: [{{ request('min_price', 0) }}, {{ request('max_price', 10000) }}],
                 slide: function(event, ui) {
                     $("#min_price").val(ui.values[0]);
                     $("#max_price").val(ui.values[1]);
@@ -223,7 +223,7 @@
             $("#min_price, #max_price").on('change', function() {
                 var min = parseInt($("#min_price").val());
                 var max = parseInt($("#max_price").val());
-                if (min >= 0 && max <= 10000000 && min < max) {
+                if (min >= 0 && max <= 10000 && min < max) {
                     $("#slider-range").slider("values", [min, max]);
                 }
             });
@@ -241,9 +241,9 @@
             $("#slider-range").slider({
                 range: true,
                 min: 0,
-                max: 10000000,
-                step: 1000,
-                values: [{{ request('min_price', 0) }}, {{ request('max_price', 10000000) }}],
+                max: 10000,
+                step: 100,
+                values: [{{ request('min_price', 0) }}, {{ request('max_price', 10000) }}],
                 slide: function(event, ui) {
                     $("#min_price").val(ui.values[0]);
                     $("#max_price").val(ui.values[1]);
@@ -253,8 +253,8 @@
             // Manual input sync
             $("#min_price, #max_price").on('input', function() {
                 var min = parseInt($("#min_price").val()) || 0;
-                var max = parseInt($("#max_price").val()) || 10000000;
-                if (min >= 0 && max <= 10000000 && min < max) {
+                var max = parseInt($("#max_price").val()) || 10000;
+                if (min >= 0 && max <= 10000 && min < max) {
                     $("#slider-range").slider("values", [min, max]);
                 }
             });

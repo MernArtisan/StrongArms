@@ -15,11 +15,11 @@ class BlogController extends Controller
     public function index()
     {
         try {
-            $blogs = Blog::all();
+            $blogs = Blog::paginate(10);
             return view('admin.blogs.index', compact('blogs'));
         } catch (\Exception $e) {
 
-            return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
+            return back()->with('error', 'An unexpected error occurred: ' . $e->getMessage());
         }
     }
 
