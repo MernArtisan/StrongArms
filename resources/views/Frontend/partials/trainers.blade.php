@@ -49,9 +49,9 @@
                                     </div>
                                     <div class="provider-features">
                                         <ul>
-                                            <li><i class="fas fa-check"></i> Home Defense</li>
-                                            <li><i class="fas fa-check"></i> Tactical Drills</li>
-                                            <li><i class="fas fa-check"></i> Concealed Carry</li>
+                                            <li><i class="fas fa-check"></i> {{ $provider->city }}</li>
+                                            <li><i class="fas fa-check"></i> {{ $provider->state }}</li>
+                                            <li><i class="fas fa-check"></i> {{ $provider->country }}</li>
                                         </ul>
                                     </div>
                                     <div class="provider-action">

@@ -1,4 +1,4 @@
-@extends('frontend.layout.layout')
+@extends('Frontend.layout.layout')
 @section('title', $product->name)
 @section('content')
     <style>
@@ -6,6 +6,27 @@
             display: inline-block;
             width: 12% !important;
             padding: 0 10px;
+        }
+        .con {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        }
+    
+        .con p,
+        .con ul,
+        .con li {
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Optional: Prevent horizontal scroll */
+        .single-product-content {
+            overflow-x: hidden;
         }
     </style>
     <section class="breadcumb-area jarallax bg-img af">
@@ -58,22 +79,19 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="single-product-content">
                         <h2>{{ $product->name }}</h2>
-                        <div class="product-review">
-                            <ul>
-                                @for ($i = 0; $i < 5; $i++)
-                                    <li><i class="fa fa-star"></i></li>
-                                @endfor
-                            </ul>
-                            <span>{{ $product->reviews_count ?? 0 }} Reviews</span>
-                            <a href="#"> Add Your Review</a>
-                        </div>
+                        <!--<div class="product-review">-->
+                        <!--    <ul>-->
+                        <!--        @for ($i = 0; $i < 5; $i++)-->
+                        <!--            <li><i class="fa fa-star"></i></li>-->
+                        <!--        @endfor-->
+                        <!--    </ul>-->
+                        <!--    <span>{{ $product->reviews_count ?? 0 }} Reviews</span>-->
+                        <!--    <a href="#"> Add Your Review</a>-->
+                        <!--</div>-->
                         <div class="con">
                             <p>{{ $product->description }}</p>
                             <ul>
-                                <li><i class="fa fa-angle-double-right"></i> High quality build and finish.</li>
-                                <li><i class="fa fa-angle-double-right"></i> Includes customizable attachments.</li>
-                                <li><i class="fa fa-angle-double-right"></i> Designed for professionals.</li>
-                                <li><i class="fa fa-angle-double-right"></i> Limited edition availability.</li>
+                                <li><i class="fa fa-angle-double-right"></i> {{ $product->specification }}</li>
                             </ul>
                         </div>
                         <div class="select-pro">
@@ -90,8 +108,9 @@
                                 <div class="buttons mt-3">
                                     <a href="javascript:void(0)" class="btn1 add-to-cart-btn"
                                         data-id="{{ $product->id }}">Add to Cart</a>
-                                    <a href="#" class="btn4">Buy now!</a>
-                                    <a href="#" class="heart"><i class="fa fa-heart"></i></a>
+                                    <a href="javascript:void(0)" class="btn4 buy-now-btn" data-id="{{ $product->id }}">Buy now!</a>
+
+                                    <!--<a href="#" class="heart"><i class="fa fa-heart"></i></a>-->
                                 </div>
                             </form>
                         </div>
@@ -133,5 +152,34 @@
             </div>
         </div>
     </section>
+  
+
+@endsection
+@section('scripts')
+<script>
+    $(document).on('click', '.buy-now-btn', function () {
+        let btn = $(this);
+        let form = btn.closest('form.add-to-cart-form');
+        let productId = btn.data('id');
+        let quantity = form.find('input[name="quantity"]').val() || 1;
+
+        $.ajax({
+            url: "{{ route('cart.add') }}",
+            method: 'POST',
+            data: {
+                _token: "{{ csrf_token() }}",
+                product_id: productId,
+                quantity: parseInt(quantity)
+            },
+            success: function (res) {
+                window.location.href = "{{ route('cart.checkout') }}";
+            },
+            error: function () {
+                alert('Failed to add product to cart.');
+            }
+        });
+    });
+</script>
+
 @endsection
 

@@ -21,10 +21,10 @@ class HomeController extends Controller
         $Product = Product::limit(10)->get();
         $Content = Content::where('id', 1)->first();
         $categories = Category::all();
-        $blogs = Blog::limit(3)->get();
+        $blogs = blog::limit(3)->get();
         $providers = provider_detail::inRandomOrder()->take(3)->get();
         $contacts = General::findOrFail(1);
-        return view('frontend.index', compact('banners', 'Product', 'Content', 'categories', 'blogs', 'providers', 'contacts'));
+        return view('Frontend.index', compact('banners', 'Product', 'Content', 'categories', 'blogs', 'providers', 'contacts'));
     }
 
     public function getByCategory($id)

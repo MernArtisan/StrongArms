@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Models\blog;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -15,7 +15,7 @@ class BlogController extends Controller
     public function index()
     {
         try {
-            $blogs = Blog::paginate(10);
+            $blogs = blog::paginate(10);
             return view('admin.blogs.index', compact('blogs'));
         } catch (\Exception $e) {
 
@@ -53,7 +53,7 @@ class BlogController extends Controller
                 $imagePath = 'blogs/' . $filename;
             }
 
-            Blog::create([
+            blog::create([
                 'title' => $request->title,
                 'content' => $request->content,
                 'image' => $imagePath ?? null,
@@ -78,7 +78,7 @@ class BlogController extends Controller
     public function edit(string $id)
     {
         try {
-            $blog = Blog::find($id);
+            $blog = blog::find($id);
             return view('admin.blogs.edit', compact('blog'));
         } catch (\Throwable $th) {
             return back()->with('error', 'An unexpected error occurred: ' . $th->getMessage());
@@ -97,7 +97,7 @@ class BlogController extends Controller
         ]);
 
         try {
-            $blog = Blog::findOrFail($id);
+            $blog = blog::findOrFail($id);
 
             if ($request->hasFile('image')) {
                 if ($blog->image && file_exists(public_path($blog->image))) {
@@ -131,7 +131,7 @@ class BlogController extends Controller
 
     public function destroy($id)
     {
-        Blog::findOrFail($id)->delete();
+        blog::findOrFail($id)->delete();
         return back()->with('success', 'Blog deleted successfully.');
     }
 }

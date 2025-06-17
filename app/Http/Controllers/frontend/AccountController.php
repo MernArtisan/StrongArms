@@ -35,7 +35,7 @@ class AccountController extends Controller
             ->orderBy('date', 'desc')
             ->get();
         // return $bookings;
-        return view('frontend.account.partail.booking', compact('bookings'));
+        return view('Frontend.account.partail.booking', compact('bookings'));
     }
 
 
@@ -84,7 +84,7 @@ class AccountController extends Controller
     public function orderDetails($orderId)
     {
         $order = Order::where('orderId', $orderId)->with('items', 'user')->firstOrFail();
-        return view('frontend.account.partail.order-details-modal', compact('order'));
+        return view('Frontend.account.partail.order-details-modal', compact('order'));
     }
 
     public function showResetForm()

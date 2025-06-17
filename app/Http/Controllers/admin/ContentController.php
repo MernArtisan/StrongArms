@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContentController extends Controller
 {
@@ -13,19 +14,28 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::orderBy('id', 'ASC')->get();
-        // return $contents;
-        return view('admin.contents.index', [
-            'contents' => $contents
-        ]);
+        if(Auth::user()->hasRole('admin')){
+            $contents = Content::orderBy('id', 'ASC')->get();
+            // return $contents;
+            return view('admin.contents.index', [
+                'contents' => $contents
+            ]);
+        }else{
+            return redirect()->back()->with('error' , 'You do not have permission for this action');
+        }
     }
     public function edit(string $id)
-    {
-        $content = Content::where('id', $id)->firstOrFail();
-        // return $content;
-        return view('admin.contents.edit', [
-            'content' => $content
-        ]);
+    {   
+        if(Auth::user()->hasRole('admin')){
+                $content = Content::where('id', $id)->firstOrFail();
+            // return $content;
+            return view('admin.contents.edit', [
+                'content' => $content
+            ]);    
+        }else{
+            return redirect()->back()->with('error' , 'You do not have permission for this action');
+        }
+        
     }
     public function update(Request $request, string $id)
     {

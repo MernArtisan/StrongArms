@@ -38,7 +38,8 @@ class OrderManagementController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
-        $request->validate([
+       try{
+            $request->validate([
             'order_status' => 'required'
         ]);
 
@@ -50,5 +51,8 @@ class OrderManagementController extends Controller
         Mail::to($order->email)->send(new OrderStatusChangedMail($order));
 
         return redirect()->back()->with('success', 'Order status updated successfully and email sent to customer.');
+       }catch(\Exception $e){
+           return redirect()->back()->with('error' , 'Error:'.$e->getMessage());
+       }
     }
 }

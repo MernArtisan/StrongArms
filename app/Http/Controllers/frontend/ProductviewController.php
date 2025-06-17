@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Models\product;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,7 +42,7 @@ class ProductviewController extends Controller
 
         $category = Category::all();
 
-        return view('frontend.products.product-view', compact('products','category'));
+        return view('Frontend.products.product-view', compact('products','category'));
     }
 
 
@@ -55,7 +55,7 @@ class ProductviewController extends Controller
         ->latest()
         ->take(4)
         ->get();
-        return view('frontend.products.product-detail', compact('product','relatedProducts'));
+        return view('Frontend.products.product-detail', compact('product','relatedProducts'));
     }
 
     

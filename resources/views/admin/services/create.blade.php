@@ -49,9 +49,9 @@
 
 
                                     <div class="form-group">
-                                        <label>Price</label>
+                                        <label>Price $</label>
                                         <input type="text" name="price" class="form-control"
-                                            value=" $ {{ old('price') }}">
+                                            value=" {{ old('price') }}">
                                     </div>
 
                                     <div class="form-group">

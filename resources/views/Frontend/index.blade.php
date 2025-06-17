@@ -1,4 +1,4 @@
-@extends('frontend.layout.layout')
+@extends('Frontend.layout.layout')
 @section('title', 'Home')
 @section('content')
 
@@ -71,15 +71,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
+                   @php
+                        $youtubeUrl = $cms_content[12]->description ?? '#';
+                    @endphp
+                    
                     <div class="videos-area text-center">
                         <div class="video-popups">
-                            <a href="{{ $cms_content[12]->description ?? 'N/A' }}" class="video-play-icon"><i
-                                    class="fas fa-play"></i></a>
+                            <a href="{{ $youtubeUrl }}" class="" target="_blank" rel="noopener">
+                                <i class="fas fa-play"></i>
+                            </a>
                         </div>
                         <div class="section-heading mr-0">
                             <h2 class="mr-0">{{ $cms_content[12]->name ?? 'N/A' }}</h2>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

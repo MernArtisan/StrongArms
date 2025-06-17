@@ -110,14 +110,16 @@
                                 </li>
                             @endcan
                         @endif
-
-                        {{-- Content Management --}}
-                        <li class="menu-header">Content Management</li>
-                        <li class="dropdown">
-                            <a href="{{ route('blogs-upload.index') }}" class="nav-link">
-                                <i data-feather="edit-3"></i> <span>Blogs</span>
-                            </a>
-                        </li>
+                        
+                        @if ($isAdmin)
+                            {{-- Content Management --}}
+                            <li class="menu-header">Content Management</li>
+                            <li class="dropdown">
+                                <a href="{{ route('blogs-upload.index') }}" class="nav-link">
+                                    <i data-feather="edit-3"></i> <span>Blogs</span>
+                                </a>
+                            </li>
+                        @endif
 
                         @if ($isAdmin)
                             <li class="dropdown">
@@ -158,14 +160,16 @@
                             @endcan
                         @endif
 
-                        {{-- Content --}}
-                        <li class="menu-header">Content</li>
-                        <li class="dropdown">
-                            <a href="{{ route('content.index') }}" class="nav-link">
-                                <i data-feather="file-text"></i> <span>Content</span>
-                            </a>
-                        </li>
-
+                        @if ($isAdmin)
+                            {{-- Content --}}
+                            <li class="menu-header">Content</li>
+                            <li class="dropdown">
+                                <a href="{{ route('content.index') }}" class="nav-link">
+                                    <i data-feather="file-text"></i> <span>Content</span>
+                                </a>
+                            </li>
+                        @endif
+                        
                         {{-- Access Control --}}
                         @if ($isAdmin)
                             <li class="menu-header">Access Control</li>
@@ -278,11 +282,15 @@
                                 <i data-feather="user-check"></i> <span>Profile</span>
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="{{ route('inquiry') }}" class="nav-link">
-                                <i data-feather="help-circle"></i> <span>Inquiry</span>
-                            </a>
-                        </li>
+                        
+                        @if($isAdmin)    
+                            <li class="dropdown">
+                                <a href="{{ route('inquiry') }}" class="nav-link">
+                                    <i data-feather="help-circle"></i> <span>Inquiry</span>
+                                </a>
+                            </li>
+                        @endif
+                        
                         <li class="dropdown">
                             <a href="{{ route('logout') }}" class="nav-link">
                                 <i data-feather="log-out"></i> <span>Logout</span>

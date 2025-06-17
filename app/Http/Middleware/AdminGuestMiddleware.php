@@ -11,7 +11,7 @@ class AdminGuestMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::check() && Auth::user()->hasRole('admin')) {
-            return redirect('/admin/dashboard');
+            return redirect('/dashboard');
         }
 
         return $next($request);

@@ -18,7 +18,7 @@ class CartController extends Controller
         // return $cartItems;
         $cartTotal = Cart::subtotal();
 
-        return view('frontend.cart.index', compact('cartItems', 'cartTotal'));
+        return view('Frontend.Cart.index', compact('cartItems', 'cartTotal'));
     }
 
     // Add product to cart
@@ -124,7 +124,7 @@ class CartController extends Controller
     public function miniCart()
     {
         $cartItems = Cart::content();
-        $cartCount = Cart::count();
+        $cartCount = Cart::content()->count();
 
         $items = $cartItems->map(function ($item) {
             return [

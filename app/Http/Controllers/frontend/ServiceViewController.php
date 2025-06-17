@@ -5,7 +5,7 @@ namespace App\Http\Controllers\frontend;
 use Stripe\Stripe;
 use App\Models\Booking;
 use App\Models\Payment;
-use App\Models\Service;
+use App\Models\service;
 use App\Models\Availability;
 use Illuminate\Http\Request;
 use App\Mail\BookingConfirmedMail;
@@ -18,13 +18,13 @@ class ServiceViewController extends Controller
 {
     public function index()
     {
-        $services = Service::paginate(15);
-        return view('frontend.services.services', compact('services'));
+        $services = service::paginate(15);
+        return view('Frontend.services.services', compact('services'));
     }
 
     public function booking($id)
     {
-        $service = Service::findOrFail($id);
+        $service = service::findOrFail($id);
 
         $today = now()->toDateString();
         $currentTime = now()->format('H:i');
@@ -76,7 +76,7 @@ class ServiceViewController extends Controller
             'note' => 'nullable|string'
         ]);
 
-        $service = Service::findOrFail($request->service_id);
+        $service = service::findOrFail($request->service_id);
 
         $availability = Availability::where('service_id', $request->service_id)
             ->where('time_slot', $request->time_slot)

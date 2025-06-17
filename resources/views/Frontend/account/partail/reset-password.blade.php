@@ -298,7 +298,7 @@
                             @method('PUT')
                             <div class="change-password-form-group">
                                 <label class="change-password-label">Current Password</label>
-                                <<input type="password" name="current_password" class="change-password-input"
+                                <input type="password" name="current_password" class="change-password-input"
                                     id="currentPassword" required style="color:#1a1a1a">
                                     <i class="fas fa-eye change-password-toggle"></i>
                             </div>

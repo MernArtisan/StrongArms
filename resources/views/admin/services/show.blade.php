@@ -47,7 +47,7 @@
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <span><strong><i class="fas fa-dollar-sign mr-1"></i> Price:</strong></span>
-                                        <span>${{ number_format($service->price, 2) }}</span>
+                                        <span>${{ $service->price }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between">
                                         <span><strong><i class="fas fa-check-circle mr-1"></i> Status:</strong></span>

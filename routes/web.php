@@ -23,7 +23,7 @@ use App\Http\Controllers\admin\HomebannerController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\ProfileController;
-use App\Http\Controllers\frontend\BlogviewController;
+use App\Http\Controllers\frontend\BlogViewController;
 // use App\Http\Middleware\ProviderAuthenticate;
 use App\Http\Controllers\admin\ResetPasswordController;
 use App\Http\Controllers\frontend\ProductviewController;
@@ -61,9 +61,9 @@ Route::group(['middleware' => ['admin.guest']], function () {
     Route::Post('/register-submit', [AuthConroller::class, 'registerSubmit'])->name('register.submit');
     Route::Post('/register-trainer-submit', [AuthConroller::class, 'registerTrainerSubmit'])->name('registertrainer.submit');
     Route::put('/profile/update', [AuthConroller::class, 'update'])->name('profile.update');
-    Route::post('/profile/change-password', [AuthConroller::class, 'changePassword'])->name('profile.changePassword');
+    
 });
-
+Route::post('/profile/change-password', [AuthConroller::class, 'changePassword'])->name('profile.changePassword');
 Route::get('/logout', [AuthConroller::class, 'logout'])->name('logout');
 
 Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');

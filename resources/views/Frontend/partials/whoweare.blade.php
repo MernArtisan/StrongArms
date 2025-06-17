@@ -21,7 +21,7 @@
                          <div class="dbox">
                              <div class="dleft">
                                  <div class="content">
-                                     <h4>Hunting</h4>
+                                     <h4>{{ $cms_content[0]->item_2 }}</h4>
                                      {{-- <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a> --}}
                                  </div>
                              </div>
@@ -36,7 +36,7 @@
                          <div class="dbox">
                              <div class="dleft">
                                  <div class="content">
-                                     <h4>Trainning</h4>
+                                     <h4>{{ $cms_content[0]->item_3 }}</h4>
                                      {{-- <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a> --}}
                                  </div>
                              </div>
@@ -51,7 +51,7 @@
                          <div class="dbox">
                              <div class="dleft">
                                  <div class="content">
-                                     <h4>Shoot Range</h4>
+                                     <h4>{{ $cms_content[0]->item_4 }}</h4>
                                      {{-- <a href="#" class="btn3">Read More<i class="fas fa-arrow-right"></i></a> --}}
                                  </div>
                              </div>

@@ -30,7 +30,8 @@
                     <div class="cart-head">
                         <button style="position: relative;">
                             <i class="fas fa-shopping-cart"></i>
-                            <span id="cart-count" class="cart-count-badge">{{ $cartItems->count() }}</span>
+                            <span id="cart-count" class="cart-count-badge">{{ count($cartItems) }}</span>
+
                         </button>
 
                         <div class="nav-shop-cart">

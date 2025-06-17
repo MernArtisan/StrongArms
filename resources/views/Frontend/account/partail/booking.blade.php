@@ -1,4 +1,4 @@
-@extends('frontend.account.myprofile')
+@extends('Frontend.account.myprofile')
 
 @section('profile-content')
     <style>

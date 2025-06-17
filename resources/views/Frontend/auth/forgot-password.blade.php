@@ -1,5 +1,5 @@
 
-@extends('frontend.layout.layout')
+@extends('Frontend.layout.layout')
 @section('title', 'Home')
 @section('content')
 <section class="breadcumb-area jarallax bg-img af">

@@ -9,6 +9,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Add Trainer</h4>
+                            <div class="ml-auto">
+                                <a href="{{ route('provider.index') }}" class="btn btn-dark">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </a>
+                            </div>
                         </div>
                         <div class="card-body">
                             <form method="POST" action="{{ route('provider.store') }}" enctype="multipart/form-data">

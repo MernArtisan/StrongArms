@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\Service;
+use App\Models\service;
 use App\Models\provider_detail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,12 +25,12 @@ class ServiceController extends Controller
             $user = Auth::user();
 
             if ($user->hasRole('admin')) {
-                $services = Service::orderBy('created_at', 'desc')->get();
+                $services = service::orderBy('created_at', 'desc')->get();
             } else {
                 $provider = provider_detail::where('user_id', $user->id)->first();
 
                 if ($provider) {
-                    $services = Service::where('provider_id', $provider->id)->get();
+                    $services = service::where('provider_id', $provider->id)->get();
                 } else {
                     // No provider detail found, return empty collection
                     $services = collect(); // Empty collection
@@ -40,7 +40,7 @@ class ServiceController extends Controller
 
             return view('admin.services.index', compact('services'));
         } catch (\Throwable $e) {
-            return back()->with('error', 'Something went wrong while loading services.');
+            return back()->with('error', 'Something went wrong while loading services.'.$e->getMessage());
         }
     }
 
@@ -79,7 +79,7 @@ class ServiceController extends Controller
 
             // $provider = provider_detail::where('user_id', Auth::id())->first();
             // dd($provider);
-            Service::create([
+            service::create([
                 'name' => $request->name,
                 'provider_id' => $providerDetail->id,
                 'description' => $request->description,
@@ -98,13 +98,13 @@ class ServiceController extends Controller
 
     public function edit($id)
     {
-        $service = Service::findOrFail($id);
+        $service = service::findOrFail($id);
         return view('admin.services.edit', compact('service'));
     }
 
     public function update(Request $request, $id)
     {
-        $service = Service::findOrFail($id);
+        $service = service::findOrFail($id);
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -136,14 +136,14 @@ class ServiceController extends Controller
 
     public function destroy($id)
     {
-        $service = Service::findOrFail($id);
+        $service = service::findOrFail($id);
         $service->delete();
         return redirect()->route('service.index')->with('success', 'Service deleted successfully.');
     }
 
     public function show($id)
     {
-        $service = Service::findOrFail($id);
+        $service = service::findOrFail($id);
         return view('admin.services.show', compact('service'));
     }
 }

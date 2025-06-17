@@ -57,7 +57,7 @@
                                         </div>
                                     @endif
 
-                                    @if (in_array($content->id, [6,7,9,10]))
+                                    @if (in_array($content->id, [6,7,9,10,1]))
                                         <div class="form-group">
                                             <label for="title">Item 2</label>
                                             <input type="text" id="item_2" name="item_2" class="form-control"
@@ -73,7 +73,7 @@
                                         </div>
                                     @endif
 
-                                    @if (in_array($content->id, [6,7,8,9]))
+                                    @if (in_array($content->id, [6,7,8,9,1]))
                                         <div class="form-group">
                                             <label for="title">Item 3</label>
                                             <input type="text" id="item_3" name="item_3" class="form-control"
@@ -90,7 +90,7 @@
                                     @endif
 
 
-                                    @if (in_array($content->id, [7,9]))
+                                    @if (in_array($content->id, [7,9,1]))
                                         <div class="form-group">
                                             <label for="title">Item 4</label>
                                             <input type="text" id="item_4" name="item_4" class="form-control"

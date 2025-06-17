@@ -264,7 +264,7 @@
                     }
                 },
                 title: {
-                    text: 'Monthly Revenue by Orders',
+                    text: @json($isAdmin ? 'Monthly Revenue by Orders' : 'Monthly Revenue by Bookings'),
                     align: 'left'
                 }
             };

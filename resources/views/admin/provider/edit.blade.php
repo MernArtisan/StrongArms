@@ -9,7 +9,13 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Edit Trainer</h4>
+                             <div class="ml-auto">
+                                <a href="{{ route('provider.index') }}" class="btn btn-dark">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </a>
+                            </div>
                         </div>
+                        
                         <div class="card-body">
                             <form method="POST" action="{{ route('provider.update', $provider->id) }}"
                                 enctype="multipart/form-data">
@@ -104,27 +110,14 @@
 
                                     <div class="form-group col-md-6">
                                         <label>State</label>
-                                        <select name="state" class="form-control" required>
-                                            <option value="">Select State</option>
-                                            <option value="California"
-                                                {{ $provider->state == 'California' ? 'selected' : '' }}>California
-                                            </option>
-                                            <option value="New York"
-                                                {{ $provider->state == 'New York' ? 'selected' : '' }}>New York</option>
-                                        </select>
+                                        <input type="text" name="state" class="form-control"
+                                            value="{{ $provider->state }}" required>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label>City</label>
-                                        <select name="city" class="form-control" required>
-                                            <option value="">Select City</option>
-                                            <option value="Los Angeles"
-                                                {{ $provider->city == 'Los Angeles' ? 'selected' : '' }}>Los Angeles
-                                            </option>
-                                            <option value="New York City"
-                                                {{ $provider->city == 'New York City' ? 'selected' : '' }}>New York City
-                                            </option>
-                                        </select>
+                                        <input type="text" name="city" class="form-control"
+                                            value="{{ $provider->city }}" required>
                                     </div>
 
                                     <div class="form-group col-md-12">

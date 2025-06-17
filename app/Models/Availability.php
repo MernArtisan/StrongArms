@@ -22,6 +22,6 @@ class Availability extends Model
 
     public function service()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(service::class);
     }
 }

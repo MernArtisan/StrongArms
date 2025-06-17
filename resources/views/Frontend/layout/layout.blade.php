@@ -179,13 +179,14 @@
                             html += `
                             <li class="mini_cart_item" data-rowid="${item.rowId}">
                                 <a href="#">
-                                    <img src="/${item.options.image}" alt="${item.name}" />
+                                    <img src="/public/${item.options.image}" alt="${item.name}" />
                                     <p class="product-name">${item.name}</p>
                                 </a>
                                 <p class="quantity">${item.qty} x <strong class="Price-amount">$${parseFloat(item.price).toFixed(2)}</strong></p>
                                 <a href="javascript:void(0)" class="remove-item" title="Remove this item" data-rowid="${item.rowId}">x</a>
                             </li>`;
                         });
+
                         html += `</ul>
                                 <p class="total"><strong>Subtotal:</strong> <span class="amount">$${parseFloat(res.cartTotal).toFixed(2)}</span></p>
                                 <p class="buttons">

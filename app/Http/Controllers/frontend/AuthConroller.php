@@ -206,7 +206,7 @@ class AuthConroller extends Controller
 
     public function RegisterTrainer(Request $request)
     {
-        return view('frontend.auth.register-trainer');
+        return view('Frontend.auth.register-trainer');
     }
 
 
